@@ -1,0 +1,14 @@
+package com.kh.example.chap02_abstract.family.model.vo;
+
+public interface Basic {
+
+	
+	private int a; // eror
+	// 에러메세지 
+	// Illegal modifier for the interface field Basic.a; 
+	// only public, static & final are permitted
+	
+	private static final int A;
+	
+	
+}

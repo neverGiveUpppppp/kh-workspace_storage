@@ -1,0 +1,21 @@
+INDEX VERSION 1.131
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1442407971.index
+\01_JSP_EL_JSTL\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\481274001.index
+\02_jsp\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2809563519.index
+\01_JSP_EL_JSTL\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2682384424.index
+\02_\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3805156242.index
+\02_jsp\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\105633071.index
+\02_jsp\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1538678704.index
+\02_jsp\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\11140055.index
+\02_\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\942997937.index
+\02_jsp\src
+D:\Dropbox\Developer\workspace\00_practice_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2926653496.index
+\01_JSP_EL_JSTL\src

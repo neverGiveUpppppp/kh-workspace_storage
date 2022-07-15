@@ -1,0 +1,170 @@
+package com.kh.homework.member.view;
+import java.util.Scanner;
+import com.kh.homework.member.controller.MemberController;
+
+public class MemberMenu {
+
+	private Scanner sc = new Scanner(System.in);
+	private MemberController mc = new MemberController();
+	
+	
+	
+	
+	public MemberMenu () {}
+	public void mainMenu() {
+		System.out.printf("최대 등록 가능한 회원 수는 %d명 입니다%n",MemberController.SIZE); // mc.SIZE라고 했다면 에러는 아니나 목적과 다른 코드라 틀린 코드. 가리키는게 다름
+		System.out.printf("현재 등록된 회원수는 %d명 입니다%n",mc.exisMemberNum());
+		
+		if(mc.exisMemberNum() !=10 ) {
+			System.out.println("1. 새회원 등록");
+			System.out.println("2. 회원검색");
+			System.out.println("3. 회원 삭제");
+			
+			
+			int menuNum = Integer.parseInt(sc.nextLine()); // 얼마 받아올지 모르기에 Integer.parseInt()
+			
+			switch(menuNum) {
+			case 1: insert
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 9:
+			}
+			
+		}
+	}
+	// 1.회원등록 코드
+	public void insertMember() {
+		
+		System.out.println("새 회원을 등록합니다.");
+		
+		boolean check = false;
+		String id = null;
+		do {
+			System.out.print("아이디 : ");
+			String inputId = sc.nextLine();
+			check = mc.checkId(inputId);
+			if(check) {
+				id = inputId;
+			}else {
+				System.out.println("중복된 아이디. 다시 입력");
+			}
+		}while(!check);
+		
+		System.out.print("이름 : ");
+		String name = sc.nextLine();
+		System.out.print("비밀번호 : ");
+		String name = sc.nextLine();
+		System.out.print("이메일 : ");
+		String name = sc.nextLine();
+		
+		String gender = null;
+		do {
+			System.out.print("성별(M/F) : ");
+			gender = sc.nextLine();
+			if(!gender.toUpperCase().equals("M") && !gender.toUpperCase().equals("F")) {
+				System.out.println("성별 다시 입력");
+			}
+//		}while(!gender.equals("M" && !gender.equals("m") && !gender.equals("F") && !gender.equals("f"))
+		// 대문자로 변환하는 toUpperCase()
+		// 대소문자 전부 경우의수를 생각해줘야하니 toUpperCase()메소드로 해결
+		}while(!gender.toUpperCase().equals("M") && !gender.toUpperCase().equals("F"));
+		
+			
+		System.out.print("나이 : ");
+		int age = sc.nextInt();
+		
+		mc.insertMember(id, name, password, email, gender, age);
+		
+	}
+	
+	// search
+	// 1.회원등록 코드
+	public void searchMember() {
+		System.out.println("새 회원을 등록합니다");
+		System.out.print("아이디 : ");
+		String id = sc.nextLine();
+		System.out.print("이름 : ");
+		String name = sc.nextLine();
+		System.out.print("비밀번호 : ");
+		String password = sc.nextLine();
+		System.out.print("이멜 : ");
+		String email = sc.nextLine();
+		System.out.print("성별(M/F) : ");
+		char gender = sc.nextLine().charAt(0);
+		System.out.print("나이 : ");
+		int age = sc.nextInt();
+	}
+	public void searchId() {
+		
+	}
+	public void searchName() {
+		
+	}
+	public void searchEmail() {
+		
+	}
+	
+	// update
+	public void updateMember() {
+		
+	}
+	public void updatePassword() {
+		System.out.print("수정할 아이디 : ");
+		String id = sc.nextLine();
+		System.out.print("수정할 비밀번호 : ");
+		String password = sc.nextLine();
+		boolean check = mc.updatePassword(id, password);
+		if(check) {
+			System.out.println("수정 성공");
+		}else {
+			System.out.println("존재하지않는 아이디");
+		}
+		
+	}
+	public void updateName() {
+		System.out.print("수정할 아이디 : ");
+		String id = sc.nextLine();
+		System.out.print("수정할 비밀번호 : ");
+		String password = sc.nextLine();
+		boolean check = mc.updatePassword(id, password);
+		if(check) {
+			System.out.println("수정 성공");
+		}else {
+			System.out.println("존재하지않는 아이디");
+		}
+	}
+	public void updateEmail() {
+		System.out.print("수정할 아이디 : ");
+		String id = sc.nextLine();
+		System.out.print("수정할 이메일 : ");
+		String email = sc.nextLine();
+		boolean check = mc.updateEmail(id, email);
+		if(check) {
+			System.out.println("수정 성공");
+		}else {
+			System.out.println("존재하지않는 아이디");
+		}
+	}
+	
+	//delete
+	public void deleteMember() {
+		
+	}
+	public void deleteOne() {
+		
+	}
+	public void deleteAll() {
+		
+	}
+	
+	// print all
+	public void printAll() {
+		
+	}
+	
+	
+	
+	
+}

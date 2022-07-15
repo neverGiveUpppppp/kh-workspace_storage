@@ -1,0 +1,5 @@
+package com.fpj.trendeater.board.exception;
+
+public class BoardException {
+
+}

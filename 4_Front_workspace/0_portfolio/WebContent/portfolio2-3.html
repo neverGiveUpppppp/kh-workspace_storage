@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UI디자인 포트폴리오2</title>
+
+<link href="portfolio2.css" rel="stylesheet">
+
+</head>
+<body>
+	<form>
+		<fieldset>
+			<div>
+				<label> 아이디 </label>
+				<input type="text" id="userId" name="userId" onblur="requirement1()"> 
+				<br><span id="reqId"></span>
+			</div>
+			<div>
+				<label> 패스워드 </label>
+				<input type="password" id="userPwd" name="userPwd" onblur="requirement2()"> 
+				<br><span id="reqPwd"></span>
+			</div>
+			<div>
+				<label> 패스워드 확인 </label>
+				<input type="password" id="userPwd2" name="userPwd2" onblur="requirement3()">
+				<br><span id="reqPwd2"></span>
+			</div>
+			<div>
+				<label> 이메일 </label>
+				 <input type="text" class="userEmail" name="userEmail" width="200px">
+				@<input type="text" class="userEmail" name="userEmail">
+				
+			</div>
+			<div>
+				<label> 주소 </label>
+				<input type="text" id="userAddress">
+			</div>
+			<div class="btnDiv">
+			<button id="button" name="button"> 가입 </button>
+			</div>
+		</fieldset>
+	</form>
+
+	<script>
+		var userId = document.getElementById("userId");
+		var reqId = document.getElementById("reqId");
+		var userPwd = document.getElementById("userPwd");
+		var reqPwd = document.getElementById("reqPwd");
+		var userPwd2 = document.getElementById("userPwd2");
+		var reqPwd2 = document.getElementById("reqPwd2");
+		
+		document.getElementById("userPwd").addEventListener("click",capital);
+		function capital(){
+			reqPwd.innerText="영어 대/소문자 특수문자, 숫자 포함 8~32자";
+		} 
+		function requirement1(){
+			if(userId.value == "" || userId.value.length == 0){
+				reqId.innerText="필수 입력 항목입니다";		
+				userId.focus();
+				return false; 
+			}else{
+				reqId.innerText="";
+				return true; 
+			}
+		}
+		function requirement2(){
+			if(userPwd.value == "" || userPwd.value.length == 0){
+				reqPwd.innerText="필수 입력 항목입니다";		
+				userPwd.focus(); 
+				return false; 
+			}else{
+				reqPwd.innerText="";
+				return true; 
+			}
+		}
+		function requirement3(){
+			if(userPwd2.value == "" || userPwd2.value.length == 0){
+				reqPwd2.innerText="필수 입력 항목입니다";		
+				userPwd2.focus(); 
+				return false; 
+			}else{
+				reqPwd2.innerText="";
+				return true; 
+			}
+		}
+	</script>
+
+ 
+
+</body>
+</html>
+
+

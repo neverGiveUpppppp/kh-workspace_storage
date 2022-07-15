@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="boardMapper">
+  <!-- <cache-ref namespace=""/> 캐쉬 cache에 대한 레퍼런스 -->
+  
+  
+  
+<!-- 	id속성 : 셀렉트 많이 해야하는데 여러 셀렉트 태그들을 식별할 수 있는 pk
+		parameterType=""에는 클래스 풀네임 적을 것
+		parameterType, dao에서 넘겨받은 타입 마침 멤버타입이었기 때문에 멤버라고 쓴 거고 리절트타입은 셀렉트해와서 리절트셋에 대한 타입을 물어보는건데 이 유저아디랑 pwd 일치하는 사람 한명의 결과를 가져올 건데 멤버해서 들어가는 것임 파라미터는 넘겨받은 데이터타입, 리절트타입은 리절트셋에 대한 타입이라 무조건 따라가는게 아님
+		resultType="" : 알아서 멤버 클래스에 매핑되서 들어감 강의9:48 
+		
+		
+		
+																 -->
+	  <!-- 전체 게시판 수 for pagination -->
+	<select id="selectListCount" resultType="_int"> <!-- resultType="_int" -->
+		select count(*)
+		from board
+		where b_status = 'Y'
+	</select>
+			
+	
+	<!-- 게시판 목록  -->
+	<select id="selectBoardList" resultMap="boardResultSet" > <!-- resultMap="boardResultSet" 넣어주기 -->
+	<!-- nickname 넣기 위해 join 실행 -->
+		select *
+		from board 
+			join member on(bwriter = user_id)
+		where b_status = 'Y'
+		order by bId desc
+	
+	</select>
+
+<!-- resultMap필요. 수동으로 매핑해줘야해서 -->
+<!-- boardResultSet을 아이디로 갖는 resultMap 생성 -->
+		<resultMap type="board.model.vo.Board" id="boardResultSet">
+		<!-- type="" 속성 별칭 설정하면 Board도 가능 -->
+		
+		<!-- PK(기본키) -->
+		<id column="BID" property="bId"/>
+		<!-- 일반 컬럼 -->
+		<result column="BTYPE" property="bType"/>
+		<result column="BTITLE" property="bTitle"/>
+		<result column="BCONTENT" property="bContent"/>
+		<result column="BWRITER" property="bWriter"/>
+		<result column="NICKNAME" property="nickName"/>  <!-- 위의 select태그에서 join해서 가져온 멤버테이블의 컬럼 nickname  -->
+		<result column="BCOUNT" property="bCount"/>
+		<result column="B_CREATE_DATE" property="bCreateDate"/>
+		<result column="B_MODIFY_DATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+	</resultMap>
+	<!-- resultMap태그 완성되면 select 속성에 resultMap="" 넣어줘야함 -->
+	
+	<!--  
+		resultMap태그 속성값
+				type : 클래스 풀네임or별칭
+				id : pk역할. 이 resultMap이 어느 resultMap맵인지 식별용
+					
+		id태그 : pk역할(기본키) 하는 얘가 들어감.
+			- column : 디비에서 쓸 컬럼명
+			- property : 매핑 시킬 자바의 필드명
+		result태그 : 일반 컬럼이 들어감
+		
+-->		
+		
+		
+		
+		
+		<!-- 조회수 업데이트 -->
+		<update id="updateCount" parameterType="_int">
+			update board
+			set bcount = bcount + 1
+			where bid = #{bId}
+		</update>
+		
+		
+		
+		<!-- 상세보기 -->
+		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet2">
+			<!-- 글의 내용도 보이지만 댓글도 보여야함. -->
+			<!-- select * -->
+			select  bid, btype, btitle, bcontent, bwriter, m1.nickname b_nickname, bcount,
+					b_create_date, b_modify_date, b_status,
+					rid, rcontent, ref_bid, rwriter, m2.nickname r_nickname,
+					r_create_date, r_modify_date, r_status
+			from board 
+				join member m1 on(bwriter = m1.user_id)
+				left join reply on(bid = ref_bid)
+				left join member m2 on(rwriter = m2.user_id) <!-- REPLY에 대한 글쓴이 id도 닉넴이 나오도록 join 추가해야함 -->
+				<!-- error : column ambiguously defined
+					member테이블이 join 두번 들어가면서 겹처서 모호하다는 것
+					아스트로(*) 사용 불가. select에 하나씩 컬럼명 찍어줘야함 -->
+			where b_status = 'Y' and bid = #{bId}
+			order by rid desc <!-- 최신 댓글부터 보여지게 -->
+			<!-- 닉넴으로 다른 것들도 보였으면 댓글도 닉넴으로 보여야함 -->
+		</select>
+		
+		<!-- 위 상세보기의 select태그와 연결되는 resultMap -->
+ 		<resultMap type="board.model.vo.Board" id="boardResultSet2">
+			<!-- PK(기본키) -->
+			<id column="BID" property="bId"/>
+			<!-- 일반 컬럼 -->
+			<result column="BTYPE" property="bType"/>
+			<result column="BTITLE" property="bTitle"/>
+			<result column="BCONTENT" property="bContent"/>
+			<result column="BWRITER" property="bWriter"/>
+			<result column="b_nickname" property="nickName"/>   
+			<result column="BCOUNT" property="bCount"/>
+			<result column="B_CREATE_DATE" property="bCreateDate"/>
+			<result column="B_MODIFY_DATE" property="bModifyDate"/>
+			<result column="B_STATUS" property="bStatus"/>
+			<collection property="replyList" javaType="arrayList" resultMap="replyResultSet"/> <!-- 강의4:12 --> 
+			<!-- javaType="java.util.ArrayList" 
+				 javaType="arrayList" arrayList는 마바의 내장별칭이라 따로 지정안해도 사용가능	
+				 
+				resultMap="replyResultSet": ArrayList 안에 <Reply>가 들어간다는걸 명시해줘야함
+					얘의 속성값 resultMap을 채워주기 위해 아래 또하나의 resultMap태그 생성	
+			-->
+		</resultMap>
+		<!-- 위의 태그 중 댓글용 collection 태그의 resultMap속성값과 연결되는 resultMap태그  -->
+		<resultMap type="board.model.vo.Reply" id="replyResultSet">
+		<!-- type=""속성  컨피그에서 typeAlias태그에 별칭 등록하면 Reply만도 가능 ex) type="Reply" -->
+		<!-- 컬럼에는 별칭이 있는 경우에 별칭써주는건가요? yes -->
+			<id column="RID" property="rId"></id>
+			<result column="RCONTENT" property="rContent"></result>
+			<result column="REF_BID" property="refBid"></result>
+			<result column="RWRITER" property="rWriter"></result>
+			<result column="r_nickname" property="nickName"></result>
+			<result column="R_CREATE_DATE" property="rCreateDate"></result>
+			<result column="R_MODIFY_DATE" property="rModifyDate"></result>
+			<result column="R_STATUS" property="rStatus"></result>
+		</resultMap> 
+		
+
+
+		<!-- 검색 : 페이징처리  -->
+		<select id="getSearchListCount" parameterType="hashmap" resultType="_int">
+			select count(*)
+			from board
+				join member on(bwriter = user_id)
+			where b_status = 'Y'
+				<if test="condition == 'writer'"> <!--컨디션이 writer면.  'writer' str이라 싱글쿼테이션 필수-->
+					and nickname = #{value}
+				</if>
+				<if test="condition == 'title'">
+					and btitle like '%' || #{value}||'%'
+				</if>
+				<if test="condition == 'content'">
+					and bcontent like '%' || #{value}||'%'
+				</if>
+		</select>		
+				<!-- and  #{condition} = #{value} --> <!-- 검색조건 선택가능조건: 작성자, 제목,내용  -->
+	<!-- {condition} = #{value} 이 코드가 말이 안됨. 값이 제대로 들어가지 않음. 뷰에서 value=""에 value="writer"식으로 들어가기 때문 
+				
+				필요한 동적쿼리 : if태그
+				if(condition)
+				들어온 컨디션이 제목,내용,작성자 뭐에 따라서 다르게 써주면 됨
+				
+				
+																	-->
+			
+		<!-- 검색 with조건 결과값    -->
+		<select id="selectSearchList" parameterType="map" resultMap="boardResultSet">
+															<!-- 위에 써놓은 보드리절트셋 사용할 것 -->
+			select *
+			from board
+				join member on(bwriter = user_id)
+			where b_status = 'Y'
+			<choose>
+				<when test="condition == 'writer'">
+					and nickname = #{value}
+				</when>
+				<when test="condition == 'title'">
+					and btitle like '%' || #{value} || '%'
+				</when>
+				<otherwise>
+					and bcontent like '%' || #{value} || '%'
+				</otherwise>
+			</choose>
+			order by bid desc
+		</select>
+		
+		
+		 
+</mapper>
+

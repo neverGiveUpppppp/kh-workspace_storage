@@ -1,0 +1,38 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class practice_everyday07 {
+	
+	public static void main(String[] args) throws IOException {
+		
+		// 문자 기반 스트림
+		// FileReader
+		// FileWriter
+		// try with resource
+		
+		// 목적 : 파일에 문자 단위로 쓰고 싶다
+		// FileWriter
+		
+		FileWriter fw = new FileWriter("D:\\file\\file2\\first.txt");
+		fw.write("initiate\n");
+		fw.append("2\n");
+		char[] cArray = {'c','h','e','e','r'};
+		char[] sArray = {'u','p'};
+		fw.write(cArray);
+		fw.write(sArray);
+		fw.close();
+		
+		FileReader fr = new FileReader("D:\\file\\file2\\first.txt");
+//		int Read;
+//		fr.read("first.txt");
+//		System.out.println((char)fr.read()); // 첫 한글자만 읽어오고 숫자로 읽어와서 문자char로 형변환
+		
+		while((char)fr.read() != -1) {
+			System.out.println((char)fr.read());
+		}
+		
+		fr.close();
+		
+	}	
+}

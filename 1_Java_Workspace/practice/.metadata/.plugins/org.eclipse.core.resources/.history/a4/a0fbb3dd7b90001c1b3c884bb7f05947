@@ -1,0 +1,26 @@
+package com.kh.example.practice4.run;
+
+import com.kh.example.practice4.model.vo.Book;
+
+public class Run {
+
+	public static void main(String[] args) {
+
+		
+		
+		Book b1 = new Book();
+//		b1.inform();
+		
+		
+		Book b2 = new Book("a","b","c");
+//		b2.inform();
+		
+		
+		
+		Book b3 = new Book("a","b","c",100,0.1);
+		b3.inform();
+		
+		
+	}
+
+}

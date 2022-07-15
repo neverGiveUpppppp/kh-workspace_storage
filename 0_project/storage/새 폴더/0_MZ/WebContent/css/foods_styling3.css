@@ -1,0 +1,112 @@
+
+
+.img_cut{ width: 100%; height: 100%; object-fit: cover; margin: auto; }
+
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.cardContainer > div {
+    flex-basis: 49%;
+}
+
+.cardContainer .cardBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid #ccc;
+    /* flex-wrap: nowrap; */
+}
+
+.cardContainer .cardBox > div {
+    flex-basis: 50%;
+    height: 200px;
+}
+
+
+
+
+.blog-header {
+line-height: 1;
+border-bottom: 1px solid #e5e5e5;
+}
+
+.blog-header-logo {
+font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+font-size: 2.25rem;
+}
+
+.logo_img {
+height: 3.4rem;
+margin-left: 2px;
+}
+
+.logo_txt {
+width: 65px;display: inline-block;
+font-size: 0.3rem;
+text-align: left;
+word-break: keep-all;
+line-height: 0.8rem;
+color: #F08000;
+margin-left: -75px;
+height: auto;
+vertical-align: bottom;
+}
+
+.blog-header-logo:hover {
+text-decoration: none;
+}
+            
+
+
+
+
+
+
+
+.nav_css{
+    color:#6c757d; font-weight: bold;
+}
+.nav_cssSelect{
+    color:rgb(240, 128, 0); font-weight: bold;
+}
+
+.signIn{
+    background-color: rgb(240, 128, 0);color: white; border-color: rgb(229, 206, 162);
+}
+.signUp{
+    color: rgb(240, 128, 0); border-color: rgb(240, 128, 0); 
+}
+
+
+.cardInline{
+    display: inline-block;
+}
+.cardTitle{
+    font-size: 14px; font-weight: bold;
+}
+.reviewCategory{
+    font-size: 11px; color: rgb(240, 128, 0);
+}
+.reviewDate{
+    font-size: 11px; font-weight:500; color: #6c757d; 
+}
+.reviewNormal{
+    font-size: 11px; 
+}
+.reviewFeatureTitle{
+    font-size:12px; font-weight: bold;
+}
+
+
+
+.Writing{
+    background-color: rgb(240, 128, 0); color:#fff; border-color: rgb(240, 128, 0);
+}

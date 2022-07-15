@@ -1,0 +1,6 @@
+package src.main.java.com.fpj.trendeater.board.exception;
+
+public class BoardException extends RuntimeException {
+
+	
+}

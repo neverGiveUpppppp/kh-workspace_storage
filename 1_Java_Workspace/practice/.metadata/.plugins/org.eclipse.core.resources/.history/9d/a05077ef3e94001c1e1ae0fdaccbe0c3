@@ -1,0 +1,5 @@
+package com.kh.example.chap02_abstract.family.model.vo;
+
+public interface Basic {
+
+}

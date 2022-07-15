@@ -1,0 +1,32 @@
+package com.kh.example.chap02_abstract.family.model.vo;
+
+public interface Basic {
+
+	
+	private int a; // eror
+	// 에러메세지 
+	// Illegal modifier for the interface field Basic.a; 
+	// only public, static & final are permitted
+	// 일반적 변수 사용 불가. public static final로 변경
+	
+	// 인터페이스에서의 필드는 항상 상수 필드 : public static final
+	
+	public static final int A = 10; // 인터페이스에서는 
+	String str = "Hello"; 			// (public static final) 생략가능
+	
+	
+	public void method() {
+		
+		
+	}
+	
+	
+	// abstract 빠져도 에러없이 잘됨. 어차피 인터페이스 안에는 다 추상메소드만 가능해서
+	// abstract 자동생략가능
+	public void eat();
+	public void sleep();
+//	void sleep(); 위와 같은 코드 : 인터페이스 내에서 생략가능
+	
+	
+	
+}

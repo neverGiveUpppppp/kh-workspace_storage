@@ -1,0 +1,24 @@
+package com.kh.example.chap02_char.model.dao;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public class CharDAO {
+	public void fileOpen() {
+		
+		// 파일로부터 문자 단위로 데이터를 읽어오고 싶다
+		// File 단위가 문자라 (stream x) 읽어온다 = reader ->FileReader
+		
+		try {
+			// FileReader(String fileName)
+			FileReader fr = new FileReader("b_char.txt"); // erro 예외처리할것 FileNotFoundException
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();{
+		}
+	}
+	public void fileSave() {
+		
+		// 
+		
+		
+	}
+}

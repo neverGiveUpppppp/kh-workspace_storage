@@ -1,0 +1,27 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class practice_everyday07 {
+	
+	public static void main(String[] args) throws IOException {
+		
+		// 문자 기반 스트림
+		// FileReader
+		// FileWriter
+		// try with resource
+		
+		// 목적 : 파일에 문자 단위로 쓰고 싶다
+		// FileWriter
+		
+		FileWriter fw = new FileWriter("D:\\file\\file2.first.txt");
+		fw.write("initiate");
+		fw.append("2");
+		char[] cArray = {'c','h','e','e','r'};
+		char[] sArray = {'u','p'};
+		fw.write(cArray);
+		fw.write(sArray);
+		fw.close();
+		
+	}	
+}

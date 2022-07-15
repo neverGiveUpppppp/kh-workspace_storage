@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.88.1">
+  <title>맛집 커뮤니티, 맛조</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/blog/">
+
+  
+
+<!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+	.blog-header {
+  		line-height: 1;
+  		border-bottom: 1px solid #e5e5e5;
+	}
+
+	.blog-header-logo {
+  		font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  		font-size: 2.25rem;
+	}
+
+	.logo_img {
+  		height: 3.4rem;
+  		margin-left: 2px;
+	}
+
+	.logo_txt {
+  		width: 65px;display: inline-block;
+  		font-size: 0.3rem;
+  		text-align: left;
+  		word-break: keep-all;
+  		line-height: 0.8rem;
+  		color: #F08000;
+  		margin-left: -75px;
+  		height: auto;
+  		vertical-align: bottom;
+	}
+
+	.blog-header-logo:hover {
+  		text-decoration: none;
+ 	} 
+ 
+	.board_list{
+		width: 1200px; margin-top: 50px; height: 520px;
+	}
+	
+  table {text-align: center;}
+
+	.tableArea{width:800px; margin:auto; height: 100%; }
+
+  tbody td {text-align: center;}  
+	
+	.blog-footer{
+		width:100%;
+		height:100px;
+		position:absolute;
+		bottom:0;
+		text-align: center;
+		color: black;	
+	}
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+</style>
+    
+<!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="blog.css" rel="stylesheet">
+</head>
+<body>
+<main class="container">
+  <div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1">
+            
+          </div>
+          <div class="col-4 text-center">
+            <span class="logo_txt">대한민국 대표 맛집 커뮤니티</span><a class="blog-header-logo" href="index.html#" ><img class="logo_img" src="images/logo.png" alt="logo"></a>
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            <a class="btn btn-sm btn-outline-secondary" href="#" style="margin-right: 10px;border: none;background: #F08000;color: white;/* font-weight: 600; */">Sign in</a>
+            <a class="btn btn-sm btn-outline-secondary" href="#" style="box-sizing: content-box;">Sign up</a></div>
+          </div>
+      </header>
+      <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex">
+          <a class="p-2 link-secondary" href="#">한식</a>
+          <a class="p-2 link-secondary" href="#">중식</a>
+          <a class="p-2 link-secondary" href="#">양식</a>
+          <a class="p-2 link-secondary" href="#">일식</a>
+          <a class="p-2 link-secondary" href="#">디저트</a>
+          <a class="p-2 link-secondary" href="board.html">공지사항</a>
+        </nav>
+      </div>
+      
+  </div>
+
+  <div class="container board_list">
+
+    <!-- <div class="imageArea" align="center">공지사항</div> -->
+    <table class="table listArea" id="listArea">
+      <thead>
+        <tr>
+          <th scope="col" width="10%">글번호</th>
+          <th scope="col" >글제목</th>
+          <th scope="col" width="20%">작성자</th>
+          <th scope="col"  width="10%">조회수</th>
+          <th scope="col" width="10%">작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <% if(list.isEmpty()){ %> -->
+          <!-- <tr>
+            <td colspan="5">존재하는 공지사항이 없습니다.</td>
+          </tr> -->
+          <!-- <% } else { %>
+            <% for(Notice n : list){ %> -->
+              <!-- <tr> -->
+                <!-- <td><%= n.getNoticeNo() %></td>
+                <td><%= n.getNoticeTitle() %></td>
+                <td><%= n.getNickName() %></td>
+                <td><%= n.getNoticeCount() %></td>
+                <td><%= n.getNoticeDate() %></td> -->
+              <!-- </tr> -->
+          <!-- 	<%	} %>
+          <%	} %> -->
+          <tr>
+            <th width="70px" scope="row">1</th>
+            <td>fjdkjflsfjldskfjsdkjfdslkjfsldkfjldfjldskjflsdkfldskjfljkfjldskfjldsjflkjflj</td>
+            <td>@mdo</td>
+            <td>Otto</td>
+            <td>Otto</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>Otto</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>Otto</td>
+          </tr>
+      </tbody>
+    </table> 
+      
+      <br>
+
+      <div class="nav_con">
+        
+        <div class="nav_area">
+          <nav aria-label="Page navigation example ">
+            <ul class="pagination c_org">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="btn_area">
+          <a href="boardWrite.html"><input class="btn btn-sm btn-outline-secondary" type="button" onclick="location.href='writeNoticeForm.no'" id="writerNoBtn" value="글쓰기"></a>
+        </div>
+      </div>
+
+
+      <div>
+      <!-- <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>	 -->
+              <!-- <% } %> -->			
+      </div>	
+    <!-- <div class="tableArea" align="center">
+      <table id="listArea">
+
+
+
+
+    </div>		 -->
+  </div>
+</main>
+
+    <footer class="blog-footer">
+      <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+</body>
+</html>

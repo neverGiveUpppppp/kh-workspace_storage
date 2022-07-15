@@ -1,0 +1,13 @@
+
+
+
+public class practice_everyday09_Run {
+	public static void main(String[] args) {
+		
+		practice_everyday09 pe9 = new practice_everyday09();
+		pe9.Stream_inputByte();
+
+		 
+		
+	}	
+}

@@ -1,0 +1,28 @@
+
+public class practice_everyday01 {
+	public static void main(String[] args) {	
+		
+		// String methods
+		String str = "힘을 내라";
+		
+		// 1)charAt ()
+		// charAt(int index):char
+		char cheer = str.charAt(0);
+		System.out.println(cheer); // 힘
+		
+		// 2) concat()
+		// concat(String str):String
+		String cstr;
+		str.concat("save it");
+		System.out.println(cstr);
+		
+		// 3) equals()
+		
+		// 4)substring()
+		
+		
+		// 5)5)replace()
+		
+		
+	}	
+}

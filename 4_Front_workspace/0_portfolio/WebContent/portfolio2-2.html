@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UI디자인 포트폴리오2</title>
+
+<style>
+	body{background-color:rgb(222,234,246);}
+	form{background-color:rgb(237,237,237); width:430px; margin:45px;}
+	fieldset{border:none; padding:0px;}
+	input{background-color:rgb(237,237,237); border:none; border-bottom-style:dashed; width:200px;}
+	.userEmail{display:inline-block; width: 85px;}
+	div{margin-top: 20px; margin-bottom: 25px; }	/*margin-top: 100px; margin-bottom: 100px;   */
+	label{display:inline-block; text-align:left; padding-left:5px; width:150px; font-weight:500;}
+	span{display:block; padding-left:150px; font-size:12px;} /*블록안에 있으면서 블록 다 차지하게끔. 디브 움직이면 다 같이 움직이니 스팬으로 블록으로 지정해서 얼라인지정 할 수 있게해서 따로 움직일 수 있도록  */
+	#button{background-color:rgb(197,224,181); border:none; padding:10px; border-radius:10px; 
+            width:425px; height:50px; font-size: 15px;} /* border-radius 설정 */
+</style>
+
+</head>
+<body>
+	
+<!-- 
+인라인으로 넣으면 할당된 공간에서만 움직일 수 있어서 정렬 같은게 안먹힘. 인라인은 text-align이 안됨
+	- span,
+블록요소는 한줄 전체라 공간 제약이 없어서 width height를 다룰 수 있음 
+
+위치선정을 할려면 인라인이 요소라서 정렬할려면 id로 
+
+블록이면 줄바꿈도 적용
+ -->
+ 
+	<form>
+		<fieldset>
+			<div>
+				<label> 아이디 </label><input type="text" id="userId" name="userId" onblur="requirement1()"> <!-- 위에 포커스 안맞춰지면 out시키겠다. 이벤트 발생안시키겠다 태그 위에 안맞춰지면 --> 
+				<br><span id="checkUserId"></span>
+			</div>
+			<div>
+				<label> 패스워드 </label><input type="password" id="userPwd" name="userPwd" onblur="requirement2()"> <!-- onfocus to onblur -->
+				<br><span id="checkUserPwd"></span>
+			</div>
+			<div>
+				<label> 패스워드 확인 </label><input type="password" id="userPwdConf" name="userPwdConf" onblur="requirement3()">
+				<br><span id="checkPwdConf"></span>
+			</div>
+			<div>
+				<label> 이메일 </label>
+				 <input type="text" class="userEmail" name="userEmail" width="200px">
+				@<input type="text" class="userEmail" name="userEmail">
+				
+			</div>
+			<div>
+				<label> 주소 </label><input type="text" id="userAddress">
+			</div>
+			<div class="btnDiv">
+			<button id="button" name="button"> 가입 </button>
+			</div>
+		</fieldset>
+	</form>
+	<script>
+	/* 영대소문자, 필수요구사항  */
+		var userId = document.getElementById("userId");
+		var checkUserId = document.getElementById("checkUserId");
+		var userPwd = document.getElementById("userPwd");
+		var checkUserPwd = document.getElementById("checkUserPwd");
+		var userPwdConf = document.getElementById("userPwdConf");
+		var checkPwdConf = document.getElementById("checkPwdConf");
+		
+		/* 영어 대/소문자 특수문자, 숫자 포함 8~32자*/
+		document.getElementById("userPwd").addEventListener("click",capital);
+		function capital(){
+			checkUserPwd.innerText="영어 대/소문자 특수문자, 숫자 포함 8~32자";
+		} 
+		/* 필수요구사항 */
+		function requirement1(){
+			/* 비교할 것. 길이가 0또는 비어("")있냐.  */
+			if(userId.value == "" || userId.value.length == 0){
+				/* 유저가 아이디 안넣었을 때 */
+				checkUserId.innerText="필수 입력 항목입니다";		
+				userId.focus(); /* 내장객체 포커스 */
+				return false; /* 아디 안넣었을 때 다른거 못쓰게 막아주는 false 리턴 */
+			}else{
+				/* 유저가 아이디 넣을때 */				
+				checkUserId.innerText="";
+				return true; /* 아디를 넣었을 때  true해서 비번 계속 쓸 수 허용, 넘겨주는 것*/
+			}
+		}
+		function requirement2(){
+			/* 비교할 것. 길이가 0또는 비어("")있냐.  */
+			if(userPwd.value == "" || userPwd.value.length == 0){
+				/* 유저가 아이디 안넣었을 때 */
+				checkUserPwd.innerText="필수 입력 항목입니다";		
+				userPwd.focus(); 
+				return false; 
+			}else{
+				/* 유저가 아이디 넣을때 */				
+				checkUserPwd.innerText="";
+				return true; 
+			}
+		}
+		function requirement3(){
+			/* 비교할 것. 길이가 0또는 비어("")있냐.  */
+			if(userPwdConf.value == "" || userPwdConf.value.length == 0){
+				/* 유저가 아이디 안넣었을 때 */
+				checkPwdConf.innerText="필수 입력 항목입니다";		
+				userPwdConf.focus(); 
+				return false; 
+			}else{
+				/* 유저가 아이디 넣을때 */				
+				checkPwdConf.innerText="";
+				return true; 
+			}
+		}
+	</script>
+
+ 
+
+</body>
+</html>
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+<!-- 
+	
+객체 생성에 대해서 태그 방식으로 할 수도 있고, 어노테이션으로도 할 수 있음
+	객체생성 예시 : new MemberService().insertMember();
+
+객체 생성 방식
+  1)태그
+  2)어노테이션
+ 
+ < mvc:annotation-driven >얘가 있으면 어노테이션이 안먹힘
+
+-->
+
+
+   <mvc:annotation-driven/>
+   
+   <mvc:resources location="/resources/" mapping="/resources/**"/>
+   
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/board/"/>
+      <property name="suffix" value=".jsp"/>
+   </bean>
+   
+   <context:component-scan base-package="com.fpj.trendeater"/> <!-- 경로 대소문자 유의 -->
+   
+<!--    
+인터셉터 등록	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean id="testInterceptor" class="com.fpj.trendeater.common.interceptor.TestInterceptor"/>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/blist.bo"/>
+			<bean id="boardEnterInterceptor" class="com.fpj.trendeater.common.interceptor.BoardEnterInterceptor"/>
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+	 -->
+   
+</beans>
