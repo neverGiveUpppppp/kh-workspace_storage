@@ -1,22 +1,9 @@
 INDEX VERSION 1.4+D:\Dropbox\Developer\workspace\7_FrameWork_Spring_workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-<<<<<<< HEAD
-3074939212.index
-3337951671.index
-879184192.index
-=======
->>>>>>> create
+868605069.index
 1504080665.index
-1441700647.index
-902805615.index
-868605069.index
 3672061007.index
-315335712.index
-2163687173.index
-<<<<<<< HEAD
-902805615.index
-868605069.index
-891385842.index
-=======
 879184192.index
+315335712.index
+902805615.index
 3337951671.index
->>>>>>> create
+2163687173.index

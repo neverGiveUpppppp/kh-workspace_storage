@@ -13,6 +13,7 @@
 </head>
 <body>
 
+	<!-- 메뉴바 임포트 -->
 	<c:import url="../common/menubar.jsp"/>
 	
 	<h1 align="center">'${ loginUser.name }'님의 정보 보기</h1>
@@ -23,7 +24,7 @@
 				<th>아이디</th>
 				<td>${ loginUser.id }</td>
 			</tr>
-			<tr>
+			<tr>	
 				<th>이름</th>
 				<td>${ loginUser.name }</td>
 			</tr>

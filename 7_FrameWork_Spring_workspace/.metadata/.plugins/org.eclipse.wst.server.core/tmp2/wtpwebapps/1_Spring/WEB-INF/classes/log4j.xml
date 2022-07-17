@@ -2,11 +2,12 @@
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-<!-- Appenders -->
+<!-- 1.Appenders -->
 <!-- 
 
-전달 받은 로그를 어디에 출력할지 결정
 
+appender  : 전달 받은 로그를 어디에 출력할지 결정
+(appender 종류 지정해야함)
 	ConsoleAppender : 로그를 콘솔에 출력하기 위한 어펜더
 	JDBCAppender : 로그를 db에 출력하기 위한 어펜더
 	FileAppender : 로그를 파일에 출력하기 위한 어펜더
@@ -35,6 +36,9 @@
 
 
  -->	
+ 
+ 
+ 
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -53,11 +57,12 @@
 <!-- 목표 : 로그인 이력을 로그파일로 만들려고 함 -->
 	<appender name="myDailyFile" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="/logs/member/login.log" /> <!-- 파일위치 & 파일명 지정 // 현재 위치는 D드라이브 logs폴더 -->
-		<param name="Append" value="true" /> <!-- Append(이어쓰기) true(가능)하게 하겠다는 의미-->
-		<param name="encoding" value="UTF-8" />  <!-- 인코딩 -->
-		<param name="DatePattern" value="'.'yyyyMMdd" /> <!-- 백업하는 파일명 형식지정 --> 
+		<param name="Append" value="true" /> 				 <!-- Append(이어쓰기) true(가능)하게 하겠다는 의미-->
+		<param name="encoding" value="UTF-8" />  			 <!-- 인코딩 -->
+		<param name="DatePattern" value="'.'yyyyMMdd" /> 	 <!-- 백업하는 파일명 형식지정 --> 
+		
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss} [%p] %c{1}.%M{%L} - %m%n"/> <!-- 연도 월 일 시간 프리월리티(?) 어떤 클래스의 어떤 메소드에서 진행했는지 그리고 라인수 그리고 메세지까지 -->
+			<param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss} [%p] %c{1}.%M{%L} - %m%n"/> <!-- value해석 : 연도 월 일 시간 프리월리티(?) 어떤 클래스의 어떤 메소드에서 진행했는지 그리고 라인수 그리고 메세지까지 --> 
 		</layout>
 	</appender>
 	
@@ -73,7 +78,7 @@
 	
 	
 	
-<!-- Application Loggers -->
+<!-- 2.Application Loggers -->
 	<!-- 
 		등록된 로그들을 받아주는 역할
 			DEBUG < INFO < WARN < ERROR < FATAL  (오른쪽으로 갈 수록 심각한 에러)  
@@ -86,7 +91,6 @@
 				info : 상태 변경과 같은 정보성 메세지
 				debug : 개발 시 디버그 용도로 사용하는 메세지
 				trace : debug가 너무 광범위한 것들 해결하기 위해 디버그보다 좀 더 상세한 이벤트를 나타냄. 경로추적에서 많이씀
-				
 	 -->
 	<logger name="com.kh.Spring">
 		<level value="info" />
@@ -165,10 +169,11 @@
 	
 	
 
-<!-- Root Logger -->
+<!-- 3.Root Logger -->
 	<!-- 
 		모든 자식 logger들의 로깅 출력이 root logger를 통해 일어남
-		두번째의 모든 로거들은 실행이 되면 Root Logger로 찾아옴
+		2번의 모든 로거들은 실행이 되면 3번의 Root Logger로 찾아옴
+		
 	
 		appender-ref ref="console"
 			appender-ref : 어펜더를 참조한다
