@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;practice02_flow control&apos; to &apos;practice02_egoing&apos;" description="Rename resource &apos;practice02_flow control&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/practice02_flow control" name="practice02_egoing" stamp="1642236532875" updateReferences="true"/>
-</session>

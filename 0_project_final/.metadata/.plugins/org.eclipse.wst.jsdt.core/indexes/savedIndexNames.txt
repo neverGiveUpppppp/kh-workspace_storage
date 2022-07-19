@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+D:\Dropbox\Developer\workspace\0_project_final\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3980618719.index
-46772603.index
-4287929425.index
-3735545732.index
-1855962304.index

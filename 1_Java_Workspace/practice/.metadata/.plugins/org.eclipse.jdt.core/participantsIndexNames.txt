@@ -1,5 +1,0 @@
-INDEX VERSION 1.131
-D:\Dropbox\Developer\Java\Java_Workspace\practice\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2236270999.index
-\00_practice_now\src
-D:\Dropbox\Developer\Java\Java_Workspace\practice\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1149850162.index
-\0_practice_web\src
