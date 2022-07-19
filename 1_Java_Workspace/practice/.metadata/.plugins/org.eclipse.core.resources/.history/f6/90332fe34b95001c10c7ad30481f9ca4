@@ -1,0 +1,7 @@
+package com.kh.example.chap02_user.model.exception;
+
+public class MyException {
+
+	
+	
+}

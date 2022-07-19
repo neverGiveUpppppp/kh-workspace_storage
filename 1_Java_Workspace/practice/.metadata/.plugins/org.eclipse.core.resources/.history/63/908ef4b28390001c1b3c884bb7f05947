@@ -1,0 +1,29 @@
+package com.kh.example.chap06_method.controller;
+
+public class MethodController {
+
+	
+	// 매개변수 유무와 반환값 유무에 따른 구분
+	// 1. 매개변수 X 반환값 X 메소드
+	// 2. 매개변수 X 반환값 O 메소드
+	// 3. 매개변수 O 반환값 X 메소드
+	// 4. 매개변수 O 반환값 O 메소드
+	
+	public void method1() {
+		
+	}
+	
+	public method2() {
+		
+	}
+	
+	public void method3(String a) {
+		
+	}
+	
+	public method4(String b) {
+	
+		
+	}
+	
+}

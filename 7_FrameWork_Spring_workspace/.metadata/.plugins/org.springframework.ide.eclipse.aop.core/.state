@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="1_Spring"/>
+<aop-project name="2_SpringAjax"/>
+<aop-project name="0_practice"/>
+</aop-reference-model>

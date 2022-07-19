@@ -1,0 +1,54 @@
+package com.kh.example.chap03_assist.part02_object.model.dao;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import com.kh.example.chap03_assist.part02_object.model.vo.Member;
+
+public class ObjectDAO {
+
+	public void fileSave() {
+		Member[] mArr = {
+				new Member("user01","pass01","강건강","kang1@kkk.kkk",25,'남',2349.3),
+				new Member("user02","pass02","남나눔","nam1@nnn.nnn",15,'남',1834.6),
+				new Member("user03","pass03","도대담","doh1@ddd.ddd",53,'남',3925.1)
+		};
+		
+		// 파일에 객체를 데이터로 쓰고 싶다
+		// file OutputStrem
+		// 기반 OutputStrem 보조 objectOutputStrem
+		try (FileOutputStream fos = new FileOutputStream("d_object.txt");
+				ObjectOutputStream oos = new ObjectOutputStream(fos);){
+			
+			for(int i=0; i<mArr.length; i++) {
+				oos.writeObject(mArr[i]);
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+	}
+	
+	public void fileOpen() {
+		// 목적 : 파일에 있는 데이터를 객체로 읽어오고 싶다
+		
+		try {
+			ObjectInputStream ois = OjectInputStream(new FileInputStream("d_object.txt"));
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+}

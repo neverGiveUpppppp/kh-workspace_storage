@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<p>객체값 통째로 찍기</p>
+	<jsp:useBean id="person1(변수명 참조값)" class="action.model.vo.Person" ></jsp:useBean>
+	객체값 통째로 찍기 : <%= person1(변수명&참조값) %>
+	 
+	<br>
+	<!-- 안에 있는 값을 가져올 것임  -->
+	<!-- get역할을 하는 jsp:getProperty 사용  -->
+	이름 : <jsp:getProperty property="name" name="person1(변수명 &참조값)"/><br> <%-- <% person1.getName %> --%> <!-- person1이 레퍼런스가 되는 것임. 레퍼런스로 참조할 것이 person1. 여기서 가져올 것이 이름 가져올거라 name 기술하면됨 -->
+	성별 : <jsp:getProperty property="gender" name="person1(변수명 &참조값)"/><br>
+	나이 : <jsp:getProperty property="nai" name="person1(변수명 &참조값)"/><br>
+	
+	
+<h2> 1.표준 액션 태그  useBean으로 vo클래스 객체 정보 불러오기</h2>
+	
+	<jsp:useBean id="per" class="action.model.vo.Person"></jsp:useBean>
+	
+	<!-- set으로 a값 넣기 : value속성값 -->
+	<jsp:setProperty property="name" name="per" value="a"/>
+	
+	jsp:useBean & getProperty로 vo클래스 값 가져오기 : 
+	<jsp:getProperty property="name" name="per"/><br><br>
+
+
+<h2> 2.JSP표준 액션 태그 중 useBean을 사용하여 vo클래스 객체 정보 불러오기</h2>
+	<jsp:useBean id="p" class="action.model.vo.Person" scope="request"/>
+	<jsp:setProperty property="name" name="p" value="b"/>
+	
+	jsp:useBean & getProperty로 vo클래스 값 가져오기 : 
+	<jsp:getProperty property="name" name="p"/><br><br>
+	
+	
+	이름 : <jsp:getProperty property="name" name="p"/><br> 
+	성별 : <jsp:getProperty property="gender" name="p"/><br>
+	나이 : <jsp:getProperty property="nai" name="p"/>
+
+</body>
+</html>
+
+

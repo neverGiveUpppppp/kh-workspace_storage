@@ -1,0 +1,24 @@
+package com.kh.example.chap02_abstract.family.controller;
+import com.kh.example.chap02_abstract.family.model.vo.Baby;
+import com.kh.example.chap02_abstract.family.model.vo.Family;
+import com.kh.example.chap02_abstract.family.model.vo.Mother;
+
+public class FamailyController {
+
+	
+	public void method() {
+//		Family f = new Family(); // error
+		// 에러메세지 :Cannot instantiate the type Family
+		// 추상클래스라서 직접적인 객체 생성 불가
+		// 객체 생성하고 싶으면 상속사용. mother로 해보자
+		
+		Family m = new Mother();
+		Family b = new Baby();
+		
+		m.eat();
+		b.sleep(); 
+		// 타입이 family이긴 하지만 객체는 오버라이딩 때문 mother와 baby
+		// 각각 mother와 baby에 있는 eat과 sleep이 실행 될 것
+		// 이 의미는 동적 바인딩이 실행됬다는 의미
+	}
+}

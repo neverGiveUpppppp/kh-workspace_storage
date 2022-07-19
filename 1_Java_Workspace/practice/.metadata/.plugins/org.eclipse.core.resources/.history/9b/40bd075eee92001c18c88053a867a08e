@@ -1,0 +1,35 @@
+package com.kh.example.animal.model.vo;
+
+public class Snake_상속 extends Animal_상속 {
+
+	private String pattern;
+	
+	public Snake_상속() {}
+	
+	public Snake_상속(String name, int age, double weight, String pattern) {
+		this.name = name;
+		this.age = age;
+		this.weight = weight;
+		this.pattern = pattern;
+		
+	}
+	
+	// setter
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
+	}
+	public String getPattern() {
+		return pattern;
+	}
+	
+	
+	// getter
+
+	public String inform(String name, int age, double weight, String pattern) {
+		
+		return null;
+	}
+	
+	
+	
+}

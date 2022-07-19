@@ -1,0 +1,60 @@
+package com.kh.homework.member.view;
+
+public class MemberMenu {
+
+	private Scanner sc = new Scanner(System.in);
+	private MemberController mc = new MemberController();
+	
+	public MemberMenu () {}
+	public void mainMenu() {
+		
+	}
+	public void insertMember() {
+		
+	}
+	
+	// search
+	public void searchMember() {
+		
+	}
+	public void searchId() {
+		
+	}
+	public void searchName() {
+		
+	}
+	public void searchEmail() {
+		
+	}
+	
+	// update
+	public void updateMember() {
+		
+	}
+	public void updateName() {
+		
+	}
+	public void updateEmail() {
+		
+	}
+	
+	//delete
+	public void deleteMember() {
+		
+	}
+	public void deleteOne() {
+		
+	}
+	public void deleteAll() {
+		
+	}
+	
+	// print all
+	public void printAll() {
+		
+	}
+	
+	
+	
+	
+}

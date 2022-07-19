@@ -1,0 +1,39 @@
+
+
+// 1.메소드
+// 2.클래스 소속 메소드
+// 3.인스턴스 소속 메소드
+
+
+// 3.인스턴스 소속 메소드
+class first {
+	public String delimiter;
+	public static void last1() {				 // last1() 차이
+		System.out.println("f1");				 // static O
+		System.out.println("f1");
+	}
+	public static void last2(String delimiter) { // last2() 차이
+		System.out.println(delimiter);			 // 구분자 delimiter
+		System.out.println("f2");				 // static O
+		System.out.println("f2");
+	}
+	public void last3() {						 // last3() 차이
+		System.out.println(this.delimiter);		 // 구분자 delimiter
+		System.out.println("f3");				 // static X
+		System.out.println("f3");
+	}
+}
+public class practice_everyday {
+	public static void main(String[] args) {
+		
+		first f1 = new first();		// 인스턴스 소속 메소
+		f1.last1();					// but, no delimiter & static O
+		
+		first f2 = new first(); 	// 구분자 주니까 작동
+		f2.last2("====");			// 
+		
+		first f3 = new first();		// 구분자 안주고 작동 조건
+		f3.last3();					// last3에서 ()지우고 static삭제. this. 추가 후 작동
+		
+	}
+}

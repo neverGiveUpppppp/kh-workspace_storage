@@ -1,0 +1,5 @@
+package action.model.vo;
+
+public class Person {
+
+}

@@ -1,0 +1,45 @@
+package com.kh.example.chap05_constructor.model.vo;
+import java.util.Date;
+
+// 5.생성자(constructor)
+
+// 1)기본생성자
+// 2)매개변수 있는 생성자
+
+public class User {
+	private String userId;
+	private String userPwd;
+	private String userName;
+	private Date enrollDate;
+	
+	
+	// 1)기본 생성자
+	public User() {
+		
+	}
+	
+	// 2)매개변수 있는 생성자
+	public User(String id, String pwd, String name) { // 외부에서 값을 받아올 매개변수 지정
+		userId = id;	 // 초기화
+		userPwd = pwd;
+		userName = name;
+	}
+	
+	public User(String id, Date date) { // 외부에서 값을 받아올 매개변수 지정
+		userId = id;	 // 초기화
+		userPwd = pwd;
+		userName = name;
+	}
+	
+	
+	
+	//출력용 메소드
+	public void inform() {
+		System.out.println(userId+ ", "+userPwd+", "+userName+", "+enrollDate);
+	 
+		
+	}
+	
+	
+	
+}

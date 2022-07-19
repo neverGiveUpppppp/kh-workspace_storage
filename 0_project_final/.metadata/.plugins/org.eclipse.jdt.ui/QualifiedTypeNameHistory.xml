@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="com.fpj.trendeater.board.model.service.BoardService"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.fpj.trendeater.board.model.vo.PageInfo"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="com.kh.Spring.member.model.service.MemberService"/>
+<fullyQualifiedTypeName name="com.fpj.trendeater.board.model.dao.BoardDAO"/>
+</qualifiedTypeNameHistroy>

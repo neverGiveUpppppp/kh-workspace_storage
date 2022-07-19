@@ -1,0 +1,21 @@
+
+// 상속 & overriding
+public class practice_everyday4_0 {
+	
+	public void call01() {
+		System.out.println("call_01 on");
+		call_02();
+		System.out.println("call_01 off");
+	}
+	public void call_02() {
+		System.out.println("call_02 on");
+		call_02();
+		System.out.println("call_02 off");
+	}
+	public void call_03() {
+		System.out.println("call_03 on");
+		System.out.println("call_03 off");
+	}
+	
+		
+}

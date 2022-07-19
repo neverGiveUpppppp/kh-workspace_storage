@@ -18,8 +18,6 @@
 
 .git/
 .metadata/
-/.metadata/
-*/.metadata/
 ##/.metadata/
 .*/.metadata/
 7_FrameWork_Spring_workspace/.metadata/

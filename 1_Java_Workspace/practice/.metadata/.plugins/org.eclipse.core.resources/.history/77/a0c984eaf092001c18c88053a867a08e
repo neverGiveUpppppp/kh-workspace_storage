@@ -1,0 +1,13 @@
+package com.kh.example.animal.controller;
+
+import com.kh.example.animal.model.vo.Animal_상속;
+
+public class AnimalController {
+
+	
+	public void method() {
+		Animal_상속 a = new Animal_상속("강아지",9,6.4);
+		a.inform(name, age, weight)
+		
+	}
+}

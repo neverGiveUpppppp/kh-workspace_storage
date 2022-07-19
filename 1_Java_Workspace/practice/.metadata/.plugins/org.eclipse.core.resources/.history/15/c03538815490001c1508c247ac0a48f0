@@ -1,0 +1,5 @@
+package com.kh.example.chap05_constructor.model.vo;
+
+public class User {
+
+}

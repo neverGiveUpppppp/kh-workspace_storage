@@ -1,0 +1,35 @@
+package com.kh.example.chap02_abstract.family.model.vo;
+
+public interface Basic extends Clonable, Serializable, InputStreamm List{
+
+	
+//	private int a; // error
+	// 에러메세지 
+	// Illegal modifier for the interface field Basic.a; 
+	// only public, static & final are permitted
+	// 일반적 변수 사용 불가. public static final로 변경
+	
+	// 인터페이스에서의 필드는 항상 상수 필드 : public static final
+	
+	public static final int A = 10; // 인터페이스에서는 
+	String str = "Hello";			// (public static final) 생략가능
+	int B = 1;
+	
+	public void method() { // error
+	} // 에러메세지 : Abstract methods do not specify a body
+	  // 인터페이스,앱스트랙트는 불완전이라 몸체(=중괄호)가 없다
+	
+	
+	// abstract 빠져도 에러없이 잘됨. 어차피 인터페이스 안에는 다 추상메소드만 가능해서
+	// abstract 자동생략가능
+	public void eat();
+	public void sleep();
+//	void sleep(); 위와 같은 코드 : 인터페이스 내에서 생략가능
+	
+//	인터페이스끼리 상속 가능
+//	인터페이스를 일반 상속구현할 경우 implements 사용
+//	인터페이스와 ?랑은 extends 사용
+	
+	
+	
+}

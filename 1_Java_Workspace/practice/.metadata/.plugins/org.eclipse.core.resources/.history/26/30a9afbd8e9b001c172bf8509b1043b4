@@ -1,0 +1,116 @@
+package com.kh.example.chap03.map.controller;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+import com.kh.example.chap03.map.model.vo.Snack;
+
+public class MapController {
+	Scanner sc = new Scanner(System.in);
+			
+	
+	public void doMap() {
+		
+		HashMap<String, Snack> map = new HashMap<String, Snack>();
+//		HashMap<String, Snack> map = new HashMap<>(); // 타입추론 적용
+		// HashMap 객체 생성( 키는 String 객체가, 값은 Snack 객체가 들어갈 수 있는)
+
+		// 1.put()
+		// put(K key, V value):V
+		// 반환값이 value
+		// 같은 키가 있을 때 덮어씌워야하니까 그 이전값을 반환하는거. 지금은 새로값을 넣기에 이전 값이 없어서 null이 뜨는 것
+		// 반환하는 value값이 이전값. 이전값이 없으면 null 반환.
+		map.put("새우깡", new Snack("짠맛",1500)); // 결과값 : 짠맛[1500원]  
+		System.out.println(map.put("새우깡", new Snack("짠맛",1500))); // 결과값 : null
+		System.out.println(map); // 결과값 : {새우깡=짠맛[1500원]} 
+								 // {key=value} 형식으로 출력됨 // map도 중괄호{} 찍혀서 나온다 
+		
+		map.put("새우깡",new Snack("짠맛",1500)); 	  // 순서 유지x
+		map.put("다이제",new Snack("단맛",2500)); 	  // 순서 유지x
+		map.put("포테이토칩",new Snack("짠맛",1500)); // 순서 유지x
+		map.put("고소미",new Snack("고소한 맛",1000)); // 순서 유지x
+		System.out.println(map);
+		
+		System.out.println(map.put("새우깡",new Snack("매운맛",1500))); // 같은 키값으로 새롭게 집어 넣으면 새롭게 집어놓은 value가 덮어씌움. 짠맛->매운맛 변경됨
+		System.out.println(map); // 이전에 있던 밸류값이 있으면 반환하고 없으면 새로 집어 넣는거는 null값이 뜨게 된다
+		
+		
+		// 2.containsKey(Object key)
+		// 키나 값이 들어가 있는지를 확인하는 메소드
+		//
+		// containsKey(Object key):boolean	
+		// containsValue(Object value):boolean	
+		System.out.println(map.containsKey("새우깡")); // true : key에 새우깡이 존재해서 true 반환
+													 // 
+		System.out.println(map.containsValue(new Snack("짠맛",1500))); // false : 주소값이 달라서 없다고 나옴
+		// containsValue나 containsKey나 주소값체크하지만 key에는 String Class라 오버라이딩 되어있음
+		// containsValue는 Snack 클래스라 오버라이딩x라서 false 뜬 것
+		
+		// Snack class 오버라이딩 이후 map.containsValue(new Snack("짠맛",1500)) : 결과값 true
+		
+
+		// 3.get()
+		// get(Object key) : v
+		// key값에 맞는 value값 반환
+		System.out.println(map.get("새우깡")); // 결과값 : 매운맛[1500원]
+											 // 없는 값을 호출하면? null
+		System.out.println(map.get("홈런볼")); // 결과값 : null
+		
+		// index가 없기에 for문 사용불가
+		// 반복할려면 뭘 써야할까? iterator 사용?
+		// 문제는 iterator는 리스트 셋에서만 사용가능
+		// Map에서 그럼 뭘 써야할까?
+		// 해결책
+		// 1)keySet():Set<K>
+		// 맵에 있는 key들을 set에 담아 반환
+		// 2)entrySet():Set<Map.Entry<K,V>>
+		// 
+		// 둘다 반환값이 set
+		
+		
+		
+//		map.keySet("새우");
+		// keySet에 제네릭 값은 String, why?
+		// 맵에 대한 제네릭은 스트링으로 위에서 지정했고 맵에 있는 키들을 set에 담아 반환하기 때문에
+		// set의 제네릭에는 String 밖에 못들어감. 즉, 맵의 키값을 string으로 지정해서
+		
+		Set<String> set1 = map.keySet();
+		Iterator<String> it1 = set1.iterator(); // 셋안에 스트링값이 들어가 있기에 스트링을 제너릭으로
+		while(it1.hasNext()) {
+			String key = it1.next();
+			System.out.println(key+" : "+map.get(key)); // 키값을 뽑았으니 밸류값도 get()메소드로 추출
+		}
+		
+		
+		
+		// 2)entrySet():Set<
+		// entry 의미 :키와 값을 묶은 것
+		
+		// 4.
+		
+		
+		
+		// entrySet()
+		// entrySet():Set<Map.Entry<K,V>>
+				
+		
+		// .remove()
+		//remove(Object key) : v
+		//remove(Object key, Object value) : default boolean
+		
+//		map.remove("고소미");
+//		System.out.println(map.remove("고소미"));
+		
+	}
+	
+	public void doMap2() {
+		
+		HashMap<String, Snack> map = new HashMap<String, Snack>();
+		
+		
+	}
+		
+		
+		
+}

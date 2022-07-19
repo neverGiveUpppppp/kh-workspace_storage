@@ -1,0 +1,40 @@
+
+public class practice_everyday01 {
+	public static void main(String[] args) {	
+		
+		// String methods
+		String str = "cheer up";
+		
+		// 1)charAt ()
+		// charAt(int index):char
+		char cheer = str.charAt(0);
+		System.out.println(cheer); // 힘
+		
+		// 2) concat()
+		// concat(String str):String
+		// 원래 문자열 끝에 매개변수로 들어온 값을 이어붙인 문자열 반환
+		String cstr = str.concat(" save it");
+		System.out.println(cstr);
+		
+		
+		// 3) equals()
+		// equals(Object anObject):boolean
+		str.equals(cstr);
+		System.out.println(cstr);
+		
+		// 4)substring()
+		// substring(int beginIndex):String
+		// 해당 인덱스 넘버부터 문자열 시작. 
+		// substring(int beginIndex, int endIndex):String
+		// A to B 사이의 문자열 일부 반환
+		str.substring(2);
+		System.out.println(str);
+		
+		
+		
+		// 5)5)replace()
+		// replace(char oldChar, char newChar):String
+		str.replace('힘','손');
+		System.out.println(str);
+	}	
+}

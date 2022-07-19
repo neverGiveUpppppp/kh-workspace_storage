@@ -1,0 +1,17 @@
+
+
+public class practice_everyday04 {
+	public static void main(String[] args) {
+		// run
+		
+		practice_everyday04_0 pe4 = new practice_everyday04_0();
+		pe4.println();
+		
+		practice_everyday04_1 pe4 = new practice_everyday04_1();
+		pe4.println();
+		
+		practice_everyday04_2 pe4 = new practice_everyday04_2();
+		pe4.println();
+		
+	}	
+}

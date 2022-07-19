@@ -1,0 +1,21 @@
+package com.kh.practice.snack.run;
+
+import java.awt.Menu;
+
+public class Run {
+
+	public static void main(String[] args) {
+
+		// menu() 호출
+		
+		System.out.println("스낵류를 입력하세요.");
+		menu m = new menu();
+		m.setKind("빵");
+		m.setName("케이크");
+		m.setFlavor("블루베리");
+		m.setNumOf(1);
+		m.setPrice(15000);
+		
+	}
+
+}

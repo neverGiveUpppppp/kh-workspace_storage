@@ -1,0 +1,32 @@
+package com.kh.example.practice4.model.vo;
+
+public class Book {
+	
+	private String title;
+	private String author;
+	private int price;
+	private double discountRate;
+	
+	// 기본 생성자
+	public Book() {
+		
+	}
+	
+	// 매개변수 3개인 생성자
+	public Book(String title, String publisher, String author) {
+		
+	}
+	
+	// 매개변수 5개인 생성자
+	public Book(String title, String publisher, String author, 
+				int price, double discountRate) {
+		
+		
+	}
+	
+	public void inform() {
+		System.out.printf("title : %s%n publisher : %s%n author : %s%n price : %d%n 할인율 : %f",title,publisher,author,price,discountRate);
+	}
+	
+}
+

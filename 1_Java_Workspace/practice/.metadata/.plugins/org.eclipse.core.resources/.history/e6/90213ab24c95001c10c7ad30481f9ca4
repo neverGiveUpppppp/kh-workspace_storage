@@ -1,0 +1,12 @@
+package com.kh.example.chap02_user.controller;
+
+public class UserExceptionController {
+	
+	public void method() {
+
+		throw new MyException();
+		
+		
+	}
+	
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<mvc:annotation-driven /> <!-- 어노테이션 설정방식 사용하겠다는 의미 -->
+<!-- 
+	
+객체 생성에 대해서 태그 방식으로 할 수도 있고, 어노테이션으로도 할 수 있음
+	객체생성 예시 : new MemberService().insertMember();
+
+객체 생성 방식
+  1)태그
+  2)어노테이션
+ 
+ < mvc:annotation-driven >얘가 있으면 어노테이션이 안먹힘
+
+-->
+
+	<mvc:resources mapping="/resources/**" location="/resources/" /> <!-- 정적인 데이터 파일위치를 가리킴. 정적인 데이터 : css나 이미지 같은 것들을 의미. webapp 아래 resource들 말함. -->
+	
+	
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/member/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<context:component-scan base-package="com.fpj.trendeater" /> <!-- 이 경로에 있는 어노테이션들을 다 활성화시키겠다. 어노테이션들을 다 읽고 시작함. 이거를 활성화라고 얘기함. 어노테이션 뿐 아니라 빈 객체들을 다 읽고 시작하는거임 -->
+	<!-- 등록된 bean(객체 + annotation) 활성화 -->
+	
+	
+<!-- 인터셉터 등록 -->	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean id="testInterceptor" class="com.fpj.trendeater.common.interceptor.TestInterceptor"/>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/login.me"/>
+			<bean id="loginInterceptor" class="com.fpj.trendeater.common.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+
+	
+	
+</beans>
+
+
+
+
+
