@@ -1,9 +1,0 @@
-package com.kh.example.chap00_file.controller;
-import java.io.File;
-
-public class FileController {
-	public void method() {
-		File f1 = new File();
-		
-	}
-}
