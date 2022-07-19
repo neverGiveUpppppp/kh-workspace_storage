@@ -102,7 +102,7 @@ href="${ pageContext.servletContext.contextPath }/resources/css/member-style.css
 				</tr>
 				
 				
-				<!-- jQuery와 Postcodify를 로딩한다. -->
+				<!-- jQuery와 Postcodify를 로딩함 -->
 				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 				<script>
 					// 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
@@ -113,7 +113,7 @@ href="${ pageContext.servletContext.contextPath }/resources/css/member-style.css
 					
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="수정하기"> <!-- value값이 버튼이 되서 나옴 -->
+						<input type="submit" value="수정하기"> <!-- value값이 버튼이 되서 나옴. -->
 						<c:url var="mdelete" value="mdelete.me">
 							<c:param name="id" value="${ loginUser.id }"/>
 						</c:url>									<!-- 위의 c:url에서 var변수에 선언한 mdelete -->
