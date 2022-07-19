@@ -1,0 +1,13 @@
+
+// 상속 & overriding
+public class practice_everyday04_2 extends practice_everyday04_0{
+	// child2
+		
+	private int a;
+	private int b;	
+		
+
+	
+	
+		
+}

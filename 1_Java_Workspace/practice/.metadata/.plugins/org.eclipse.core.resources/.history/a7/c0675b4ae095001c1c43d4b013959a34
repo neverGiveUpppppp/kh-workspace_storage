@@ -1,0 +1,20 @@
+package com.kh.example.chap00_file.controller;
+import java.io.File;
+import java.io.IOException;
+
+public class FileController {
+	public void method() {
+//		File f1 = new File(); // error : file class는 생성자가 매개변수 있는 것만 있음
+//		File f1 = new File("test.txt");
+//		f1.createNewFile(); // error : IOException 미처리
+							//.createNewFile()을 호출했는데 호출한 곳에  IOException처리하라고 에러뜸
+		try {				// try catch 직접처리로 해결
+			File f1 = new File("test.txt"); // try 밖에 있어도 무관
+			f1.createNewFile()
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+}

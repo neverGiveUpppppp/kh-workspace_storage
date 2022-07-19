@@ -1,0 +1,22 @@
+
+// run
+public class practice_everyday04 {
+	public static void main(String[] args) {
+	
+		public void call_1() {
+			System.out.println("call_1 on");
+			call_02();
+			System.out.println("call_1 off");
+		}
+		public void call_2() {
+			System.out.println("call_2 on");
+			call_02();
+			System.out.println("call_2 off");
+		}
+		public void call_3() {
+			System.out.println("call_3 on");
+			System.out.println("call_3 off");
+		}
+		
+	}	
+}

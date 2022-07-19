@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/MyBatisSever-config" deployDir="wtpwebapps" hostname="localhost" id="MyBatisSever" name="MyBatisSever" runtime-id="MyBatisSever" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="5">
+    <list key="modules" value0="1_MyBatis::org.eclipse.jst.jee.server:1_MyBatis::jst.web::4.0"/>
+  </server>
+</servers>

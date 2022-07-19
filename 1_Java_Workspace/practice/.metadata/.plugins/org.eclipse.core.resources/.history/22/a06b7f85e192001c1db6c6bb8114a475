@@ -1,0 +1,14 @@
+package com.kh.example.test.controller;
+
+import com.kh.example.test.model.vo.Parent;
+
+public class InheritanceTest {
+
+	public void method() {
+		System.out.println("Parent클래스의  num필드에 접근");
+		Parent p = new Parent();
+		p.setNum(9);
+		System.out.println("Parent 안에 있는 num : " + p.getNum());
+	}
+	
+}

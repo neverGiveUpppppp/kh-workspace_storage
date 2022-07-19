@@ -1,0 +1,10 @@
+package com.kh.example.chap00_file.controller;
+
+public class FileController {
+
+	
+	public void method() {
+		File f1 = new File();
+		
+	}
+}

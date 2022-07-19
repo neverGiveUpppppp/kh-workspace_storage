@@ -1,0 +1,22 @@
+package com.kh.example.person.controller;
+
+import com.kh.example.person.model.vo.Person;
+
+public class PersonController {
+
+	
+	public void method1() {
+		// Person객체가 들어갈 수 있는 5개의 공간 pArr 생성
+		Person[] pArr = new Person[5];
+		
+		for(int i=0; i < pArr.length; i++) {
+			System.out.println("pArr["+i+"] : "+pArr[i]);
+		}
+		
+		for(int i=0; i<pArr.length; i++) {
+//			System.out.println(pArr[i].personInfo());
+		} // 에러메세지 : java.lang.NullPointerException
+		  // 에러원인 : 참조형의 기본값인 null(없는값)을 return으로 반환할려하니 에러
+		
+	}
+}

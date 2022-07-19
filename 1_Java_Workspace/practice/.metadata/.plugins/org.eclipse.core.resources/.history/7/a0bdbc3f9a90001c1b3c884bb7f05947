@@ -1,0 +1,79 @@
+package com.kh.example.practice5.model.vo;
+
+public class Employee {
+	
+	private int empNo;
+	private String empName;
+	private String dept;
+	private String job;
+	private int age;
+	private char gender;
+	private int salary;
+	private double bonusPoint;
+	private String phone; 
+	private  String address;
+	
+	
+	// 기본 생성자
+	public Employee() {
+		
+	}
+	
+	public Employee(int empNo, String empName) {
+		this.empNo = empNo;
+		this.empName = empName;
+	}
+	
+	public Employee(int empNo, String empName, String dept, String job,	int age, 
+			char gender, int salary, double bonusPoint, String phone, String address) {
+		this.empNo = empNo;
+		this.empName = empName;
+		this.dept = dept;
+		this.job = job;
+		this.age = age;
+		this.gender = gender;
+		this.salary = salary;
+		this.bonusPoint = bonusPoint;
+		this.phone = phone;
+		this.address = address;
+		
+	}
+	// setter
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}	
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}	
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}	
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	
+	// getter
+	public int getEmpNo() {
+		return empNo;
+	}
+	
+	
+}

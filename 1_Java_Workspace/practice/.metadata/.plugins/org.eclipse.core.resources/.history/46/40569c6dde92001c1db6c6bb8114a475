@@ -1,0 +1,27 @@
+package com.kh.practice.student.controller;
+import com.kh.practice.student.model.vo.Student;
+
+public class StudentController {
+
+	private Student[] sArr = new Student[5];
+	
+	public final int CUT_LINE = 60;
+	
+	public StudentController() {
+		
+		
+	}
+	
+	public Student[] printStudent() {
+		return null;
+	}
+	
+	public int sumScore() {
+		return 0;
+	}
+	
+	public double[] avgScore() {
+		return a[0];
+	}
+	
+}

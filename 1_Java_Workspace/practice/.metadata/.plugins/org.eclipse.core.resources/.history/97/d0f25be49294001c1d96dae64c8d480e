@@ -1,0 +1,19 @@
+
+public class practice_everyday01 {
+	public static void main(String[] args) {	
+		
+		// 1) hashCode
+		final int cheer = 0;
+		int up = 0;
+		
+//		System.out.println(cheer.hashCode()); // error : Cannot invoke hashCode() on the primitive type int
+//		System.out.println(up.hashCode());	  // 에러원인 : 공식API 찾아보니 string의 주소값을 반환한다고 한다
+											  // string 로컬변수로 다시해보자
+		final String cheer;
+		String up;
+		System.out.println(cheer.hashCode()); // error : Cannot invoke hashCode() on the primitive type int
+		System.out.println(up.hashCode());	  // 에러원인 : 공식API 찾아보니 string의 주소값을 반환한다고 한다
+	
+		
+	}
+}

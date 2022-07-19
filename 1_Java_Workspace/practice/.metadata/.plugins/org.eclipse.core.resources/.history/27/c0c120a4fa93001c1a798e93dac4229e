@@ -1,0 +1,51 @@
+package com.kh.homework.member.controller;
+import com.kh.homework.member.model.vo.Member;
+
+public class MemberController {
+
+	private Member[] m = new Member[SIZE];
+	public static final int SIZE = 10;
+	
+	
+	public int exisMemberNum() {
+		return 0;
+	}
+	public boolean checkId(String inputId) {
+		return false;
+	}
+	public void insertMember( String id, String name, String password, 
+			String email, String gender, int age) {
+	}
+	
+	// search
+	public String searchId(String id) {
+		return null;
+	}
+	public Member[] searchName(String name) {
+		return null;
+	}
+	public Member[] searchEmail(String email) {
+		return null;
+	}
+	
+	// update & del
+	public boolean updatePassword(String id, String password) {
+		return false;
+	}
+	public boolean updateEmail(String id, String email) {
+		return false;
+	}
+	public boolean delete(String id) {
+		return false;
+	}
+	public void delete() {
+		
+	}
+	
+	// print
+	public Member[] printAll() {
+		return null;
+	}
+	
+	
+}

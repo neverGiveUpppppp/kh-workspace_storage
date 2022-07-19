@@ -1,0 +1,43 @@
+package com.kh.controller;
+import java.util.ArrayList;
+
+import com.kh.model.dao.EmployeeDAO;
+import com.kh.model.vo.Employee;
+import com.kh.view.Menu;
+
+
+
+public class EmployeeController2 {
+	
+	private EmployeeDAO empDAO = new EmployeeDAO();
+	private Menu menu = new Menu(); // kh.view.menu 임포트
+	
+	
+	// 전체 사원 정보 조회
+	public void selectAll() {
+		ArrayList<Employee> list = empDAO.selectAll(); // list에 아무 값이 안들어 올 경우를 대비해
+		//컨트롤러에서 뷰를 어떻게 갈지 정해줘야한다
+		
+		// list가 비어있을 때 = 사원이 없을 때
+		if(list.isEmpty()) {
+			menu.displayError("조회 결과가 없습니다.");
+		}else {
+		// list가 비어있지 않을 때 = 사원 존재할 때
+			menu.selectAll(list); // list가 존재하니 받온거를 넘겨줌
+		}
+	}
+	
+	
+	// 사번으로 사원 정보 조회
+	public void selectEmployee() { // 리턴해서 받을려면 int 추가
+		//사번 입력 view
+		menu.selectEmpNo(); 	// view selectEmpNo()
+		
+		// 사번 받아왔으니 조회할 수 있도록 DAO에 전달
+		empDAO.selectEmployee(empNo);
+	} 
+	
+	
+	
+	
+}

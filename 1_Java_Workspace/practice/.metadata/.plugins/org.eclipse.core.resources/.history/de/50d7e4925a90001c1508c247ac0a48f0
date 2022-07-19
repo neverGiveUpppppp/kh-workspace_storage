@@ -1,0 +1,16 @@
+package com.kh.example.chap05_constructor.run;
+import com.kh.example.chap05_constructor.model.vo.User;
+
+public class Run {
+
+	public static void main(String[] args) {
+
+		
+		User u1 = new User(); // 기본생성자에 오류발생
+		u1.inform();		  // 매개변수 있는 생성자 생성 후에 발생
+//		User.inform();
+		
+		
+	}
+
+}

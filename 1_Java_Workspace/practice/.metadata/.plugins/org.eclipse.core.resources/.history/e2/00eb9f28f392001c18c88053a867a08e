@@ -1,0 +1,18 @@
+package com.kh.example.animal.controller;
+import com.kh.example.animal.model.vo.Animal_상속;
+import com.kh.example.animal.model.vo.Dog_상속;
+import com.kh.example.animal.model.vo.Snake_상속;
+
+public class AnimalController {
+	public void method() {
+		Animal_상속 a = new Animal_상속("강아지",9,6.4);
+		System.out.println(a.inform());
+		
+		Dog_상속 d = new Dog_상속("두부",1,4.2,50,"장모");
+		System.out.println(d.inform());
+		
+		Snake_상속 s = new Snake_상속("방울이",4,10.2,"빗살");
+		System.out.println(s.inform());
+		
+	} 매개변수 넣은 상태로 정의해둬서 에러
+}

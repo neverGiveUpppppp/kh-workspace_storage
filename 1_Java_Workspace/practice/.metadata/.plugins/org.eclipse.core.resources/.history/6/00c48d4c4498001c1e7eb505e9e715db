@@ -1,0 +1,5 @@
+package com.kh.example.chap03_assist.part01_buffer.model.vo;
+
+public class Member {
+
+}

@@ -1,0 +1,10 @@
+
+
+
+public class practice_everyday09 {
+	public static void main(String[] args) throws IOException {
+		
+		// 1.바이트 기반+보조
+		// 2.문자 기반+보조
+	}	
+}

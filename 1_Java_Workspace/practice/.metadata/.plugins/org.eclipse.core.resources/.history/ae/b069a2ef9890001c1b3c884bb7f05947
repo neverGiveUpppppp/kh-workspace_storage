@@ -1,0 +1,20 @@
+package com.kh.example.practice5.run;
+
+import com.kh.example.practice5.model.vo.Employee;
+
+public class Run {
+
+	public static void main(String[] args) {
+
+		
+		Employee e = new Employee();
+		e.setEmpNo(100);
+		e.setEmpName("홍길동");
+		
+		e.getEmpNo();
+		int a = e.getEmpNo();
+		System.out.println(e.getEmpNo());
+		
+	}
+
+}

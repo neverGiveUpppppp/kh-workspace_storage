@@ -1,0 +1,22 @@
+INDEX VERSION 1.131+D:\Dropbox\Developer\JDBC\JDBC_workspace\.metadata\.plugins\org.eclipse.jdt.core
+3472741562.index
+104329165.index
+3131318050.index
+3715792605.index
+192081947.index
+1532301481.index
+2225301200.index
+2027038407.index
+937389786.index
+3531732560.index
+1585261757.index
+3905676535.index
+294023915.index
+3346300167.index
+2478843909.index
+3400036678.index
+4284077528.index
+950650115.index
+535043751.index
+452087100.index
+509366272.index

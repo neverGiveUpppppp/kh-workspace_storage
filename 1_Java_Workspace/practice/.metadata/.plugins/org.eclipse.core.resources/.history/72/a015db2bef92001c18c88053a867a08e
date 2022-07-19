@@ -1,0 +1,42 @@
+package com.kh.example.animal.model.vo;
+
+public class Dog_상속 extends Animal_상속 {
+
+	// 공통된 부분인 name,age,weight의 전역변수 및 set get  삭제 
+	super(name);
+	private double height;
+	private String hair;
+	
+	public Dog_상속() {}
+	
+	public Dog_상속(String name, int age, double weight, double height, String hair) {
+		this.name = name;
+		this.age = age;
+		this.weight = weight;
+		this.height = height;
+		this.hair = hair;
+		
+	}
+	
+	// setter & getter
+	// 공통된 부분인 name,age,weight의 전역변수 및 set get  삭제 
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	public double getHeight() {
+		return height;
+	}
+	public void setHair(String hair) {
+		this.hair = hair;
+	}
+	public String getHair() {
+		return hair;
+	}
+	
+	public String inform(String name, int age, double weight, double height, String hair) {
+		
+		return null;
+	}
+	
+	
+}

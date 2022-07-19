@@ -1,0 +1,10 @@
+
+// run
+public class practice_everyday04 {
+	public static void main(String[] args) {
+	
+		practice_everyday04_0 pe4 = new practice_everyday04_0();
+		pe4.call_1();
+		
+	}	
+}

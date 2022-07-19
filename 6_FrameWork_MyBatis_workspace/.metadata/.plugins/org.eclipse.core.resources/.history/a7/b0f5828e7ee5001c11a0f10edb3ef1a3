@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mapper파일이라고 알려줘야 하니 첫번쨰로 독타입 설정 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!-- 마이바티스 최대 특징 중 하나 : 쿼리를 태그화 시킨 것 -->
+
+<mapper namespace="memberMapper">
+<!-- 
+	 id : 쿼리문의 고유 아이디(유일한 구분자)
+	 	 - mapper태그 안에 쿼리가 엄청 여러개이기 때문에 각각을 구분할 pk역할을 하는 id속성이 필요
+	 parameterType : 쿼리에 전달될 데이터의 타입 지정
+	 resultType : 반환받을 데이터의 데이터타입 지정
+	 	- 쿼리 실행 후 나온 결과(ex:ResulSet) 옮겨 담을 객체를 정해주는 것
+	 	
+	 	
+																			-->
+	<select id="loginMember" parameterType="member.model.vo.Member" resultMap="memberResultSet" > <!-- resultType="member.model.vo.Member" --> 
+<!-- 	id속성 : 셀렉트 많이 해야하는데 여러 셀렉트 태그들을 식별할 수 있는 pk
+		parameterType=""에는 클래스 풀네임 적을 것
+		parameterType, dao에서 넘겨받은 타입 마침 멤버타입이었기 때문에 멤버라고 쓴 거고 리절트타입은 셀렉트해와서 리절트셋에 대한 타입을 물어보는건데 이 유저아디랑 pwd 일치하는 사람 한명의 결과를 가져올 건데 멤버해서 들어가는 것임 파라미터는 넘겨받은 데이터타입, 리절트타입은 리절트셋에 대한 타입이라 무조건 따라가는게 아님
+		resultType="" : 알아서 멤버 클래스에 매핑되서 들어감 강의9:48 
+		
+																 -->
+		SELECT * 
+		FROM MEMBER 
+		WHERE USER_ID = #{userId} AND USER_PWD = #{userPwd} <!-- 위치홀더 ? 아니고 #{}중괄호. {}안에는 vo클래스의 필드명 들어감 -->		
+		<!-- JSP 때는 쿼리코드 한 줄이었어야 했으나 여기서는 줄바꿈 가능. \(역슬래시) 붙이면 JSP도 가능 -->
+	</select>
+	
+	
+	
+	<!-- resultMap : vo클래스 필드명(담을 객체의 필드명)과 sql컬럼명 매핑시켜주는 태그 -->
+	<resultMap type="Member" id="memberResultSet">
+
+		<!-- PK(기본키) -->
+		<id column="USER_ID" property="userId"/>
+		<!-- 일반 컬럼 -->
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="NICKNAME" property="nickName"/>
+		<result column="EMAIL" property="email"/>
+		<result column="BIRTHDAY" property="birthDay"/>
+		<result column="GENDER" property="gender"/>
+		<result column="PHONE" property="phone"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="UPDATE_DATE" property="updateDate"/>
+		<result column="M_STATUS" property="mStatus"/>
+	</resultMap>
+	<!--  
+		resultMap태그 속성값
+				type : 클래스 풀네임or별칭
+				id : pk역할. 이 resultMap이 어느 resultMap맵인지 식별용
+					
+		id태그 : pk역할(기본키) 하는 얘가 들어감.
+			- column : DB의 컬럼명
+			- property : 매핑 시킬 자바 vo의 필드명
+		result태그 : 일반 컬럼이 들어감
+		
+-->	
+
+	<!-- 회원가입 : insert태그 -->
+	<insert id="insertMember" parameterType="Member"> <!-- parameterType : 쿼리에 전달될 데이터의 타입 지정 -->
+		<!-- 쿼리문 맞쳤다는 세미콜론 안들어감 -->
+		insert into member
+		values (#{userId}, #{userPwd}, #{userName}, #{nickName}, #{email}, #{birthDay}, #{gender}, #{phone}, #{address}, sysdate, sysdate, default)
+	</insert>
+
+	<!-- resultType, resultMap속성은 select문에만 사용 
+		인서트 업데이트 딜리트는 무조건 인트타입으로 반환됨. 셀렉트는 리절트셋으로 반환되니까 원하는 타입으로 바꾸겠다는 의미로 리절트타입이나 맵이 꼭 필요하지만
+		dml문은 인트값으로 넘어오고 다른 타입으로 활용할려고 하지 않기에 리절트타입,맵 안씀. 쓰면 오히려 에러발생
+	-->
+
+
+	<!-- 내정보보기 수정 -->
+	<update id="updateMember" parameterType="Member">
+			update member
+			set user_name = #{userName}, nickName = #{nickname}, email = #{email}, birthDay = #{birthDay},
+				gender = #{gender}, phone = #{phone}, address = #{address}
+			where user_id = #{userId}
+	</update>
+	
+	
+	<!-- 비번 수정 -->
+	<update id="updatePwd" parameterType="java.util.HashMap"> <!-- parameterType="hashMap"도 가능. 마바 내장별칭 때문 -->
+		update member
+		set user_pwd = #{newPwd} 
+		where user_id = #{id} and user_pwd = #{oldPwd}
+	</update>
+	
+	
+	<!-- 회원탈퇴 -->
+	<update id="deleteMember" parameterType="string"> <!--string : 마이바티스 내장 별칭 string==String  -->
+		update member
+		set status = 'N' 
+		where user_id = #{userId}
+	</update>
+
+
+
+</mapper>
+
+
+
+
+

@@ -1,0 +1,19 @@
+
+public class practice_everyday01 {
+	public static void main(String[] args) {	
+		
+		// 1) StringBuffer
+
+		StringBuffer sb1 = new StringBuffer();
+		System.out.println(sb1.capacity());   
+		System.out.println(sb1.length());   
+		// StringBuffer에 기본생성자의 최초 capacity는 16으로 설정되어있음
+		
+		
+		// 2)StringBuilder()
+		StringBuilder sb2 = new StringBuilder();
+		System.out.println(sb2.capacity());
+		System.out.println(sb2.length());
+		
+	}
+}

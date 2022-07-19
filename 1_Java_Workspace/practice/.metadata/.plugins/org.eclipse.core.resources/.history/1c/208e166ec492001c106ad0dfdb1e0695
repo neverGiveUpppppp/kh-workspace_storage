@@ -1,0 +1,5 @@
+package com.kh.example.person.controller;
+
+public class PersonController {
+
+}

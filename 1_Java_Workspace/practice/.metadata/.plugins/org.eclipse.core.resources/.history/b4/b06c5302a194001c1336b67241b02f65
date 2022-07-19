@@ -1,0 +1,19 @@
+
+public class practice_everyday01 {
+	public static void main(String[] args) {	
+		
+		// StringBuffer
+		
+		// 1) append()
+		StringBuffer sb1 = new StringBuffer();
+		sb1.append("a");
+		sb1.append("1");
+		sb1.append(2);
+		System.out.println(sb1);
+		
+		// StringBuffer에 기본생성자의 최초 capacity는 16으로 설정되어있음
+		
+		
+		
+	}
+}
