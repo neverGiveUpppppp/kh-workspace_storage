@@ -101,6 +101,8 @@
 			</table>
 		</form>
 	</div>
+	
+	
 	<script>
 		$('#userId').on('keyup', function () {
 			var userId = $(this).val().trim(); /* trim() : 앞뒤 공백제거 */

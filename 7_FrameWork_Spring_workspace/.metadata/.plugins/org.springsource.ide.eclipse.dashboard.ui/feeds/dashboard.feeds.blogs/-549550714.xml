@@ -5,7 +5,63 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2022-07-15T14:00:00Z</updated>
+  <updated>2022-07-18T19:00:00Z</updated>
+  <entry>
+    <title>Spring Security 5.8.0-M1 and 6.0.0-M6 are released</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/07/18/spring-security-5-8-0-m1-and-6-0-0-m6-are-released" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Cummings</name>
+    </author>
+    <id>tag:spring.io,2022-07-18:4856</id>
+    <updated>2022-07-18T19:00:00Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Security &lt;code&gt;5.8.0-M1&lt;/code&gt; and &lt;code&gt;6.0.0-M6&lt;/code&gt; are available now.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This release includes dependency upgrades, bug fixes, and enhancements. Here are a few noteworthy changes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/10913"&gt;Deferred SecurityContext lookup&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/10973"&gt;SecurityContextHolderStrategy Bean lookup&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/9290"&gt;AuthorizationManager support&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/8549"&gt;SHA-256 RememberMe support&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/10451"&gt;Release automation improvements&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;See the &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.8.0-M1"&gt;5.8.0-M1&lt;/a&gt; and &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/6.0.0-M6"&gt;6.0.0-M6&lt;/a&gt; release notes for more details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-security/reference/"&gt;Reference&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Tips: Kubernetes Native Java (Redux, 2022)</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/07/17/spring-tips-kubernetes-native-java-redux-2022" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2022-07-17:4855</id>
+    <updated>2022-07-17T19:00:00Z</updated>
+    <content type="html">&lt;p&gt;Hi, Spring fans! In this installment, Josh Long (@starbuxman) looks at some of the amazing opportunities for building Spring Boot applications intended for production in Kubernetes in mid 2022. &lt;/p&gt;
+&lt;p&gt;The code, as usual, &lt;a href="https://github.com/spring-tips/kubernetes-native-java-redux-2022-07"&gt;is available on the &lt;code&gt;spring-tips&lt;/code&gt; Github organization&lt;/a&gt;&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/Xe7K1biKcs0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Data 2022.0.0-M5 2021.2.2 and 2021.1.6 released</title>
     <link rel="alternate" href="https://spring.io/blog/2022/07/15/spring-data-2022-0-0-m5-2021-2-2-and-2021-1-6-released" />
@@ -156,12 +212,12 @@
       <name>Gary Russell</name>
     </author>
     <id>tag:spring.io,2022-07-07:4848</id>
-    <updated>2022-07-07T16:18:55Z</updated>
+    <updated>2022-07-07T16:18:00Z</updated>
     <content type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;I am pleased to announce that the release candidate Spring for Apache Kafka 2.9.0 is now available (2.9.0-RC1) in the &lt;a href="https://repo.spring.io/milestone"&gt;Spring Milestone Repo&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This version is not provided by Spring Boot dependency management, but it can be used with Boot 2.7, as long as you override the Kafka dependencies as described in &lt;a href="https://docs.spring.io/spring-kafka/docs/2.9.0-RC1/reference/html/#update-deps"&gt;this appendix&lt;/a&gt;, especially if you are using the embedded Kafka broker.&lt;/p&gt;
+&lt;p&gt;This version is not provided by Spring Boot dependency management, but it can be used with Boot 2.7 (or 2.6), as long as you override the Kafka dependencies as described in &lt;a href="https://docs.spring.io/spring-kafka/docs/2.9.0-RC1/reference/html/#update-deps"&gt;this appendix&lt;/a&gt;, especially if you are using the embedded Kafka broker.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="notable-changes"&gt;&lt;a class="anchor" href="#notable-changes"&gt;&lt;/a&gt;Notable Changes&lt;/h3&gt;
@@ -591,61 +647,6 @@ dependencyManagement {&#xD;
   &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/699573478/0/baeldung~A-Guide-to-Docker-Private-Registry"&gt;A Guide to Docker Private Registry&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/699263599/0/baeldung~Is-There-a-Destructor-in-Java"&gt;Is There a Destructor in Java?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 5.7.2 and 5.6.6 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/06/20/spring-security-5-7-2-and-5-6-6-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Joe Grandja</name>
-    </author>
-    <id>tag:spring.io,2022-06-20:4836</id>
-    <updated>2022-06-20T20:00:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Security 5.7.2 and 5.6.6 are available now.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can find more details about the respective releases &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.7.2"&gt;here&lt;/a&gt; and
- &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.6.6"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Authorization Server 0.3.1 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/06/20/spring-authorization-server-0-3-1-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Joe Grandja</name>
-    </author>
-    <id>tag:spring.io,2022-06-17:4833</id>
-    <updated>2022-06-20T14:00:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the team and everyone who has contributed, it is my pleasure to announce the general availability of Spring Authorization Server 0.3.1.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can download it from Maven Central by using the module coordinates:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;implementation 'org.springframework.security:spring-security-oauth2-authorization-server:0.3.1'&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See the &lt;a href="https://github.com/spring-projects/spring-authorization-server/releases/tag/0.3.1"&gt;release notes&lt;/a&gt; for complete details.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This release includes downgrading to JDK 1.8 baseline along with some minor enhancements and bug fixes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To get started using Spring Authorization Server, see the &lt;a href="https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html"&gt;Getting Started&lt;/a&gt; chapter of the reference documentation and the &lt;a href="https://github.com/spring-projects/spring-authorization-server/tree/main/samples"&gt;samples&lt;/a&gt; to become familiar with setup and configuration.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We would love to gather your feedback as we strive to improve and build upon this release.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-authorization-server"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-authorization-server/issues"&gt;GitHub Issues&lt;/a&gt; | &lt;a href="https://app.zenhub.com/workspaces/authorization-server-5e8f3182b5e8f5841bfc4902/board?repos=248032165"&gt;ZenHub Board&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>
