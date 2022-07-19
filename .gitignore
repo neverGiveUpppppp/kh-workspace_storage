@@ -18,13 +18,9 @@
 
 .git/
 .metadata/
-<<<<<<< HEAD
 /.metadata/
 */.metadata/
-=======
 ##/.metadata/
->>>>>>> test11
-.*/.metadata/
 7_FrameWork_Spring_workspace/.metadata/
 
  
