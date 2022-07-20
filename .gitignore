@@ -10,7 +10,7 @@
 
 # 현재 디렉토리에 있는 TODO파일은 무시하고 subdir/TODO처럼 하위디렉토리에 있는 파일은 무시하지 않음
 
-/TODO
+#/TODO
 
  
 
@@ -18,13 +18,9 @@
 
 .git/
 .metadata/
-<<<<<<< HEAD
 /.metadata/
 */.metadata/
-=======
 ##/.metadata/
->>>>>>> test11
-.*/.metadata/
 7_FrameWork_Spring_workspace/.metadata/
 
  
