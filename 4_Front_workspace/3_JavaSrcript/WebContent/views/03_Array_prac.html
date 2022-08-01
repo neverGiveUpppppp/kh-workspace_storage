@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+
+<title>Document</title>
+
+</head>
+<body>
+    
+    <script>
+        // 배열의 메소드
+        
+        
+        var a = ['a','b','c','4',5];
+        console.log(typeof a); // object
+        
+        // indexOf()
+        console.log(a.indexOf('a')); // 0 
+        console.log(a.indexOf());    // 없으면 -1 반환
+        
+        // concat() 이어붙이기
+        console.log(a.concat(6));    //  (6) ['a','b','c','4',5,6] 6추가됨
+        
+        // join
+        console.log(a.join());      // a,b,c,4,5  
+        console.log(typeof a.join());    //  str
+        console.log(a.join("|"));    //  a|b|c|4|5
+        console.log(a.join("a","q"));    //  aabaca4a5a
+
+
+        // reverse
+        console.log(a.reverse());    //  (5) [5, '4', 'c', 'b', 'a']
+        
+        // sort
+        console.log(a.sort());    //  ['4', 5, 'a', 'b', 'c']
+
+
+        // push : 마지막 요소에 추가
+        console.log(a);           // (5) ['4', 5, 'a', 'b', 'c']
+        console.log(a.push());    //  5     <- 콘솔에서는 소트된 상태에서 원래 배열의 마지막값 5를 반환
+        console.log(a.push(6));    //  6    
+        console.log(a);           // (6) ['4', 5, 'a', 'b', 'c',6]
+        console.log(a.push())       // 6 // 파라미터 안적으면 배열의 길이 반환(?)
+        console.log(typeof(a.push()));    //  number
+
+        //pop
+        console.log(a.pop());    //  6
+        console.log(a);    //  (5) ['4', 5, 'a', 'b', 'c'] <- 6삭제됨
+        console.log(a.pop(0));      // c
+        console.log(a.pop("0"));    // b    매개변수를 넣어도 마지막요소 빼오고 삭제
+        console.log(a);    //  (3) ['4', 5, 'a']  
+
+
+        //
+
+        console.log();    //  
+        console.log();    //  
+        console.log();    //  
+        
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

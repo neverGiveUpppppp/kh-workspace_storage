@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+
+<title>cheer up</title>
+
+
+<style>
+	.area{width: 300px; height: 100px; border: 1px solid blue;}
+</style>
+
+</head>
+<body>
+
+    <script>
+        document.write("혼자출력");
+        console.log;    // 노에러 작동x
+        console.log(document.write("콘솔출력")); // undefined
+        console.log("document.write() : 콘솔 출력"); // 콘솔 출력 : a
+        // 값이 대입되지 않은 변수 혹은 속성을 사용하려고 하면 undefined를 반환
+    // JavaScript에는 '없음'를 나타내는 값이 두 개 있는데, 
+    // 바로 null와 undefined입니다. 두 값의 의미는 비슷하지만, 
+    // 각각이 사용되는 목적과 장소가 다릅니다
+    // null은 '객체가 없음'
+
+    // https://helloworldjavascript.net/pages/160-null-undefined.html
+    // ? 왜 address null 넣는걸 잘 안하지? 명시적인게 더 낫지않나?
+        
+    </script>
+
+    <script>
+        // alert('알림창띄워보기');
+        // window.alert("win 생략가능");
+    </script><br>
+
+    
+    <button onclick="doCon();">console.log() : 콘솔창 출력</button>
+    <script>
+        function doCon(){
+            console.log("클릭하면 함수 실행")   // 클릭하면 함수 실행
+            window.console.log("정석은 window.console.log()")
+        }
+    </script>
+    
+    <h4>innerHTML</h4>
+    <div id="inner2">innerHTML : 태그 엘리먼트의 값을 읽거나 변경할 때 innerHTML 속성 사용<br>
+        누르면 div 내용 사라지고
+    </div>
+    <p>p태그도 사라지나? 유지되고 div 내용만 사라지고<br>
+        in2.innerHTML = " "에 담긴 내용이 출력됨
+    </p>
+    <button onclick="innerHTML2();">데이터출력 - innerHTML()</button>
+    <script>
+        function innerHTML2(){
+            var in2 = document.getElementById("inner2");
+            console.log(in2);
+            console.log(typeof in2); // in2타입:object
+            // console.log(in2.innerHTML);
+            in2.innerHTML = 'innerHTML 동작 성공'; // 즉, innerHTML은 object를 읽어온 것
+        }
+    </script>
+
+    <h3>데이터 입력</h3>
+    <h4>window.confirm : Y/N 질문창. 확인버튼은 true, 취소 버튼은 false 반환 </h4>
+    <button onclick="testconfirm();">데이터입력 - window.confirm()</button>
+    <script>
+        function testconfirm(){
+            var cfm = window.confirm('확인과 취소 창');
+            console.log(cfm); // 확인은 true받았고 취소는 false받음
+
+            if(cfm){
+                console.log("확인 누름"+cfm);
+                alert("확인 누름"+cfm);
+            }else{
+                console.log("취소 누름"+cfm);
+                alert("취소 누름"+cfm);
+            }
+            var cheerUp = window.confirm("힘내고 있니?");
+            alert(cheerUp);
+        }
+    </script>
+
+    <h4>window.prompt</h4>
+    <div class="area">div inner2</div>
+    <p>
+        텍스트 필드와 확인, 취소 버튼이 있는 대화상자  
+        입력한 메세지 내용을 리턴받음
+    </p>
+    <button onclick="testPrompt();">데이터출력 - window.prompt()</button>
+    <script>
+        function testPrompt(){
+            var prom = window.prompt("window.prompt() 창 떴는가?");
+            console.log(prom);  // a누르고 a를 반환받아 var prom에 저장
+            console.log(typeof prom);  // str
+            prom.innerHTML = "메세지 저장완료"; // prom이 str이라 안되는듯
+
+        }
+    </script>
+
+
+
+    <h2> ▷html태그에 접근하기◁</h2>
+    <h3>아이디로 접근 : getElementById()</h3>
+    <div id="gebyId1">getElementById()</div>
+    <button onclick="testGetelementById();">html태그 접근 - 아이디 - getelementByid() </button>
+    <script>
+        function testGetelementById(){
+            var byId1 = document.getElementById('gebyId1');
+            console.log(byId1);
+            console.log(typeof(byId1));
+            byId1.innerHTML = '변수는 오브젝트'; // div내용이 '변수는 오브젝트'로 변경됨
+            // innerHTML, div의 id를 읽어왔기에 그 내용을 변경한 듯?
+            // name에서도 이어서 테스트
+
+        }
+    </script>
+
+    <h3>name으로 접근</h3>
+    <p>
+        getElementsByName() : 반환타입 [] Node list
+        해당 name 속성값을 가지는 요소를 모두 선택함.
+    </p>
+    <form>
+		<fieldset>
+			<legend>취미</1egend>
+			<table>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="game" id="game"><label>게임</label></td>
+					<td><input type="checkbox" name="hobby" value="music" id="music"><label>음악</label></td>
+					<td><input type="checkbox" name="hobby" value="movie" id="movie"><label>영화</label></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="book" id="book"><label>독서</label></td>
+					<td><input type="checkbox" name="hobby" value="travel" id="travel"><label>여행</label></td>
+					<td><input type="checkbox" name="hobby" value="exercise" id="exercise"><label>운동</label></td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+    <div id="byname1" class="area">getElementsByName() : 반환타입 [] list</div>
+    <button onclick="testByname1();">데이터접근 - name접근 - getElementsByName()</button>
+    <script>
+        function testByname1(){
+            var tbn1 = document.getElementsByName('hobby');
+            console.log(tbn1);  // NodeList(6) <- table 6개<td>데이터수 // input#game2는 각 input태그의 id
+            console.log(typeof tbn1); // object
+    
+            var checkName='';
+            for (var i = 0; i < tbn1.length; i++){
+                if(tbn1[i].checked == true){
+                    checkName += tbn1[i].value + "선택함<br>";
+                }
+            }
+            // byname1.innerHTML = checkName;  // 54 // 비추천방법
+            document.getElementById('byname1').innerHTML=checkName; // 54
+            // document.getElementById('byname1') : div id가 byname1이기에 div의 엘레멘트(요소)를 가져와라
+            // .innerHTML : 가져온 요소를  checkName의 값과 변경(?). 교환(?)
+            
+        }
+    </script>
+
+
+
+<h3>text박스의 value값 읽어오기3</h3>
+<form action="" method="post">
+    <label>이름 :</label><input type="text" name="userName" id="username2">
+    <input type="button" onclick="ex1();" value="input값 넣기">
+</form>
+<div id="ex1" class="area" ></div>
+<script>
+    function ex1(){
+        var userName = document.getElementById('username2');
+        var divEx1 = document.getElementById('ex1');
+
+        if(userName != null){
+            divEx1.innerHTML = userName.value; // .value를 안하면 객체전체가 출력됨
+            console.log(divEx1);
+        }else{
+            window.alert('이름을 입력하세요')
+        }
+    }
+</script>
+
+
+
+
+    <h3>실습예제</h3>
+    <h3>text박스의 value값 읽어오기</h3>
+    <!--  목표 : textfield에 이름을 적고 div에 입력된 이름 출력하기
+        조건 : 1) textfield에 값이 비어있는 상태에서 버튼을 누르면 '이름을 입력하세요'라는 알람창 뜨기
+                2) div에 이름 출력 후 textfield에 남아있는 내용 지우기		-->
+    <!-- 강의시간 5-6시 사이? 정답확인 할 것 -->
+
+    <div id="ex1" class="ex1c">div name</div>
+    <button onclick="exercise01();">실습예제</button>
+    <script>
+        function exercise01() {
+            
+            
+            if(textfield == null){
+                alert('이름을 입력하세요')        
+            }   
+        }
+
+    </script>
+
+<h3>text박스의 value값 읽어오기3</h3>
+<form action="" method="post">
+    <label>이름 :</label><input type="text" name="userName" id="username2">
+    <input type="button" onclick="ex1();" value="input값 넣기">
+</form>
+<div id="ex1" class="area" ></div>
+<script>
+    function ex1(){
+        var userName = document.getElementById('username2');
+        var divEx1 = document.getElementById('ex1');
+
+        if(userName != null){
+            divEx1.innerHTML = userName;
+        }else{
+            window.alert('이름을 입력하세요')
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+</body>
+</html>

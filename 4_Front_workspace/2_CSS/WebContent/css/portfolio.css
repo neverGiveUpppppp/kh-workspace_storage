@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+
+.char2_1{ display: inline-block; width: 50px; height: 25px; line-height: default; text-align: center; 
+          font-size: 12px; font-weight: bold;}
+
+.char2_2{ display: inline-block; width:50px; height: 100px; line-height: 5; text-align: center; vertical-align: text-bottom; resize:none;
+         font-size: 12px; font-weight: bold;}
+
+.char4{ display: inline-block; padding: 0px; width: 50px; font-size: 12px; font-weight: bold;}
+
+.submitBtn{padding-left: 80px}
+
+
+#t1_top{background-color: #FFA07A; color: #fff;
+        font-size: 11px;}
+
+      
+.contents{background-color: lightyellow;
+          font-size: 10px; font-weight: 500;}
+#t1_mid{width: 300px;}
+            
+.t1_btn_shortcut{width: 75px;}
+
+#t1_bottom{background-color: #FFA07A; color: #fff;  text-align: center; 
+           font-size: 11px; font-weight: bold;}
+
+
+
+
+
+
+
+
+

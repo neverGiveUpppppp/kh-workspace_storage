@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UI디자인 포트폴리오</title>
+
+<link href="css/portfolio.css" rel="stylesheet">
+
+</head>
+<body>
+	
+
+
+	<form action='insert.no' method='post'>
+	<fieldset style="width: 570px; height: 255px;">
+		<legend>공지사항 작성하기</legend>
+		
+		<label>
+			<span class="char2_1">제목</span>
+			<input name="title" type="text" placeholder="제목을 입력하시오." required><br>
+				    
+		</label>
+
+		<label>
+			<span class="char2_2">내용</span>
+			<textarea name="content" rows="8" cols="23" placeholder="내용을 입력하시오." required
+				  ></textarea><br>
+		</label>
+		
+		<label>
+			<span class="char4">첨부파일</span>
+		
+		<input type="file" name="uploadFile" multiple accept=".png, .jpg, .jpeg, .mp3, .mp4, .avi" style="font-size: 12px;">
+		<!-- type="file파일 자체가 선택된 파일 없음 글씨까지 보여줌" -->
+		</label>
+		<br><br>
+		
+
+		<div class="submitBtn">
+				<input type="button" value="작성하기">
+		</div>
+	</fieldset>
+	</form>
+
+
+
+	<br>
+	<hr style="display: inline-block; text-align: left; width: 600px;"  >
+	<br>
+	
+
+	<table border="1" width="600px" height="200px">
+		<thead id="t1_top">
+			<th width="25px">번호</th>
+			<th width="410px" colspan="2" >제목</th>
+			<th width="65px">작성자</th>
+			<th width="65px">작성일</th>
+			<th width="35px">조회수</th>
+		</thead>
+		<tbody class="contents">
+			<tr>
+				<td>9</td>
+				<td id="t1_mid">공지사항 제목 9</td>
+				<td><button class="t1_btn_shortcut">바로가기</button></td>
+				<td>user01</td>
+				<td>2021-03-29</td>
+				<td>34</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>공지사항 제목 6</td>
+				<td><button class="t1_btn_shortcut">바로가기</button></td>
+				<td>answ445</td>
+				<td>2021-03-12</td>
+				<td>67</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>공지사항 제목 3</td>
+				<td><button class="t1_btn_shortcut">바로가기</button></td>
+				<td>testg12</td>
+				<td>2021-03-01</td>
+				<td>98</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>공지사항 제목 2</td>
+				<td><button class="t1_btn_shortcut">바로가기</button></td>
+				<td>palwe3</td>
+				<td>2021-01-02</td>
+				<td>85</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>공지사항 제목 1</td>
+				<td><button class="t1_btn_shortcut">바로가기</button></td>
+				<td>xm123</td>
+				<td>2020-12-24</td>
+				<td>124</td>
+			</tr>
+		</tbody>
+		<tfoot id="t1_bottom">
+			<tr>
+				<td colspan="4" width="500px">전체공지사항 갯수</td>
+				<td colspan="2" width="100px">5개</td>
+			</tr>
+		</tfoot>
+		
+	
+	
+	</table>
+	
+
+</body>
+</html>

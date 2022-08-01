@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+
+<title>02_BasicGrammar_prac</title>
+
+</head>
+<body>
+
+    <h2>변수 선언</h2>
+    <script>
+        // 함수 외부
+        str1 = '전역변수';      // var 안붙은건 죄다 전역변수
+        var str2 = '전역변수';  // var 붙었는데 함수 밖이면 전역변수
+
+        window.onload = function(){
+            // 함수 내부
+            var str1 = "지역변수1"; // 함수 내부라 var변수명이라도 지역변수
+            var str3 = "지역변수2";
+
+            console.log('str1 :' + str1);       // 지역변수
+            console.log('this.str1 :' + this.str1);   // 전역변수 : 함수 내부에서는 전역변수를 this.나 window.을 찍어서 구분해줘야한다
+            console.log('window.str1 : '+ window.str1); // // 전역변수 : 함수 내부에서는 전역변수를 this.나 window.을 찍어서 구분해줘야한다
+            
+            what = '난 뭘까?';  // 전역변수
+            showWhat(); 
+
+        }
+        function showWhat(){    
+            console.log(typeof what);          //                
+            console.log(typeof this.what);     // 
+            console.log(window.what);   // 
+        }
+
+    </script>
+        
+
+    <h3>자료형</h3>
+    <p>자바스크립트에서는 자료형 별로 변수 타입이 지정되지 않고 리터럴에 의해서 자료형 결정</p>
+    <button onclick="typeTest();">자료형 테스트ㄱㄱ</button>     
+    <script>
+        function typeTest(){
+            var name = "강건강";                         // 문자열
+            var age = 20;                           // 숫자
+            var check = true;                       // 논리값        
+            var hobby = ['축구', '야구', '농구'];    // 배열
+            var user = {                            // 객체   
+                name: '강건강',
+                age: 20,
+                id: 'user01'              
+            };
+            var testFunction = function(num1, num2){
+                var sum = num1 + num2;
+                alert(sum);
+            };
+                        // 콘솔창에서 '값' 확인
+                        console.log(name);
+            console.log(age);
+            console.log(check);
+            console.log(hobby);
+            console.log(user);
+            console.log(testFunction);
+
+
+            // 콘솔창에서 '타입' 확인
+            console.log(typeof(name));
+            console.log(typeof(age));
+            console.log(typeof(check));
+            console.log(typeof(hobby));
+            console.log(typeof(user));
+            console.log(typeof(testFunction));    
+        }
+
+
+    </script>
+
+
+
+    <h2>데이터 형변환</h2>
+    <h3>문자열과 숫자의 +연산</h3>
+    <!-- 문자열과 숫자가 연산하면 str화된다 -->
+    <p>문자열과 숫자가 연산하면 str화된다</p>
+    <button onclick="testPlus();">문자열과 숫자의 +연산</button>
+    <script>
+        function testPlus(){
+            var test1 = 7 + 7;          // 14
+            var test2 = 7 + '7';        // 77
+            var test3 = '7' + 7;        // 77
+            var test4 = '7' + '7';      // 77
+            var test5 = 7 + 7 + '7';    // 147
+            var test6 = 7 + '7' + 7;    // 777
+            var test7 = '7' + 7 + 7;    // 777
+
+            console.log(test1);
+            console.log(test2);
+            console.log(test3);
+            console.log(test4);
+            console.log(test5);
+            console.log(test6);
+            console.log(test7);
+
+            // console.log(test2 + 1);
+            // console.log(test3+1);
+            console.log(Number(test3)+1);       
+            console.log(parseFloat(test3)+2); // 79
+            console.log(parseInt(test7)+3); 780
+
+        }
+        </script>        
+
+        
+    <h4>for in문</h4>
+    <button onclick="forInTest();">for in문</button>
+    <!-- 자바 foreach랑 비슷함 -->
+    <script>
+        function forInTest(){
+           var rst = "";
+           var arr = ['a','b','c','d'];
+            
+            for(var i in arr){
+                console.log(i)      // 0123
+                // rst = arr[i] + " "; // 값 자체는 0~3까지 다 들어감. 마지막 들어간게 3이라 덮어씌워지면서 3의 자료인 d가 출력
+                rst += arr[i] + " "; // += 변경해야 추가됨
+           }
+           alert(rst);
+        }
+    </script>
+
+
+    <button onclick="forInTest2();">for in문2</button>
+    <!-- 자바 foreach랑 비슷함 -->
+    <script>
+    function forInTest2(){
+        var forin = "";
+        var forinArr = ['ㄱ','ㄴ','ㄷ','ㄹ'];
+
+        for(var i in forinArr) {
+            console.log(i);
+            forin += forinArr[i] + " ";
+        }
+        alert(forin);
+    }
+    </script>
+
+</body>
+</html>
+
+

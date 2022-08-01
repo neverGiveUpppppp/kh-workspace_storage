@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>8_폼태그 관련</title>
+</head>
+<body>
+
+
+
+
+	<!-- name 속성 : 사용자가 입력한 데이터를 저장할 수 있는 변수 명을 기술 -->
+	<!-- value 속성 : 입력한 데이터가 저장되는 속성 -->
+	<!-- form 태그를 통해 데이터를 전송하면 'name속성 값 = value속성 값'의 형태로 데이터 전송 -->
+	<!-- button은 form 태그 안에 있으면 자동으로 submit 역할 -->
+
+
+
+
+	<!-- 폼 태그 관련 -->
+	
+	<h1>폼 태그 관련</h1>
+	<p>
+		form태그 : 화면에서 사용자가 값을 입력할 수 있는 양식 제공 태그 <!-- ??? 화면에서 사용자가 입력한 값에 대해 처리방식 지정 -->					<br>
+		　1)action속성 : <form> 태그에 입력된 데이터들을 전송 받을 곳 지정 (ex:페이지,서버,클래스 등)	<br>
+		　2)method속성 : 정보를 보낼 방식을 적는 부분( get/post 방식 )									<br>
+			　　a.get : URL를 통해 정보를 전달 / 데이터 노출 o							<br>
+			　　b.post :  HTTP Request Body를 통해 전달 / 데이터 노출 x					<br>
+						데이터 노출이 안되므로, id나 pw 같은 정보를 보내는데 쓰임		<br>
+
+	<br><br><br>
+	label 태그 
+		폼 태그 안에서 정보를 입력 받는 태그가 어떤 역할을 하는지 알려주는 이름표 태그	<br>
+		서버로 정보  전달 x	<br>
+		화면 상 어떤 정보를 입력해야 하는지 알리는 목적으로 사용	<br>
+	
+	</p>
+	
+	<form action="1_글자관련.html" method="post"> <!-- get 안쓰면 디폴트 --><!-- post 숨겨짐 -->
+		<label>검색할 내용 : </label>			  <!--  post 숨겨서 오는거 어떻게 가져오는지 알려주는건 서블릿때 배울 예정 -->	
+		<input type="text" size="20" name="seach" placeholder="검색어를 입력해주세요">
+		<input type="submit" value="검색"><!-- 데이터 받아주는 역할 -->
+	</form><!-- 폼 데이터 보내주는역할 -->
+
+	<!-- url은 데이터를 보낼 수 있다  url에 데이터가 노출되는게 get방식이다. ? 뒤에 where=neber~ 다 나오는거 -->
+	<!-- 노출해도 되는것 get 안되는건 post방식으로 보낼거야 로그인같은거  -->
+        
+
+	<br>
+	<br>
+	<hr>
+	
+	<form>
+		<fieldset>
+			<!-- <lengend> : 필드셋 제목작성 태그 -->
+			<legend>legend 태그 : 필드셋에 대한 제목 작성</legend>
+			<label>입력1 : </label><input type="text"><br>
+			<label>입력2 : </label><input type="text"><br>
+			<label>입력3 : </label><input type="text"><br>
+		</fieldset>
+	<br>
+		<fieldset>
+			<legend> fieldset태그 : 필드셋으로 묶은 영역별로 구분  </legend>
+			<label> 입력1 : </label><input type="text"><br>
+			<label> 입력2 : </label><input type="text"><br>
+			<label> 입력3 : </label><input type="text"><br>
+		</fieldset>
+	</form>
+
+	<br>
+	<br>
+	
+	
+	<hr>
+	
+	<!-- input 태그 -->
+	<h2>input 태그: 사용자에게 값을 받아오는 역할</h2>
+	<h3>text와 관련된 input 태그 속성값</h3>
+
+	<form>
+		<h4>type="hidden" : 화면에는 보이지 않는 상태로 데이터 전송</h4>
+		<input type="hidden" name="important" value="test">
+		<input type="submit" value="검색">
+
+		<h4>type="text"</h4>
+		<p>  문장 정보를 입력받을 때 사용</p>
+		<input type="text" size="50" placeholder="아이디 입력"  
+			   maxlength="8" name="userId" autofocus value="user01">  <!-- 시작하자마자 바로 커서를 깜빡이게 하고 싶으면 autofocus -->
+ 		<!-- name속성 : 사용자가 입력한 데이터를 저장할 수 있는 변수명을 기술하는 속성 -->	  <!-- ex) value=”user01” 적으면 처음부터 데이턱밧에 user01이 채워져서 나오게된다 -->
+		<!-- value속성 : 입력한 데이터가 저장되는 속성. 
+				       form태그를 통해 데이터를 전송하면 ‘name속성값 = value속성값’의 형태로 데이터 전송 -->
+		<!-- autofocus : 시작하자마자 바로 커서를 깜빡이게 하는 기능  -->
+		<!-- readonly : 읽기 전용. 값 불변  -->
+
+	   	<h4>type="text"</h4>
+		<input type="text" size="50" placeholder="아이디 입력"  
+			   maxlength="8" name="userId" autofocus readonly> <!-- readonly : 읽기 전용. 값 불변  -->
+			   
+		<h4>type="password"</h4>
+		<p> 텍스트를 별표처리해서 화면출력</p>
+		<input type="password" name="userPwd" size="25" placeholder="pw 입력하세요">
+		
+		<h4>type="button", type="submit", type="reset"</h4>
+		<input type="button" value="버튼">	<!-- 보통 다른 기능이랑 연결시킴 ex)href -->
+		<input type="submit" value="전송">	<!-- 데이터 전송 -->
+		<input type="reset" value="취소">	<!-- 초기화 취소  -->
+		
+		
+		<br>
+		<!-- button 태그 -->
+		<button>button <- 자동 submit</button> <!-- form태그 안에 있어야 자동으로 submit 역할을 함. 밖에있으면 걍 버튼클릭 -->
+		<p>자동 버튼생성 <br>
+		      버튼은 뭔가 데이터를 전송하지않고, 버튼 만들기에 다른 기능이랑 연결시켜야함. 자동 summit한다</p>
+		<button type="button">button</button> <!-- 폼 태그 안에 있어도 자동을 안넘어감 -->
+		<button type="submit">submit<z/button> 
+		<button type="reset">reset</button> 
+		
+	</form>
+
+
+	<br>
+	<hr>
+
+
+	<!-- 라디오버튼과 체크박스 -->
+	
+	<h2>라디오 버튼과 체크박스</h2>
+	<form>
+		<label>성별 : </label>
+		<input type="radio" name="gender"><label>남자</label>
+		<input type="radio" name="gender" checked ><label>여자</label> <!-- checked : 첨에 들어갈 때부터 옵션에 체크 되어있게 하는 기능 -->
+		
+		<br><br>
+		
+		<input type="submit" value="전송">
+	<!-- 	남자에 체크하면 주소창의 데이터부분에  gender=on이 들어감. 여자를 체크해도 gender=on
+		name=gender
+		value -->
+		
+		<br>
+		<hr>
+		
+		<label>취미 : </label>
+		<input type="checkbox" name="hobby" value="base" checked><label>야구</label>
+		<input type="checkbox" name="hobby" value="foot" checked><label>축구</label>
+		<input type="checkbox" name="hobby" value="hobby"><label>농구</label>
+		<!-- 서버에 전송할 변수명 name을 만들어줘야 전송할 수 있음 -->
+		<!-- value가 없어서 또 on이 보내짐 value를 만들어준다.  -->
+
+		<br><br>
+		
+		
+		<input type="submit" value="전송">
+	</form>
+
+	<br>
+	<hr>
+	
+	<h2>file과 image</h2>
+	<form>
+		<label>파일 선택(단일 업로드) : </label><input type="file" name="file"> 			<br>
+		<label>파일 선택(복수 업로드) : </label><input type="file" name="file" multiple><br><!-- multiple: 파일 여러개 업로드 가능케하는 옵션 -->
+		<label>파일 선택(확장자 제한) : </label><input type="file" name="file" multiple accept=".mp4, .png"><br> <!-- accept : 파일 확장자 제한해서 받기 -->
+	
+
+		<br><br>
+		
+		<input type="image" name="img" src="sample/image/flower1.png" width="300px"  >
+		
+		
+		<br><br>
+		
+		<input type="submit">
+	
+	</form>
+	
+	<br><br>
+	<hr>
+	<h3>html5 신기술들</h3>
+	<form>
+		<label>검색 : </label><input type="search" name="seachText">
+		<br>
+		<label>홈페이지 : </label><input type="url" name="homepage"> <!-- url값에 앞부분에 http:// 를 꼭 붙여야함  -->
+		<br>
+		<label>이메일 : </label><input type="email" name="email">	<!-- @이와 .을 필수로 집어넣어야함 -->
+		<br>
+		<label>전화번호 : </label><input type="tel" name="phone">	<!-- 웹은 확인못하고 모바일에서 확인 알아서 숫자패드 나올때 국가마다 표준이달라? 명시를 해놓은건 없다? 
+																	처음에 뜰때 숫자패드가 나온다-->
+		<br><br>
+		<input type="submit" value="전송">
+	
+	</form>
+	
+	
+	<br>
+	<br>
+	<hr>
+	<h2>숫자와 관련된 input태그</h2>
+	<form >
+		<input type="number" min="0" max="100">
+		<input type="number" min="0" max="100" step="10">
+		<input type="number" min="0" max="100" step="10" value="0">
+		<br>
+		<input type="range" min="0" max="100" step="10" name="range"> <!-- range : 숫자 바  -->
+		<br><br>
+		<input type="submit">
+	</form>
+	
+	
+	<br>
+	<br>
+	<hr>
+	<h2>숫자/날짜와 관련된 input태그</h2>
+	<form>
+		<input type="date">				<br><br>  
+		<input type="week">				<br><br>  
+		<input type="month">			<br><br> 
+		<input type="time">				<br><br> 		<!-- 시간 -->
+		<input type="datetime-local"> 	<br><br>  <!-- 달력에 시간 추가 -->
+	</form>
+	
+	
+	<br>
+	<br>
+	<hr>
+	<h2>select태그와 option</h2>
+	<p>여러 옵션 중 선택할 수 있도록 리스트박스를 생성하는 태그</p>
+	<form>
+		<label>국적 : </label>
+		<select name="nation1" size="5" multiple>
+			<option value="ko">한국</option>	<!-- 밸류값을 지정안하면 name에 밸류값이 들어감 -->
+			<option value="ch" >중국</option> 	<!-- 하나씩만 지정 가능한 상태라 복수 선택을 위해 multiple 추가 -->
+			<option value="jp" >일본</option> 	<!-- size="2" "옵션을 2개만 보여준다는 의미 -->
+			<option value="etc" selected>기타</option> 	<!-- selected를 해두면 선택이 되서 나온다 -->
+		</select>  
+	</form>
+	
+	
+	<br>
+	<br>
+	<hr>
+	<h2>datalist</h2>
+	<form>				<!-- 텍스트에 뭔가 쓸려고 할 때 미리보기가 필요하면 datalist -->
+		<label>과목 : </label><input type="text" name="subject" list="sublist">
+		<datalist id="sublist">
+			<option value="java">자바</option>
+			<option value="oracle">오라클</option>
+			<option value="JDBC">JDBC</option>
+			<option value="html">HTML</option>
+		</datalist>
+	</form>
+	
+	
+	<br>
+	<br>
+	<hr>
+	
+	<h2>textarea</h2>
+	<p>여러줄을 입력 가능한 텍스트 입력 상자</p>
+	<form>
+		<textarea cols="30" rows="10" placeholder="내용입력" style="resize:none;"> 
+					텍스트상자에 처음부터 값이 들어가있게함 </textarea>
+<!-- 		cols : 가로길이 지정
+			rows : 세로길이 지정
+			resize : 박스 테두리에서 마우스로 크기 조절 가능여부 설정
+				- none : 설정하면 리사이즈 불가
+			readonly : 읽기전용. 값 불변						 -->
+	</form>	
+	
+
+	
+
+
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

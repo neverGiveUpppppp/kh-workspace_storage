@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>09_Event.html</title>
+
+
+
+</head>
+<body>
+
+
+    <h1>이벤트</h1>
+    <h2>이벤트 설정 방법</h2>
+    <h3>고전 이벤트 모델                                                <br>
+        고전 이벤트 모델 : 요소에 접근해서 속성 집어넣어서 이벤트 추가하는 것
+    </h3>
+    
+<button id="test1"> 고전 이벤트 모델 : onclick 실행1 </button>
+<button id="test2"> 고전 이벤트 모델 : onclick 실행2 </button>
+<button id="test2_1"> function 만들어두고 호출해서 사용하는 방법</button>
+<script>
+     // 고전 이벤트 모델 : 요소에 접근해서 속성 집어넣어서 이벤트 추가하는 것
+    var test1 = document.getElementById('test1');
+    var test2 = document.getElementById('test2');   // 요소 접근해서 var test2에 속성을 집어 넣고, 아래가서 이벤트 추가하는게 고전 이벤트 모델
+    
+    // 이벤트 추가
+    test1.onclick = function() {
+        console.log('test1이 실행되었습니다.');
+    }   
+    test2.onclick = function() {
+        console.log('test2가 실행되었습니다.');
+    }
+
+    // 기능 삭제
+    test2.onclick = function() {    
+        console.log('test2가 실행되면서 test1이벤트를 삭제하였습니다.');
+        test1.onclick = null;    // null 집어넣어서 삭제
+    }
+    // 버튼 2번을 하고나서 1번을 할려고하면 삭제됬기에 더이상 실행 안됨
+
+    
+    // 다른 이벤트 실행방법
+    // 지금까지 직접 펑션 집어넣었었는데, 펑션을 하나 만들어 놓고 거기에다 연결도 가능
+    var test2_1 = document.getElementById('test2_1');
+    function test21() {          // function 미리 선언
+        alert('이름으로 이벤트 연결');
+    }
+    test2_1.onclick = test21;   // 미리 선언한 function 호출
+     
+    // 다수의 이벤트 동시 연결 가능
+    test2_1.onmouseover = function() {      // onmouseover : 마우스포인터가 해당 위치로 가면 발생
+        console.log('여러 이벤트 동시 연결 가능');
+        // onmouseover : 마우스가 올라간것에 대한 이벤트 
+    }
+    </script>
+
+
+    <h4>이벤트 발생 객체</h4>
+    <button id="test3_1">test3_1 실행확인</button>
+    <button id="test3_2">test3_2 실행확인</button>
+    <script>
+        // 숙제
+        // ver1. 버튼을 눌렀을 때 버튼의 배경과 글자색이 각각 검은색과 하얀색으로 변경되게 하기
+        // ver2. 누를때마다 버튼의 배경과 글자색이 바뀌게 하기 (기본 -> 검/하 -> 기본 -> 검/하)
+
+        //ver1.
+        var ver1 = document.getElementById("test3_1");
+        ver1.onclick = function() {
+            ver1.style.backgroundColor="black";
+            ver1.style.color="white";
+        }
+        //ver2.
+
+        // if(ver2 != null){
+        //     return true;
+        // }else{
+        //     return false;
+        // }    
+
+        
+        var ver2 = document.getElementById("test3_2");  
+        var ver2_2 = document.getElementById("test3_2");  
+        
+        ver2.onclick = function(){
+            ver2.style.backgroundColor="black";
+            ver2.style.color="white";
+
+        ver2.onclick = null;
+        }
+        // if(ver2 != null){
+        //     ver2.onclick = null;
+        // }else{
+        //     ver2.onclick = function(){
+        //         ver2.style.backgroundColor="black";
+        //         ver2.style.color="white";
+                
+        //     }
+        // }   
+        
+        // ver2.onclick = function(){
+        //     ver2.style.backgroundColor="black";
+        //     ver2.style.color="white";
+            
+        // }
+        // console.log(typeof ver2 );
+        // ver2.onclick = null;
+
+    
+    </script>
+    
+    
+    ///////// 모범 답안/////////
+    <h4>이벤트 발생 객체</h4>
+    <button id="test3">test3() 실행확인</button>
+    <script>
+        var test3 = document.getElementById("test3");
+        
+        var count = 0;
+        test3.onclick=function(){
+            count++;
+        
+            if(count % 2 != 0){
+                this.style.backgroundColor = "black";
+                this.style.color = "white";
+            } else{
+                this.style.backgroundColor = null;
+                this.style.color = null;
+            }
+
+
+            // boolean 버전
+            // var check = true;
+            // test3.onclick=function(){
+            // if(check){
+            // this.style.backgroundColor = "black";
+            // this.style.color = "white";
+            // check = false;
+            // } else{
+            // this.style.backgroundColor = null;
+            // this.style.color = null;
+            // check = true;
+            // }
+            // }   
+        }
+    </script>
+    
+
+
+
+
+    <h3>인라인 모델</h3>
+    <p> 인라인 모델 : 태그안에 집어넣는 것 </p>
+    <button onclick="test4();">Event - 인라인 모델</button>
+    <button onclick="alert('test4 가 실행되었습니다')">Event - 인라인 모델</button>
+    <script>
+        // 인라인 모델 : 태그안에 집어넣는 것
+        function test4(){
+            alert('test4가 실행되었습니다');
+        }
+    </script>
+
+
+    <h3>표준 이벤트 모델</h3>
+    <button id="test5">표준 이벤트 모델 : test5 실행확인</button>
+    <button id="test6">표준 이벤트 모델 : test6 실행확인</button>
+    <script>
+        var test5 = document.getElementById('test5');
+        var test6 = document.getElementById('test6');
+
+        function fn_test5_1() {
+            console.log('test5가 클릭됐습니다.');
+        }
+        
+        function fn_test5_2() {
+            console.log('test5에 들어왔습니다.');
+        }
+
+        /* 이벤트 추가 */
+        test5.addEventListener('click', fn_test5_1);     // click하면 fn_test5_1 함수 실행하라는 코드
+        test5.addEventListener('mouseover', fn_test5_2); // 마우스포인터가 올라가면 fn_test5_2 함수를 실행하라는 코드
+        // 어떤 이벤트와 연결할건지 앞에 써줌 : 'click' 
+        // 어떤게 실행될건지 뒤에써줌 : fn_test5_1
+        
+       
+
+        /* 이벤트 삭제  */
+        test6.addEventListener('click', function() {     // 클릭하면 function() 함수를 실행하라는 코드
+            console.log('test6에 들어오면서 test5의 클릭이벤트를 제거 했습니다.');
+            test5.removeEventListener('click',fn_test5_1);
+            // 이벤트 삭제 효과 : 이벤트 제거 후, test5 진입은 되나 클릭은 안되게 된다.
+ 
+        });
+
+    </script>
+
+
+
+    
+<h2>기본 이벤트를 제거1</h2>
+<form>
+    <label>이름 : </label><input type="text" name="name" id="name"><br>
+    <label>아이디 : </label><input type="text" name="userId" id="userId"><br>
+    <label>비밀번호 : </label><input type="password" name="password" id="password"><br>
+    <label>비밀번호확인 : </label><input type="password" name="passwordConfirm" id="passwordConfirm"><br>
+    <br>
+    <input type="submit" value="제출" onclick="return test7();">  <!-- submit버튼은 보내주는 역할이라 어떤 조건이 없으면 무조건 데이터전송 -->
+    <!-- 비번과 비번확인이 틀린데 전송된다면..? if문으로 비번과 비번확인이 동일한지 체크 후 true/false를 받아와
+    데이터를 서버로 전송할지 말지 결정하도록 하자 -->    
+    <!-- onclick="test7()"만 받게되면 받고 값이 갈 곳이 없으므로 return을 붙여서 type="submit"으로 값을 보내준다 -->
+    
+    <!-- submit은 그냥 보내주는 놈이라 제출이 되어버림 아이디 안적어줘도 
+    제출이 안되어야할 상황에서는 막아줘야 하니까 아래 함수로 막아줌  -->
+    <!-- 아래 함수에서 리턴 받아온 true, false를  input submit에 전달해주는데, 
+    전달값이 true면 서버에 제출을 해주고, 전달값이 false면 서버에 제출을 하지 않아
+    해당 페이지에 고대로 머물러 있음. 데이터를 넘겨주지 않게 되는것임 -->
+         
+    </form>
+    <script>
+            // 비번과 비번확인이 틀린데 전송이 되는 상황을 막아줘야함
+        function test7(){
+            // 제출이 되는 상황을 막아줘야함
+            // 비밀번호가 서로 같지 않으면 제출이 되지 않게 막기
+            var password = document.getElementById('password').value;
+            var password2 = document.getElementById('passwordConfirm').value;
+            
+            if(password == password2) {         // 비번 & 비번 확인 일치여부 확인
+                alert('비밀번호가 일치합니다.');
+                return true;
+            }else {
+                alert('비밀번호가 일치하지 않습니다.');
+                return false;
+            } 
+            // 지금 경고창도 안뜨고 넘어가버림 바로 넘어가버리는걸 막기위해 
+            // return 값으로 넘겨줌. true 인 상황인지 false 인 상황인지 
+            // input의 onclick = " 요기에 리턴해줌"
+            // 근데 리턴을 여기서 해줘도 단순히 리턴만 해주는거지 
+            // 서버에 전송이 되는걸 막고싶으면 onclick = " return test7();"
+            // 이렇게 함수 실행하는 부분에도 함수를 리턴한다고 return으로 submit에
+            // 보내줘야함. 
+        }
+    </script>
+    
+
+    <h2>기본 이벤트를 제거2</h2>        <!-- 제일 중요 -->    
+    <form onsubmit="return test8();"> <!-- onsubmit="" -->
+        <!-- if문의 일치여부 true/false를 type="submit"에서 받는 방법 외에도
+             <form>태그의 onsubmit=""에서 리턴받아 처리가능          -->
+        <label>이름 : </label><input type="text" name="name" id="name2"><br>
+        <label>아이디 : </label><input type="text" name="userId" id="userId2"><br>
+        <label>비밀번호 : </label><input type="password" name="password" id="password2"><br>
+        <label>비밀번호확인 : </label><input type="password" name="passwordConfirm" id="passwordConfirm2"><br>
+        <br>
+        <input type="submit" value="제출" > 
+
+    </form>
+    <script>
+        function test8() {
+            // 비번과 비번확인이 틀린 경우 제출이 되지 않게 막기
+            var password = document.getElementById('password2').value;
+            var password2 = document.getElementById('passwordConfirm2').value;
+            
+            if(password == password2) { // 비밀번호 일치 여부 확인
+                alert('비밀번호가 일치합니다.');
+                return true;
+            }else {
+                alert('비밀번호가 일치하지 않습니다.');
+                // 제출(type="submit"버튼)은 기본 이벤트는 기본이라 매우 강력
+                return false;
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

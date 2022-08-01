@@ -1,0 +1,415 @@
+JavaScript - 3
+10_RegularExpression.html
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    </head>
+    <body>
+        <h1>정규표현식</h1>
+        <!-- 회원가입 로직에 많이 쓰임 / 내가 원하는 패턴에 맞는 값인지 확인하는게 정규 표현식이다. -->
+        <h2>정규표현식의 객체 생성</h2>
+        <button onclick="test1();">확인하자</button>
+        <script>
+            function test1() {
+                // 1.new 방법
+                // var regExp = new RegExp('script');
+                var regExp = new RegExp(/script/); 
+                // '/' 슬래쉬 사이에 값을 집어넣어서도 사용가능
+    
+                //2. 스크립트 작성방법
+                var regExp = /script/; //이렇게도 쓸 수 있다 슬래쉬사이에 넣어서
+                // 정규표현식으로 사용하겠다고 내포되어있는것
+                var regExp = 'script';
+                // '' 얘는 걍 변수에 값을 담는게 됨. 정규표현식이 안됨
+    
+                var str  = 'javascript jquery ajax';// 정규표현식을 적용할 자원
+    
+                // 정규표현식에서 자주사용하는 메소드
+                // test() -> 해당글자가 존재하면 true 존재하지 않으면 false임
+                console.log(regExp.test(str));
+                // exec() -> 존재여부확인, 해당글자가 없으면 null 있으면 
+                // 정보배열(index,input)반환
+                console.log(regExp.exec(str));
+                //['script', index: 4, input: 'javascript jquery ajax', groups: undefined] <- 해당글자가 있어서 정보배열반환
+                // index = index번째 , input = 어디에서 
+    
+                // 문자열 string에서의 메소드를 가지고도 비교 많이함
+                // 꼭 정규표현식 메소드만 사용해야하는건 아니라는것
+                console.log(str.match(regExp));
+                // 결과가 정규표현식의 exec랑 똑같음, string 메소드로도 많이 사용함..
+                console.log(str.replace(regExp,'스크립트')); 
+                // replace -> 해당글자를 지정한문자로 바꿔줌
+            }
+        </script>
+    
+    
+        <!-- 정규표현식을 자주사용하는 패턴들을 볼것임   -->
+        <h2>$&,$`,$'</h2>
+        <button onclick ="test2();">실행확인</button>
+        <script>
+            function test2() {
+                var regExp = /as/;    // 정규식 객체 생성
+                var str = 'javascript jquery ajax sass' //검사할 원본문자
+    
+                // $& : 제일 처음 일치하는 문자열
+                console.log('$& : ' + str.replace(regExp, '($&)'));
+                // 소괄호 감싼문자로 대체해줌 (as) 소괄호쳐서 출력
+                // 해당문자열의 제일 앞에 일치하는 문자 
+    
+                // $` : 일치한 문자열의 앞 문자열
+                console.log('$& : ' + str.replace(regExp, '($`)'));
+                // 해당 문자열을 앞에 있는 문자열로 대체 -> as의 앞에있는 jav로 대체됨
+    
+                // $' : 일치한 문자열의 뒤 문자열
+                console.log('$& : ' + str.replace(regExp, "($')")); // 따옴표 잘 봐야함.
+                // 지정한 문자열의 뒤 문자열로 대체되어 나옴 -> as 뒤의 전체 문자열로 대체
+            }
+        </script>
+    
+        <h2>()와 |</h2>
+        <p> 데이터 중에 /( )/에 들어간 데이터(기준점)와 일치하는 데이터 반환 : boolean      <br>
+            일치는 true 미일치는 false로 반환 : true / fasle로 반환                         <br>
+            /(  )/ 내부의 데이터 구분은 |으로 함
+        </p>
+        <button onclick ="test3();">실행확인</button>
+        <script>
+            function test3() {
+                var src = ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'];
+                // 금토일 묶을것임.
+                // var regExp = /(금요일|토요일|일요일)/;
+                var regExp = /(금|토|일)요일/;
+                // 금 토 일 중 포함이 되면~ 공통되는건 소괄호 밖으로 빼도 됨
+            
+            for(var i in src) {
+                console.log(src[i] + " : " + regExp.test(src[i]));
+                // test() 정규표현식 메소드임 -> 일치 true, 불일치 false 반환
+                // 금토일은 true, 나머지는 false 반환
+            }
+    }
+        </script>  
+    
+     
+        <h2>플래그 문자</h2>
+        <!-- 많이 사용함!!!!! 기억!!!!  -->
+        <p>
+            g: 전역 비교 수행<br>
+            i: 대소문자를 가리지 않고 비교 수행
+        </p>
+        <button onclick="test4();">실행확인</button>
+        <script>
+            function test4() {
+                var str = "JAvaScript JQuery Ajax\nJAvaScript JQuery Ajax";
+                // String의 메소드 : str.replace() 사용
+    
+                var regExp0 = /a/;
+                console.log(regExp0 + " : " + str.replace(regExp0, '($&)'));
+                // 일치하는 문자 첫번째만 
+    
+                var regExp1 = /a/g;
+                console.log(regExp1 + " : " + str.replace(regExp1, '($&)'));
+                // 일치하는 문자열 모두  ( g => 전역비교 수행 )
+    
+                var regExp2 = /a/i;
+                console.log(regExp2 + " : " + str.replace(regExp2, '($&)'));
+                // 대소문자 구분없이 첫번째 문자열
+                
+                var regExp3 = /a/gi;
+                console.log(regExp3 + " : " + str.replace(regExp3, '($&)'));
+                // 대소문자 구분없이 모든 문자열 -> ig, gi 둘 다 가능
+            }
+        </script>   
+        
+        <h2>앵커문자</h2>
+        <p>문자열의 앞과 뒤를 구분해주는 정규표현식 기호<br>
+          "문자열의 맨!! 앞!!"만 봄                 
+        </p>
+        <button onclick="test5();">실행확인</button>
+        <script>
+            function test5() {
+                var str  = "JavaScript\nJQuery\nAjax";
+    
+                //var regExp1 = /j/gi;
+                //console.log(regExp1 + " : " + str.replace(regExp1, '($&)'));
+                // 대소문자 구분없이 모든 j
+    
+                var regExp1 = /^j/gi;
+                console.log(regExp1 + " : " + str.replace(regExp1, '($&)'));
+                //  ^ = 문자열의 맨 앞!! 
+                // g라는 플래그문자 넣어도 ^<-때문에 전역비교는 못하고 맨 앞에있는것만 비교하는거
+                            
+                var regExp2 = /^j/gim; // regExp1 -> 2로 바꾸셔야합니다
+                console.log(regExp2 + " : " + str.replace(regExp2, '($&)'));
+                // m -> 여러줄 전체를 검사하는 플래그 문자 
+                // 맨 마지막 줄 Ajax 는 첫번째 문자가 j 가 아니기 때문에 해당 안됨
+    
+                var str2 = "JavaScript\nJQuery\nShellScript\nAjax"; // 오타 str2!!!!
+    
+                //var regExp3 = /ipt/gi;
+                //console.log(regExp3 + " : " + str2.replace(regExp3, '($&)'));
+    
+                var regExp3 = /ipt$/gi;
+                console.log(regExp3 + " : " + str2.replace(regExp3, '($&)'));
+                // 전체적으로 한번에 다 보는건데, $ = 문자열의 뒤를 이야기함.
+                // 뒤에 어디에도 ipt로 끝나는게 없어서 ? 
+                // m 이 없으니 전체 줄 비교가 아니라서... 
+    
+                var regExp4 = /ipt$/gim;
+                console.log(regExp4 + " : " + str2.replace(regExp4, '($&)'));
+                // 전체중에서 맨 뒤 문자열이 ipt 인걸 찾아줌 
+            }
+        </script>  
+    
+    
+        <h2>수량 문자</h2>
+        <p>
+            a*: a가 0개 이상<br>
+            a+: a가 1개 이상<br>
+            a?: a가 0개 또는 1개
+        </p>
+        <button onclick="test6();">실행확인</button>
+        <script>
+            function test6() {
+                var src = "aabc abc bc";
+                
+                var regExp1 = /a*b/g;
+                //b앞에 있는 a가 0개이상
+                console.log(regExp1 + " : " + src.replace(regExp1, '($&)'));
+                // (aab) , (ab), (b) <- a가 0개 이상
+                
+                var regExp2 = /a+b/g;
+                //b앞에 있는 a가 1개이상
+                console.log(regExp2 + " : " + src.replace(regExp2, '($&)'));
+                // (aab), (ab) <- a가 1개 이상
+    
+                var regExp3 = /a?b/g;
+               //b앞에 있는 a가 0개 또는 1개 이상
+                console.log(regExp3 + " : " + src.replace(regExp3, '($&)'));
+                //(ab)c (ab)c (b)
+            }
+        </script>
+        
+        <h2>{}를 이용한 수량 표현</h2>
+        <p>
+            a{5}: a가 5개다<br>
+            a{2,5}: a가 2~5개 사이<br>
+            a{2,}: a가 2개 이상 <br>
+            a{,2}: a가 2개 이하 
+        </p>
+        <button onclick="test7();">실행확인</button>
+        <script>
+            function test7() {
+                var src = "AA ABA ABBA ABBBA";
+                            
+                var regExp11 = /AB*A/g; 
+                console.log(regExp11 + " : " + src.replace(regExp11, '($&)'));
+                // (AA) (ABA) (ABBA) (ABBBA)
+                
+                var regExp12 = /AB{0,}A/g; 
+                console.log(regExp12 + " : " + src.replace(regExp12, '($&)'));
+                // (AA) (ABA) (ABBA) (ABBBA)
+                
+                var regExp21 = /AB+A/g;
+                console.log(regExp21 + " : " + src.replace(regExp21, '($&)'));
+                //AA (ABA) (ABBA) (ABBBA)
+                
+                var regExp22 = /AB{1}A/g;
+                console.log(regExp22 + " : " + src.replace(regExp22, '($&)'));
+                //AA (ABA) (ABBA) (ABBBA)
+                
+                var regExp31 = /AB?A/g;
+                console.log(regExp31 + " : " + src.replace(regExp31, '($&)'));
+                //(AA) (ABA) ABBA ABBBA
+                
+                var regExp32 = /AB{0,1}A/g;
+                console.log(regExp32 + " : " + src.replace(regExp32, '($&)'));
+                //(AA) (ABA) ABBA ABBBA
+            }
+        </script>
+    
+        <h2>메타문자와 []</h2>
+        <button onclick="test8()">실행확인</button>
+        <script>
+            function test8() {
+                var str1 = "JavaScript JQuery Ajax";
+                var regExp1 = /[aj]/ig;
+                console.log(regExp1 + " : " + str1.replace(regExp1, '($&)'));
+                // a나 j를 찾아라 
+                
+                var regExp2 = /[^aj]/ig;
+                console.log(regExp2 + " : " + str1.replace(regExp2, '($&)'));
+                // 그냥 ^ 처럼 앞이 아닌 대괄호 안에 들어간 문자열 제외하고 나머지
+                // 범위 설정이 가능하다. 
+                
+                var str2 = "123JavaScript";
+                var regExp3 = /[a-z]/g;
+                console.log(regExp3 + " : " + str2.replace(regExp3, '($&)'));
+                // 영어문자만 다 들어감  a-z 까지의 영어 소문자 전부를 이야기함.
+                
+                var regExp4 = /[A-Z]/g;
+                console.log(regExp4 + " : " + str2.replace(regExp4, '($&)'));
+                // 대문자 A ~ Z 까지 
+                
+                var regExp5 = /[0-9]/g;
+                console.log(regExp5 + " : " + str2.replace(regExp5, '($&)'));
+                // 0~9까지 
+                
+                var regExp6 = /[0-9a-z]/g;
+                console.log(regExp6 + " : " + str2.replace(regExp6, '($&)'));
+                // 소문자 랑 숫자만 
+            }
+        </script>
+    
+        <h3>추가 메타 문자</h3>
+        <p>
+            \d : 숫자 <br>
+            \w : 영어, 숫자, _ <br>
+            \s : 공백문자(탭,띄어쓰기, 줄바꿈)<br>
+            \D : 숫자 빼고 다 <br>
+            \W : 영어, 숫자, _ 빼고 다 <br>
+            \S : 공백문자(탭,띄어쓰기, 줄바꿈) 빼고 다 <br>
+        </p>
+        <button onclick="test9()">실행확인</button> 
+        <script>
+            function test9() {
+                var src = "A1 B2 c3 d_4 e:5` ffGG77--__--        가\n나\n다";
+    
+                var regExp1 = /\d/g;
+                console.log(regExp1 + " : " + src.replace(regExp1, '($&)'));
+                // 숫자만 체크됨
+    
+                var regExp2 = /\w/g;
+                console.log(regExp2 + " : " + src.replace(regExp2, '($&)'));
+                // 영어, 숫자, _ 체크됨  / 특수문자, 한글 , 공백문자(줄바꿈) 제외
+    
+                var regExp3 = /\s/g;
+                console.log(regExp3 + " : " + src.replace(regExp3, '($&)'));
+                // 공백문자(탭,줄바꿈, 띄어쓰기) 체크  
+    
+                var regExp4 = /\D/g;
+                console.log(regExp4 + " : " + src.replace(regExp4, '($&)'));
+                // 숫자 제외하고 전부 
+                
+                var regExp5 = /\W/g;
+                console.log(regExp5 + " : " + src.replace(regExp5, '($&)'));
+                //공백,  특수문자, 한글 , 줄바꿈 체크됨 / 영어, 숫자, _ 제외  
+                
+                var regExp6 = /\S/g;
+                console.log(regExp6 + " : " + src.replace(regExp6, '($&)'));
+                // 공백문자(탭,줄바꿈, 띄어쓰기) 빼고 전부 체크 됨 
+    
+                // 실습: 메타문자를 []버전으로 바꾸기 
+                var regExp7 = /[0-9]/g;
+                console.log(regExp7 + " : " + src.replace(regExp7, '($&)'));
+                
+                var regExp8 = /[A-Za-z0-9_]/g;
+                console.log(regExp8 + " : " + src.replace(regExp8, '($&)'));
+                
+                var regExp9 = /[ \n\t]/g;
+                console.log(regExp9 + " : " + src.replace(regExp9, '($&)'));
+                
+                var regExp10 = /[^0-9]/g;
+                console.log(regExp10 + " : " + src.replace(regExp10, '($&)'));
+                
+                var regExp11 = /[^A-Za-z0-9_]/g;
+                console.log(regExp11 + " : " + src.replace(regExp11, '($&)'));
+                
+                var regExp12 = /[^ \n\t]/g;
+                console.log(regExp12 + " : " + src.replace(regExp12, '($&)'));
+            }
+        </script>
+    
+        <h2>Escaping</h2>
+        <button onclick="test10()">실행확인</button>
+        <script>
+            function test10() {
+                var src = "$12$ \\-\\ $35$";
+    
+                var regExp1 = /\$/; // \가 붙으면 일반 문자로 인식함
+                // $ 를 찾고 싶다.
+                console.log(regExp1 + " : " + src.replace(regExp1, '($&)'));
+                // 아무것도 아닌 맨 끝 달러 앞에 뭐가 없어서 걍 맨뒤에 아무것도 아닌거 체크됨..
+                // 달러가 정규표현식에서쓰는 예약어라 일반 문자로 인식을 못하는상태 
+                // $ 특수문자 앞에 \ 붙여주면 일반 문자로 인식해서 제일앞에있는 $ 찾음
+    
+                var regExp2 = /\$$/;
+                console.log(regExp2 + " : " + src.replace(regExp2, '($&)'));
+                // 맨뒤에 있는 $를 찾음 
+    
+                var regExp3 = /\\/g;
+                console.log(regExp3 + " : " + src.replace(regExp3, '($&)'));
+                // 모든 역슬래시 
+            }
+        </script>
+    
+        <h2>포인트.</h2>
+        <button onclick="test11();">실행확인</button>
+        <script>
+            function test11() {
+                var regExp1 = /a.b/;
+                console.log(regExp1 + " : " + regExp1.test('ab')); //false
+                console.log(regExp1 + " : " + regExp1.test('안녕 a와b')); //true
+                console.log(regExp1 + " : " + regExp1.test('잘가 a또는b')); //false
+                // a와 b사이에 한글자가 들어가기만 하면 조건 성립이라 앞에 다른 문자가 와도
+                // 상관없음
+    
+                var regExp2 = /xy./;
+                console.log(regExp2 + " : " + regExp2.test('xyz'));//true
+                console.log(regExp2 + " : " + regExp2.test('wxy '));//true
+                console.log(regExp2 + " : " + regExp2.test('xy와xx'));//true
+                console.log(regExp2 + " : " + regExp2.test('xy'));//false 
+                // 걍 바로 뒤에 아무 글자나 오면 true 
+    
+                var regExp3 = /in.$/; // 앵커문자
+                console.log(regExp3 + " : " + regExp3.test('going')); // true
+                console.log(regExp3 + " : " + regExp3.test('inner')); // false
+                // in뒤에 한 글자가 맨 뒤에 나와야한다.
+            }
+        </script>
+    
+    
+        <h2>예제</h2>
+        <h3>주민등록번호</h3>
+        <input type="text" id="ssn"><button onclick="validate();">실행확인</button>
+        <script>
+            function validate() {
+                // 사용자에게 입력받은 주민등록번호가 유효한지 확인
+                // 000000-0000000
+                // -- -> 생년 , 
+                //000000-0000000
+                //--                    --> 생년 : 제한이 없으므로 숫자만 들어가면 됨 
+                //                          ^\d{2}
+                //  --                  --> 생월 : 제한이 있으므로 십/일 나눠서 생각
+                //                          (0[1-9]|1[0-2])
+                //    --                --> 생일 : "
+                //                          (0[1-9]|(1|2)[0-9]|3[0-1])
+                //        -             --> 성별 : 제한이 있으므로 경우 나눠서 생각
+                //                          [1-4]
+                //         ------       --> ?? : 제한이 없으므로 숫자만 들어가면 됨.
+                //                          \b{6}$
+                
+                var regExp = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[01])-[1-4]\d{6}$/;
+    
+                // 생년, 생월, 생일, 성별 
+                // 잘 입력 했으면 '정상 입력!' alert, 잘못 입력했으면 '잘못 입력!' alert
+    
+                var ssn = document.getElementById('ssn').value;
+    
+                // 생년, 생월, 생일, 성별 
+                // 잘 입력 했으면 '정상 입력!' alert, 잘못 입력했으면 '잘못 입력!' alert
+                if(regExp.test(ssn)) {
+                    alert('정상입력!');
+                }else {
+                    alert('잘못입력!');
+                }
+            }
+        </script>
+    
+    </body>
+    </html>
+
+
+
+

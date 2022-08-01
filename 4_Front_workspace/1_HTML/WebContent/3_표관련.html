@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+	<!-- 
+		< 표 만들기 >
+		
+		목록 생성 태그 : ol, ul, li
+			ol : ordered list
+			ul : unordered list
+			li : list
+		표 생성 태그 : table
+			table만 가지고 표가 생성되지는 않는다
+			tr,td가 부수적으로 필요
+			
+		table : 표 생성 태그
+			tr : 행 생성 태그
+			td : 한 행에 셀 생성 태그
+					
+			
+			 테이블의 구성 요소(태그)
+		1. <table> : 테이블을 만드는 태그
+		2. <th> : 테이블의 헤더 부분을 만드는 태그
+		3. <tr> : 테이블의 행을 만드는 태그
+		4. <td> : 테이블의 열을 만드는 태그
+		5. <caption> : 테이블 이름 표시
+		6. <thead> : 테이블의 헤더 영역 지정(컴퓨터한테 구조 알려줌)
+		7. <hbody> : 테이블의 바디 영역 지정(컴퓨터한테 구조 알려줌)
+
+
+			테이블 디자인 변경(속성)
+		1. border : 테이블의 테두리
+		2. bordercolor : 테이블의 테두리 색상
+		3. width : 테이블 가로 크기
+		4. height : 테이블 세로 크기
+		5. align : 정렬
+		6. bgcolor : 배경색
+		7. colspan : 가로 병합(열 병합)
+		8. rowspan : 세로 병합(행 병합)
+
+		
+		HTML5에서 <figure>태그는 삽화나 다이어그램, 사진 등과 같이 문서의 주요 흐름과는
+		독립적인 콘텐츠를 정의할 때 사용
+		
+		<figure>요소의 콘텐츠는 문서의 내용과 연관성을 갖지만, 
+		해당 콘텐츠의 위치가 문서의 주요 흐름과는 독립적이기 때문에 제거해도 문서의 흐름에 영향을 주면 안 됨.
+	-->
+	
+	<!-- 아주 기본적인 정보만 가져오겠다 -->
+	<!-- <video src="sample/video/bear.mp4" controls preload="metadata"></video>  -->
+
+
+	<!-- name 속성 : 사용자가 입력한 데이터를 저장할 수 있는 변수 명을 기술 -->
+	<!-- value 속성 : 입력한 데이터가 저장되는 속성 -->
+	<!-- form 태그를 통해 데이터를 전송하면 'name속성 값 = value속성 값'의 형태로 데이터 전송 -->
+	<!-- button은 form 태그 안에 있으면 자동으로 submit 역할 -->
+
+
+
+
+	 
+		  
+		
+<body>
+
+	<table border="1"> <!-- 보더는 테두리를 말하는 것 -->
+		<tr>
+			<td>첫 번째</td> <!--  한 행에 대한 셀을 만드는 것.  즉 1번째 셀 생성되고 아래꺼는 오른쪽에 2번째 셀이 생성됨 -->
+			<td>두 번째</td>
+			<td>두 번째</td>
+		</tr>
+		<tr>
+			<td>A</td>	<!-- td없이도 나오지만 노란줄경고 뜨는데 html 특성상 좀 틀려도 잘 나오나 코드쌓이면 에러발생하니 정확히 쓰자 -->
+			<td>B</td>
+			<td>C</td>
+		</tr>
+		
+	</table>
+
+	
+	<hr>
+	
+	
+	<table border="1">
+	<caption><b> 웹브라우저 종류 </b></caption>  <!-- caption : 테이블에 대한 제목을 달아주는 태그. table태그 안에 써야한다 -->
+		<tr>									<!-- 어디에 두던 화명상의 캡션은 위에 뜬다 -->	
+			<th><strong>브라우저명</strong></th> <!--  한 행에 대한 셀을 만드는 것.  즉 1번째 셀 생성되고 아래꺼는 오른쪽에 2번째 셀이 생성됨 -->
+			<th><strong>제조사</strong></th>	  <!-- strong or b 태그 사용 했을 것인데 -->
+			<th><strong>홈페이지</strong></th>	  <!-- th : 제목 셀 생성 - 자동 굵게, 가운데 정렬 -->
+		</tr>
+		<tr>
+			<td>익스플로러</td>		<!-- td없이도 나오지만 노란줄경고 뜨는데 html 특성상 좀 틀려도 잘 나오나 코드쌓이면 에러발생하니 정확히 쓰자 -->
+			<td>MS</td>
+			<td>https://www.micorsoft.com</td>
+		</tr>
+		<tr>
+			<td>크롬</td>	
+			<td>google</td>
+			<td>https://www.google.com/</td>
+		</tr>
+		<tr>
+			<td>사파리</td>	
+			<td>애플</td>
+			<td>https://www.apple.com</td>
+		</tr>
+		<tr>
+			<td>파이어폭스</td>	
+			<td>Mozila</td>
+			<td>https://www.mozila.org</td>
+		</tr>
+		<caption><b> 웹브라우저 종류 </b></caption> <!-- 캡션은 어디에 넣어도 맨 위에 생성된다 -->
+		
+
+	</table>	
+		<figure>  
+			<figcaption>테이블이나 사진에 대한 설명에 주로 사용</figcaption>
+			<figcaption>여러 줄 사용 가능</figcaption> <!-- figcaption 위치는 table태그 닫아주고 아래 적어야 하단에 출력된다 -->
+		</figure>									<!-- 테이블 안이라도 아래 위치 가능 -->	
+		
+		
+		
+		<hr>
+		
+		<h1>표의 행과 열 합치기</h1>
+		<!--
+		
+		rowspan : 행 합치기
+		colspan : 열 합치기
+		
+		
+		  -->
+		  
+	
+	<hr>
+	
+	<!-- 사진 실습예제 -->	
+	<table border="1">
+		<tr>
+			<td rowspan="2" colspan="2" width="130px" height="150px">사진</td>
+			<td width="80px">이름</td> <!-- 옆으로 2칸 있으니  td 2개가 더 있어야함 -->
+			<td width="200px"></td>
+		</tr>
+		<tr>
+			<td>연락처</td> <!-- 첫줄에서 만들어진 범위에서 2칸 남아서 td2개 추가 -->
+			<td></td>
+		</tr>
+		<tr>
+			<td width="70px" height="50px">주소</td>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<td height="100px">자기소개</td>
+			<td colspan="3"></td>
+		</tr>
+	</table>		  
+	
+
+	
+	<hr>
+	
+	<h1>테이블 태그의 구조 설정</h1>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>주소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>강건강</td>
+				<td>20</td>
+				<td>서울시 강남구</td>
+			</tr>
+			<tr>
+				<td>남나눔</td>
+				<td>17</td>
+				<td>서울시 강북구</td>
+			</tr>
+			<tr>
+				<td>도대담</td>
+				<td>32</td>
+				<td>서울시 용산구</td>
+			</tr>
+		</tbody>	
+		<tfoot>
+			<tr>
+				<td colspan="2">총 인원</td>
+				<td>3명</td>
+			</tr>
+		</tfoot>
+	 </table>
+
+	
+	<table border="1">
+	 	<tr>
+	 		<td>이름</td>
+	 		<td>나이</td>
+	 		<td>주소</td>
+		</tr>
+	
+</table>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

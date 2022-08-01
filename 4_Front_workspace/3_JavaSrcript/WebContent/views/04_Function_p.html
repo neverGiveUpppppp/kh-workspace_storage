@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>04_Function_p</title>
+
+
+    <h3>매개인자로 스스로를 전달하기</h3>
+    <button onclick="funcPara1('매개인자로 스스로를 전달하기1')">매개인자로 스스로를 전달하기11</button>
+    <script>
+        function funcPara1(parameter){
+            alert(parameter);   // 매개인자로 스스로를 전달하기1
+        }
+    </script>
+    <button onclick="funcPara2(this)">매개인자로 스스로를 전달하기22</button>
+    <script>
+        function funcPara2(parameter2){
+            alert(parameter2);  // [object HTMLButtonElement]
+            alert(parameter2.innerHTML);  // 매개인자로 스스로를 전달하기22
+        }
+    </script>
+    <br><br>
+    <button onclick="a1('b1');">a1</button>
+    <script>
+        function a1(para){
+            alert(para); // b1
+        }
+    </script>
+    <button onclick="c1(this);">d1</button>
+    <script>
+        function c1(para){
+            alert(para.innerHTML); // d1
+        }
+    </script>
+    
+    
+    <br><br><br>
+
+    <button onclick="retur();">함수의 리턴 : 리턴값있는 다른 함수 호출하기</button>
+    <script>
+        function retur(){
+            var getReturn = returFunc();
+            alert(getReturn);
+        }
+        function returFunc(){
+            return Math.random() * 10 + 1;  // 9.213956197609749
+        }
+    </script>
+    <button onclick="aaa();">함수의 리턴처리</button>
+    <script>
+        function aaa(){
+            var ref = returFunc();  // 9.213956197609749
+            alert(ref);
+        }
+        
+    </script>
+
+<br><br>
+
+    <h3>매개변수로 함수 전달</h3>       
+    <button onclick="try1(callfunc);">매개변수로 함수 전달</button>
+    <script>
+        function try1(parameter){
+            parameter();      // 매개변수로 함수를 호출함
+        }
+        function callfunc(){
+            alert("매개변수로 함수를 호출함");
+        }
+    </script>
+    <button onclick="try2(try2_1);">매개변수로 함수 전달</button>
+    <script>
+        function try2(try22){
+            try22();
+        }
+        function try2_1(){
+            alert("매개변수로 함수 전달");
+        }
+    </script>
+
+
+    <h3>함수 리턴</h3>
+    <!-- function 받아와서 실행시켜줘야해 onclick="test8()();"에다가 ()소괄호 추가 -->
+    <button onclick="try3()();">함수 리턴</button>  <!-- 함수 리턴 : 익명함수 리턴 -->
+    <script>
+        function try3(){
+            return function(){  
+                alert("함수 리턴 : 익명함수 리턴");
+            }
+        }
+    </script>
+    <button onclick="try3_1()()">함수 리턴시키기</button>    <!-- 받아온 함수를 실행을 위해 ()추가 -->
+    <script>
+        function try3_1(){
+            return function(){
+                alert("방법이 너무 많아서 헷갈릴 듯");
+            }
+        }
+    </script>
+
+    
+
+
+
+</head>
+<body>
+    
+
+
+
+
+
+
+</body>
+</html>

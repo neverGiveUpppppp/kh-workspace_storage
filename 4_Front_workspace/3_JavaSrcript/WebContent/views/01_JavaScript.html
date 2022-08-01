@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>01_JavaScript</title>
+
+<script src="../js/sample.js"></script>
+<!-- 현재 파일 01_JavaScript의 상위 폴더 webcontent폴더에 js폴더가 있으니 
+뒤로가기 코드는 .. -->
+
+
+
+<style>
+	.area{width: 300px; height: 100px; border: 1px solid blue;}
+</style>
+
+</head>
+<body>
+
+	<!-- 
+			# JS Prologue #
+
+	<script> 태그 : html과 JS를 연결시키는 태그
+	<script>태그는 위치는 어디든 ok 
+		심지어 html 태그 밖도 가능하지만 비추천
+			비추천 이유 : 접근성, 웹표준 같은 것들을 고려해야하기에
+	head,body 안쪽을 추천하며 
+	위치에 따라 읽는 순서가 달라질 뿐
+
+
+	 -->
+
+
+
+	<h2>자바스크립트</h2>
+	<p>웹브라우저에서 많이 사용하는 인터프리터 방식의 객체지향 프로그래밍 언어
+		- 자바는 컴파일 방식
+	</p> 
+	
+
+	<h2>자바스크립트 사용법</h2>
+	<p>
+		1. 태그에 직접 간단한 소스 작성해서 실행하는 방법 :인라인(inline) 방식      <br>	
+		2. script태그에 작성하여 실행하는 방법 : 내부(internal) 방식               <br>
+		3. 별도의 js파일로 작성해서 가져다 사용하는 방법 : 외부(external) 방식		<br>
+
+		[js와 html 연결방식 3가지]								<br>
+		1)인라인(inline) 방식									<br>	
+		2)내부(internal) 방식 : 같은 페이지						<br>
+		3)외부(external) 방식 : 외부 파일 호출					<br>
+
+	</p>
+	
+
+	<!-- 스크립트태그 위치 : 바디나 헤드 태그 안에를 권장. 
+		 웹에대한 접근성 표준성에대해 고려가 잘 안됨
+	html태그 밖에 두면 웹이 잘 안돌아갈 가능성 강의시간 12:11 -->
+
+
+	<!-- 1.인라인(inline) 방식 -->
+	<h3>1. 태그에 직접 간단한 소스 작성해서 실행하는 방법 : 인라인(inline) 방식)</h3>
+	<button onclick="alert('태그에 직접 자바스크립트 코드 작성');">클릭하세요!(alert)</button> <!-- 안에 싱글쿼테이션이면 밖은 더블 안에 더블이면 밖은 싱글 -->
+
+	
+	<!-- 2.내부(internal) 방식 -->
+	<h3>2. script태그에 작성하여 실행하는 방법 : 내부(internal) 방식</h3>
+	<button onclick="internal()">클릭하세요!(alert)</button> <!-- 클릭했을 때 internal()함수를 실행시키라는 코드 -->
+	<!-- 클릭을 했을 때 뭘 할껀지를 스크립트 태그에 작성하겠다는 것 -->
+		<!-- button 태그에서 발생할 수 있는 이벤트 종류 -->
+		<!-- 버튼 원클릭, 더블클릭, 마우스포인터가 버튼 안으로 들어와졌을때(hover상태), 나가졌을 때 -->
+		
+	<script>
+		function internal(){
+			alert('script태그 안에 있는 internal()함수 실행') /* 싱글,더블퀘이션 모두 가능 */
+			/* alert : 인터넷 알람창 */
+		}
+	</script>
+
+	<!-- 3. 외부(external) 방식 -->
+	<h3>3. 별도의 js파일로 작성해서 가져다 사용하는 방법 : 외부(external) 방식</h3>
+	<button onclick="external();">클릭하세요!(alert)</button>
+	<!-- 맨 위 head태그 쪽에 외부파일 링크연결 -->
+	<!-- 위의 외부파일 연결링크가 없으면 버튼 눌러도 이벤트 발생x -->
+	
+	<!-- 개발자 도구 많이 봐야함. 열어서 외부링크 삭제했을 때 뭐라고 뜰까? -->
+<!-- 	
+	에러메세지
+	01_JavaScript.html:60 Uncaught TypeError: external is not a function
+    	at HTMLButtonElement.onclick (01_JavaScript.html:60:32)
+	onclick @ 01_JavaScript.html:60											-->
+	 
+
+
+	<h2>자바스크립트의 데이터 입출력</h2>
+	<h3>데이터 출력</h3>
+	다양한 방식으로 데이터를 "표시"
+<!-- 
+	document.write() : 웹화면에 데이터 출력
+	window.alert() : 알림창
+	console.log() : 브라우저 콘솔에 데이터 출력
+	innerHTML : 안에 엘리먼트값을 읽고 반환 & 변경 // HTML 콘텐츠를 정의
+-->
+
+	<h4>document.write() : 웹 상의 화면에  데이터 출력</h4>
+	<script>
+		document.write('document.write()로 출력한 결과'); 
+		/* document.write() : 웹 상의 화면에  데이터 출력 */
+	</script>
+
+	<h4>alert() : 알림창 함수(경고상자)</h4>
+	<script>
+		// alert('알림창을 통해 출력문구를 띄웁니다.') /* 웹페이지 새로고침하면 바로 알림창 뜸 */
+		window.alert('window. 생략가능') /* window.alert이 정석. window. 생략가능 */
+	</script>
+
+	<h4>consol.log() : 콘솔에  데이터출력 함수</h4>
+	<!-- 개발자도구 콘솔에 메세지 출력한다 -->
+	<!-- println처럼 화면에 결과를 보여주기에 디버깅 시에 자주 사용 -->
+	<!-- window.consol.log가 정석 -->
+	<button onclick="checkConsole();">console.log()</button>
+	<script>
+		function checkConsole(){
+			console.log('consol.log()로 출력한 결과');
+			window.console.log('window. 이 없어도 출력 가능');
+		}
+	</script>
+
+	<h4>innerHTML : 안에 엘리먼트값을 읽어와서 반환만 하는 기능</h4>
+	<!-- 자바스크립트에서 태그 엘리먼트의 값을 읽거나 값을 변경할 때 innerHTML 속성 사용 -->
+	<!-- innerHTML : 안에 엘리먼트값을 읽어와서 반환만 하는 기능 -->
+	<!-- 안에 값을 변경하고 싶다면? 안에 값을 변경해주면 됨 -->
+	<!-- 태그를 크게 얘기하면 요소. 즉, 요소=태그 -->
+	
+			<!-- innerHTML 버튼 누르면 콘솔창에서 아래 div의 내용이 바뀌게 만들 것임 -->
+	<div id="div1"> 
+		자바스크립트에서 태그 엘리먼트의 값을 읽거나 값을 변경할 때 innerHTML 속성 사용
+	</div>
+	<button onclick="checkInnerHTML();">innerHTML</button>
+	<script>
+		function checkInnerHTML(){
+			var area = document.getElementById('div1');
+			console.log(area);
+			console.log(area.innerHTML);	/* area변수인 div태그의 엘리먼트 읽어옴 */
+			area.innerHTML = 'innerHTML속성으로 값 변경';	
+			// console.log(area.innerHTML)	; /* 윗줄에서 변경된 HTML을 다시 찍어봄*/
+		}
+	</script>
+
+		
+
+
+	<h3>데이터 입력</h3>
+	<!-- 확인상자 -->
+	<!-- window. 접두사 없이 작성가능 -->
+	
+	<h4>window.confirm()</h4>
+	<p>
+		어떤 질문에 대해 예/아니오 결과를 얻을 때 사용<br>
+		확인 버튼과 취소 버튼이 나타나며 확인 버튼 클릭 시 true, 취소 버튼 클릭 시 false 반환
+		<!--  확인(디버깅)은 console.log로 -->
+	</p>
+	<button onclick="checkConfirm()";>window.confirm()</button>
+	<script>
+		function checkConfirm() {
+			var result = window.confirm('확인과 취소를 누를 수 있습니다.');
+			console.log(result);
+
+			if(result){
+				alert('확인을 누르셨군요 : ' + result);
+			} else{
+				alert('취소를 누르셨군요 : '+ result);
+			}
+		}
+	</script>
+	
+
+	<h4>window.prompt()</h4>
+	<p>
+		텍스트 필드와 확인, 취소 버튼이 있는 대화상자         <br>
+		출력하고 입력한 메세지 내용을 리턴 값으로 돌려 받음
+	</p>
+	<button onclick="checkPrompt();">window.prompt()</button>
+	<script>
+		function checkPrompt(){
+		// var result = prompt();
+		var result = prompt('당신의 이름을 입력해주세요','이름입력 필수');	/* prompt의매개변수 : 안내문구 */
+		// prompt(안내문구,default값 지정입력칸에 미리값이 들어가있게하는 기능) // 이미 값이 들어가있어서 value값이라고 생각하면 됨
+		console.log(result);
+		// 입력창이 뜨는데 그냥 확인하면 공백값이 콘솔에 출력되고
+		// 취소하면 null, 값을 입력하면 입력한 값이 콘솔에 출력됨
+		// var : 변수 선언 예약어
+		// 변수명 앞에 숫자 들어가면 안됨
+
+		if(result != null && result.trim() != ''){ /* 값 트림했을 때 공백이 아니면 알림창뜨게함 */
+			alert(result + '님 반갑습니다.');
+		}
+	}
+	</script>
+
+
+
+
+	<br><hr><br>
+
+<!-- 
+	<반환 타입>
+	id : Element
+	Name : node list
+	TagName : [] HTMLCollection
+	class : [] HTMLCollection
+-->
+
+
+	<h2>HTML태그에 접근하기</h2>
+	<h3>아이디로 접근하기</h3>
+	<p>getElementById() : 반환타입 Element				<br>
+		해당 아이디의 요소를 선택함.
+		id는 단일만이라 element이고 s로 안씀
+	</p>
+	<div id="area1" class="area"></div><br>
+
+	<button onclick="accessId();">아이디로 접근</button>
+	<script>
+		function accessId(){
+			// 아이디로 접근 누르면 웹상 파란 네모에 값이 들어가게끔 만들 것임
+			// 파란 네모(엘레먼트)에 접근해야하는데 id,class 등등 사용하여 접근 가능
+			var area = document.getElementById('area1'); /* 코드 의미 : 다큐먼트에서 엘리먼트를 id로 읽어오겠다 */
+			area.style.backgroundColor = 'pink';
+			// area.innerHTML = '아이디 접근 성공';
+			area.innerHTML += '아이디 접근 성공'; /* 누를 때마다 출력하게 하고 싶을 경우 : += */
+		}
+	</script>
+
+
+	<br><hr><br>
+
+
+	<h3>태그명으로 접근하기</h3>
+	<p>getElementsByTagName('태그명') : 반환타입 [] HTMLCollection<br>
+		해당 태그 이름의 요소를 모두 선택함.
+		지정된 태그 이름을 가진 모든 자식 요소 컬렉션을 반환
+		li를 추출하고 싶으면 'li',ul 추출하고 싶으면 'ul'
+		li태그를 지정하면 해당 페이지에 있는 모든 li태그 정보를 가져온다. 
+	</p>
+	<ul>
+		<li>목록1</1i>
+		<li>목록2</li>
+		<li>목록3</li>
+		<li>목록4</li>
+		<li>목록5</li>
+	</ul>
+	
+	
+	<button onclick="accessTagName();">태그 명으로 접근</button>
+	<script>
+		function accessTagName(){
+			// var : 변수 선언 예약어
+			// .getelementsByTagName() : 지정된 태그 이름을 가진 모든 자식 요소 컬렉션을 반환
+			var list = document.getElementsByTagName('li'); /* 문서내부 전체 <li>태그를 카운트한다는 의미. 해당 태그를 전부 카운트*/
+			console.log(list);
+		// documnet : 문서 전체를 한번 읽는 의미	
+		// 태그명이 하나라는 보장 x  -> 여러개 가지고 올 수 있다
+		// 즉, 엘리먼트가 아닌 element's' 엘리먼츠. getElementsByTagName()
+		// 변수 선언 var : 데이터타입 제한x
+		// 지금까지 str, boolean, array 등 받음
+			var changeColor = 50
+			for (var i = 0; i<list.length; i++){
+				list[i].style.backgroundColor = "rgb(130,220," + changeColor +")";
+				changeColor += 50; /* rgb(0,0,0) 색상 컬러의 매개변수를 변수처리해서 색상을 변화시킴*/
+				// <li>
+			}
+
+		}
+	</script>
+
+	<ul>
+		<li>목록1</1i>
+		<li>목록2</li>
+		<li>목록3</li>
+		<li>목록4</li>
+		<li>목록5</li>
+	</ul>	
+
+	<br><hr><br>
+
+
+	<h3>name으로 접근하기</h3>
+	<p>getElementsByName() : 반환타입 Node list<br>
+		해당 name 속성값을 가지는 요소를 모두 선택함.
+		같은 name이 여러개일 수 있으니 엘레멘'츠' 사용
+	</p>
+	<form>
+		<fieldset>
+			<legend>취미</1egend>
+			<table>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="game" id="game"><label>게임</label></td>
+					<td><input type="checkbox" name="hobby" value="music" id="music"><label>음악</label></td>
+					<td><input type="checkbox" name="hobby" value="movie" id="movie"><label>영화</label></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="book" id="book"><label>독서</label></td>
+					<td><input type="checkbox" name="hobby" value="travel" id="travel"><label>여행</label></td>
+					<td><input type="checkbox" name="hobby" value="exercise" id="exercise"><label>운동</label></td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+	<br>
+	<div id="area2" class="area">
+		
+	</div><br>
+	<button onclick="accessName();">name으로 접근</button>	<!-- 버튼 클릭하면 accessName() 실행 -->
+	<script>
+		function accessName(){
+		// .getelementsByName() : 지정된 태그 이름을 가진 모든 요소의 컬렉션을 반환
+		var hobby = document.getElementsByName ('hobby');
+		console.log(hobby);
+		console.log(typeof(hobby)); // object
+		
+
+		// 체크박스. 처음부터 체크가 되어있게 나올려면 checked 옵션 추가
+		// 제가 체크를 한거니까 체크 속성이 생김? 강의시간 4:07
+		// 내가 어떤 체크박스를 체크했는지 확인하려면, 
+		// 개발자툴 콘솔에서 실행된 코드 출력과를 펼쳐보면 checkd항목에 true/false 확인
+
+	
+		var checkItem = ''; /* checkItem은 str */
+		// length 속성은 컬렉션의 요소 수를 반환
+		for (var i = 0; i < hobby.length; i++){
+			if(hobby[i].checked == true) {	// console창에서 check항목 체크하는 조건문
+				checkItem += hobby[i].value + "선택함<br>";  
+				// .value를 사용할 때는 input태그의 밸류값을 가지고 올 때만 쓰고 다른 경우에는 innerHTML사용 
+				// input 태그 외에는 value가 없음.
+				// .check : 반환타입 node list에서 조회할 수 checked 항목에 접근가능.
+				//  이외에도 다른 요소들도 .요소이름으로 접근가능
+				// 노드리스트에 가지고 있는 모든 요소에 접근가능
+			}
+		}
+
+		/* → 아이디가 유일하면 그대로 갖다써도 무방 
+			but 권장하지 않는 방법 why id가 여러가지 일 수 있으므로  아이디만 찝어서 쓰는경우
+			변수를 나타내는지 id를 말하는지 알 수없다. area 2라는 변수를 만들 수 도 있다.*/
+
+		// area2.innerHTML = checkItem; 
+		// 권장하지 않는 코드
+		// 아이디만 쓰고 접근 가능한게 얼마 안됬는데 우리 입장에서는 변수인지 아이디인지 정확하게 확인이 불가능하니 정확하게 명시하는게 확실
+		// 나오는 이유 아이디가 유일하다는 전제하에 아이디를 가져다써도 문제는 x 
+
+		// area2.innerHTML = checkItem; 앞에 무엇이 올지 명시를 안해줬기에 뭔지 명확하지 않아서 나중에 문제 일으킬 수 있다
+		document.getElementById('area2').innerHTML=checkItem; /* 변수로 치환하지 않음. 변수에 넣지않았다는 의미 */
+
+		// 이 코드 설명 강의시간 4:29
+
+	}
+	</script>
+
+
+
+
+
+	<h3>class로 접근하기</h3>
+	<!-- 지정된 클래스 이름을 가진 요소 컬렉션을 반환 -->
+	<p>
+		getElementsByClassName() : 반환타입 [] HTMLCollection				  <br>	
+		해당 클래스에 속한 요소를 모두 선택함.		                       <br>		
+	</p>
+	<button onclick="accessClass();">classe 2</button>
+	<script>
+		function accessClass(){
+			var area = document.getElementsByClassName('area');	// 컬렉션타입 2가 변수로 들어감
+			console.log(area); // object
+			console.log(typeof area);
+			for(var i = 0; i < area.length; i++){
+				area[i].style.borderStyle = 'dashed'; // "class로 접근" 버튼클릭하면 dashed(점선 테두리)로 바뀜 
+			}
+			// background-color ==> backgroundColor, border-style ==> borderStyle
+			// CSS에서의 코드들이 js에서 이런식으로 바뀜
+		}
+	</script>
+
+
+
+	<br><hr><br>
+
+	<h3>실습예제</h3>
+	<h3>text박스의 value값 읽어오기1</h3>
+	<!--  목표 : textfield에 이름을 적고 div에 입력된 이름 출력하기
+	      조건 : 1) textfield에 값이 비어있는 상태에서 버튼을 누르면 '이름을 입력하세요'라는 알람창 뜨기
+			  	 2) div에 이름 출력 후 textfield에 남아있는 내용 지우기		-->
+	<!-- 강의시간 5-6시 사이? 정답확인 할 것 -->
+
+	<form>
+		<label>이름 : </label><input type="text" name="userName" id="userName1">
+		<input type="button" onclick="readValue1();" value="input 값 확인">
+	</form>
+	<br>
+	<div id="area3" class="area"></div>
+	<script>
+		function readValue1(){
+			var userName = document.getElementById('userName1').value;
+			console.log(userName);
+			if(userName != null && userName.trim() != ''){
+				document.getElementById('area3').innerHTML = userName;
+			}else{
+				alert('이름을 입력하세요.');
+			}
+		}
+		// 목표 : textfield에 이름을 적고 div에 입력된 이름 출력하기
+		// 조건 : 1) textfield에 값이 비어있는 상태에서 버튼을 누르면 '이름을 입력하세요'라는 알람창 뜨기
+		//		  2) div에 이름 출력 후 textfield에 남아있는 내용 지우기
+	</script>
+	
+
+	<h3>text박스의 value값 읽어오기2</h3>
+	<form>
+		<label>이름: </label><input type="text" name="userName" id="userName2">
+		<input type="button" onclick="readValue2();" value="input값 확인"> 
+	</form>
+	<br>
+	<div id="area4" class="area"></div>
+	<script>		
+		function readValue2() {		
+			var area4 = document.getElementById('area4');
+			// id가 area4인 태그를 가져와서 area4변수에 담겠다.
+			var userName = document.getElementById('userName2');
+			// id가 userName인 태그를 가져와서 userName변수에 담겠다.
+			console.log(area4);
+			console.log(userName);
+			if(userName.value != null && userName.value.trim() != '') {
+			// userName(input)의 value(입력값) 값이 null이 아니고, 
+			// 비어있지 않을때가 조건 true로 구문실행하겠다. 
+
+					// 문제 -> 1) textfield에 이름을 적고 
+					//       div에 입력된 이름 출력하기
+					area4.innerHTML += userName.value + "<br>";
+					//area3(div) 내부에 userName(input)에 입력값을 출력하겠다.
+					// 보여지게 하겠다. 
+
+					// 문제 -> 2) div에 이름 출력 후 
+					//       textfield에 내용 지우기 
+					userName.value = null;
+					// userName(input) 창에 적혀진 글을 null로 없애준다.  
+			}else {
+			// 입력값이 null이거나, 비어있을때
+					alert('이름을 입력하세요');
+					// 이름을 입력하라는 안내창이 뜸.
+			}
+		
+		}
+	</script>
+	
+
+
+
+	<!-- q. js 설치 안했는데 어떻게 구동 가능한가요?
+		html,css,js 자체 내장 프로그램
+		html 언어를 읽어주는게 브라우저
+		html 언어가 깔려있는 곳은 모름
+
+	q. 스크립트 태그외에 js코드 작동 범위?
+		스크립트 태그 + 태그 안 속성값에 쓰일 수 있다
+	 	맨 위에 자바스크립트 사용법 1-3번중 1번의 해당 	-->
+
+		
+
+		 
+
+
+</body>
+</html>
+
+
+
+
+
+
+

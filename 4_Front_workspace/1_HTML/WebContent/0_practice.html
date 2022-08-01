@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>0_practice</title>
+
+
+</head>
+<body>
+
+    <ul>
+        <li><a href="html-practice01.html">html-practice01</a></li>
+    
+    </ul>
+
+    <table>
+        <caption>caption</caption>  <!-- 테이블 안에 달아도 글씨는 이미지 하단에 뜸 -->
+        <figure> figure
+            <img src="sample/image/city1.png" alt="city1 picture" 
+                width="=400px" height="250px"> <!-- html과 동일 선상의 위치의 폴더 하위에 존재할 경우 / 붙이기x -->
+            <figcaption>figcaption1</figcaption>
+        </figure>
+    </table>
+    <figcaption>figcaption2</figcaption>
+    <caption>caption</caption>
+
+    <br><hr><br>
+
+    <!-- 보더 지정X -->
+    <table> <!-- 보더 지정안하면 테두리가 없어 표처럼 안보임 -->
+        <thead> table태그 border 지정X
+        <tr>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        </tfoot>
+    </table>
+    <!-- 보더 지정 -->
+    <table border="1" style="border-color: red; border-style: double;"> 
+        <thead> table태그 border 지정o
+        <tr>
+            <td>1</td>
+            <td>2</td>  
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <img src="sample/image/wangja01.PNG" usemap="#imageMap">
+    <map name="imageMap">
+        <area shape="circle" coords="0, 0, 200, 400" href="https://www.naver.com" target="_blank">
+        <area shape="circle" coords="200,0,400,400" href="https://www.google.com" target="_blank">
+    </map>
+
+    <hr>
+    <audio src="sample/audio/song.mp3" controls> song </audio>
+    <audio src="sample/audio/major.mp3"controls autoplay loop> major </audio>
+
+    <video src="sample/video/bear.mp4" controls> 곰1</video>
+    <video src="sample/video/bear.mp4" controls loop autoplay preload="metadata"> 곰1 - preload</video>
+    <video src="sample/video/bear.mp4" preload="auto" controls> 곰3</video>
+
+
+
+    <ul>
+        <li><a href="../index_HTML.html"></a>글씨 내용 넣는 곳</li>
+    </ul>
+
+    <a href="https://www.w3schools.com" target="_blank">
+        <img src="sample/image/wangja02.PNG" width="20%" height="20%">
+    </a>
+
+    <a href="sample/image/wangja02.PNG" target="wang">글씨클릭하면 이미지나옴 : iframe 사용</a>
+    <iframe width="20%" height="15%" name="wang"></iframe>
+    
+    <a href="sample/image/city1.png" target="imgout">
+        <img src="sample/image/wangja01.PNG" width="30%" height="25%"><br>
+    </a>
+    <a href="https://www.w3schools.com" target="w3s"> w3<br>
+        <img src="sample/image/wangja03.PNG" width="200px" height="175px">
+    </a>    
+
+
+</body>
+</html>
+
+
+
+
+
+

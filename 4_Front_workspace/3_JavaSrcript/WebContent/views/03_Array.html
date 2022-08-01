@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>03_Array</title>
+</head>
+<body>
+
+
+    <h1>배열</h1>
+    <p>자바스크립트에서는 자료형 지정이 없기 때문에 한 배열 안에 모든 자료형 보관 가능 
+            한 배열 안에 한번에 여러타입도 가능
+    </p>
+    <button onclick="arrayTest1();"> 배열 data type </button>
+    <script>
+        function arrayTest1(){
+            // 자바는 배열에 한 타입만 가능하지만 js는 array 안에 모든 데이터타입이 올 수 있음
+            var arr = ['강건강',20,false,[1,2,3,4]];
+            console.log(arr);
+        }
+    </script>
+
+
+    <h2>배열 선언 및 초기화</h2>
+    <p>배열 선언 시 크기를 지정하지 않고 선언할수도 있고 크기를 정하고 선언할 수도 있음</p>
+    <button onclick="arrayTest2();">배열 선언 및 초기화</button>
+    <script>
+        function arrayTest2(){
+            var arr1 = new Array();     // 배열 선언
+            var arr2 = new Array(3);    // 배열 및 배열 길이 선언
+            console.log('arr1.length : ' + arr1.length);
+            console.log('arr2.length : ' + arr2.length);
+
+            // length가 0이면 값 삽입 불가능? 확인 ㄱ
+            
+
+            // 배열 추가
+            arr1[0] = '사과';
+            arr1[1] = '귤';
+            arr1[2] = '바나나';
+            arr1[3] = '딸기';       // 4번째 인덱스에 추가됨. 
+            // 배열 길이 0으로 지정해놔도 데이터 계속 들어갈 수 있음
+
+            console.log('arr1.length : ' + arr1.length);
+            console.log(arr1);
+
+            // 알아서 값이 증가하면서 값도 받아옴
+            arr2[0] = '지하철';
+            arr2[1] = '기차';
+            arr2[2] = '비행기';
+        
+            console.log('arr2.length : ' + arr2.length);
+            console.log(arr2);
+            
+
+            // 초기화 의미 : 객체 선언을 하고 값을 최초로 할당하는 것
+
+            // 선언과 동시에 초기화 방법1 -  강의시간 12:20
+            var arr3 = new Array('빨강', '초록', '파랑');
+            console.log('arr3.length : ' + arr3.length);
+            console.log(arr3);
+
+            // 선언과 동시에 초기화 방법2
+            var arr4 = ['java','oracle','jdbc','html','css','javascript'];
+            console.log('arr4.length : ' + arr4.length);
+            console.log(arr4);  // ['java','oracle','jdbc','html','css','javascript']
+        }
+    </script>
+
+
+    <br><hr><br>
+
+
+
+    <h2>배열 메소드</h2>
+    <h3>index0f</h3>
+    <p>
+        해당 요소가 위치한 인덱스 번호 반환         <br>
+            없으면 -1 반환                         <br>
+    </p>
+    <button onclick="methodTest1();">배열 메소드 : indexOf() </button>
+    <script>
+        function methodTest1(){
+            var arr = ['사과', '포도', '배', '바나나', '감', '키위', '복숭아'];
+            console.log(arr.indexOf('바나나'));    // 3. 해당 요소가 위치한 인덱스 반환
+            console.log(arr.indexOf('토마토'));    // 배열에 존재하지 않는 값이기에 -1 반환
+        }
+    </script>
+
+
+
+    <h3>concat()</h3>
+    <!-- 자바 String Class에서 배움 -->
+    <p>이어 붙어기</p>
+    <button onclick="methodTest2();">배열 메소드 : concat()</button>
+    <script>
+        function methodTest2(){
+            var arrl = ['빨강', '노랑', '초록'];
+            var arr2 = ['파랑', '보라'];
+
+            console.log(arr1.concat(arr2)); // ['빨강', '노랑', '초록',//'파랑', '보라']
+            console.log(arr2.concat(arr1)); // ['파랑', '보라',//'빨강', '노랑', '초록']
+            
+            // 메소드 체인 가능
+            onsole.log(arr2.concat(arr1).concat(arr1).concat(arr2));
+        }    
+    </script>
+
+    
+
+    
+ 
+    <h3>join</h3>
+    <p>
+        결합해서 '문자열'로 반환
+        join()은 parameter 지정안하면 ,으로 
+        지정하면 지정한 값(구분자)을 넣어서 구분하여 반환
+            - 밑에 toString()과 비슷
+    </p>
+    <button onclick="methodTest3();">배열 메소드 : join()</button>
+    <script>
+        function methodTest3(){
+            var arr = ['강남', '역삼', '선릉', '교대'];
+            console.log(arr.join());    // 강남,역삼,선릉,교대
+            console.log(typeof arr.join()); // string
+
+        }
+    </script>
+
+
+ 
+    <h3>reverse</h3>
+    <p>배열의 값을 뒤집어서 반환</p>
+    <button onclick="methodTest4();">배열 메소드 : reverse() </button>
+    <script>
+        function methodTest4(){
+            var arr = [1, 2, 3, 4, 5, 6, 7];
+            console.log(arr.reverse());     // [7, 6, 5, 4, 3, 2, 1]
+            var arr2 = ['a','b','c','d','e'];
+            console.log(arr2.reverse());    // ['e', 'd', 'c', 'b', 'a']
+        }
+    </script>
+
+    <h3>sort</h3>
+    <p>
+        배열 값을 정렬 : 안에 들어온 값들을 '문자열로 변환'해서 문자열 정렬
+        간단한 문자열 숫자는 숫자로 변환하여 숫자 정렬하고 다음 영어 정렬한다
+    </p>
+    <button onclick="methodTest5();">배열 메소드 : sort()</button>
+    <script>
+        function methodTest5(){
+            var arr = [10, 543, 34, 450, 123, 885];
+            console.log(arr.sort());    // [10, 123, 34, 450, 543, 885]
+
+            var arr = ['b', 10, 543, 34, 450, 123, 'a']; 
+            console.log(arr.sort());    // [10, 123, 34, 450, 543, 'a', 'b']
+
+            // console.log(a.sort());    //  ['4', 5, 'a', 'b', 'c']    str4를 숫자4로 바꾸고 4,5..순으로 정렬
+
+            // 숫자로 정렬하고 싶을 때 방법
+            var sortArr = arr.sort(function(left, right){
+                    return left-right; // 내림차순
+                    return right-left; // 오름차순
+                // 뺄셈을 이용해 누가 더 큰지 알아내고 이를 기반으로   자리를 바꿀지 말지 정한다.
+
+// 레프트 라이트
+// 양수 왼쪽값이 더 큼 왼쪽값이 더 크면 안되니 ... 뺄셈을 이용해서 누가 더 큰지 비교
+// 자동으로 큰수를 넣는거 그 이후      
+// 내림차순              
+                }
+            );
+            console.log(sortArr);
+        }
+
+    </script>
+
+
+    <h3>push & pop</h3>
+    <p> push : 마지막에 요소 추가       <-> unshift   // 길이 반환
+        pop : 마지막 요소 꺼내오기      <-> shift     // 제거된 요소 반환
+            (꺼내오며 마지막 요소가 배열에서 삭제됨)
+    </p>
+    <button onclick="methodTest6();">배열 메소드 : push pop</button>
+    <script>
+        function methodTest6(){
+            var arr = ['김고은', '한예슬', '신민아', '전지현', '손예진', '김소연'];
+            arr.push('유인나'); // 마지막에 유인나 추가됨
+            console.log(arr);   // ['김고은', '한예슬', '신민아', '전지현', '손예진', '김소연', '유인나']
+
+            arr.push('송혜교'); 
+            console.log(arr);   // ['김고은', '한예슬', '신민아', '전지현', '손예진', '김소연', '유인나', '송혜교']
+
+            console.log(arr.push('유인나')); // 9 : 푸쉬가 되고 난 다음에 사이즈가 나오는것
+
+            arr.sort();
+
+            console.log(arr);
+            console.log("========")
+            console.log(arr.pop()); // 한예슬 : 마지막 요소 꺼내오기(꺼내오며 마지막 요소가 배열에서 삭제됨)
+            console.log(arr);   
+            arr.pop();              // 마지막 요소 꺼내오기(꺼내오며 마지막 요소가 배열에서 삭제됨)
+            console.log(arr);
+        }
+    </script>
+
+
+
+
+
+    <h3>shift & unshift</h3>
+    <p> shift : 첫번째 요소 제거하고, 제거된 요소를 반환    <-> pop   // 제거된 요소 반환(str 반환)
+        unshift : 맨 앞에 요소 추가하고, 추가한 길이를 반환 <-> push  // 길이 반환(number 반환)
+    </p>
+
+    <button onclick="methodTest7();">배열 메소드 : shift & unshift</button>
+    <script>
+        function methodTest7(){
+            var arr = ['야구', '축구', '농구', '배구', '탁구'];
+            console.log(arr);         // ['야구', '축구', '농구', '배구', '탁구']
+
+            arr.shift();              // 야구 삭제
+            console.log(arr);         // ['축구', '농구', '배구', '탁구']
+            console.log(arr.shift()); // 축구
+            console.log(arr);         // ['농구', '배구', '탁구']
+
+            arr.unshift('ㅁ');          // ㅁ 추가
+            console.log(arr.unshift()); // 4    길이 반환
+            console.log(arr);           //  ['ㅁ', '농구', '배구', '탁구']
+        }
+    </script>
+
+
+    <h3>slice & splice</h3>
+    <p> slice : slice(start idx, end idx) 끝 인덱스 미포함(-1)해서 엘리먼트 추출
+        splice : splice(start idx, end idx, 대체할 idx) a부터 b개까지 c의 값으로 변경
+    </p>
+    <button onclick="methodTest8();">배열 메소드 : slice & splice</button>
+    <script>
+        function methodTest8(){
+            var arr = ['자바', '오라클', 'JDBC', 'HTML', 'css', 'JavaScript']; // 끝 인덱스 미포함해서
+            console.log(arr.slice(2, 4));   // ['JDBC', 'HTML']
+            console.log(arr);               // ['자바', '오라클', 'JDBC', 'HTML', 'css', 'JavaScript']
+            
+            console.log(arr.splice(0, 2, 'Spring')); // ['자바', '오라클'] // 0부터 2개 빼내고 spring을 추가하겠다는 코드
+            console.log(arr);       // ['Spring', 'JDBC', 'HTML', 'css', 'JavaScript']
+            console.log(arr.splice(0, 2, 'Spring','kh')); // ['Spring', 'JDBC', 'HTML', 'css', 'JavaScript']
+
+        }
+    </script>
+
+
+
+    <h3>toString</h3>
+    <p> toString() : 무조건 ','로 구분지어 반환
+
+        <br>join()과 비슷하나 차이는?
+            join()은 parameter 디폴트는 ',' 들어가고 지정하면 지정한 값(구분자)을 넣어서 각 값을 연결하여 반환
+            toString() → 무조건 ,쉼표 구분자로 합쳐서 문자열로 연결되어 나옵니다 ≒ join
+    </p>  
+    <button onclick="methodTest9();">배열 메소드 : toString()</button>
+    <script>
+        function methodTest9(){
+            var arr = ['잠은', '보약이다', '잠은', '죽어서 자는게', '아니다', '그건', '죽은거다'];
+            console.log(arr.toString()); // 잠은,보약이다,잠은,죽어서 자는게,아니다,그건,죽은거다
+            console.log(arr.toString('ㅁ'));
+            console.log(arr);            // ['잠은', '보약이다', '잠은', '죽어서 자는게', '아니다', '그건', '죽은거다']
+
+            console.log(arr.join());     // 잠은,보약이다,잠은,죽어서 자는게,아니다,그건,죽은거다
+            console.log(arr.join('/'));  // 잠은/보약이다/잠은/죽어서 자는게/아니다/그건/죽은거다
+
+            console.log(arr); 
+            // toString()을 굳이 써야하는 이유
+            // join()으로 다 가능한데 왜 써야할까?
+
+        }
+    </script>
+
+
+
+
+
+
+<!-- 조인에서 typeOf(공백) arr.join 같은 코드 라이팅방식?-->
+
+</body>
+</html>

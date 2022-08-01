@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+   .area{border: 1px solid black; width: 300px; height: 100px; font-size: 40px; color: red;}
+
+</style>
+
+</head>
+<body>
+   <h1>window객체</h1>
+   <p>
+      window객체는 자바스크립트의 최상위 객체, BOM/DOM으로 나뉨<br>
+      BOM(Browser Object Model): location, navigator, histroy, screen객체 <br>
+      DOM(Document Object Model): document객체 <!--document.getElement~  -->
+   </p>
+
+   <h2>window객체</h2>
+   <p>브라우저 창에 대한 설정을 하는 객체</p>
+   <button onclick="test1();">실행1</button>
+   <button onclick="test2();">실행2</button>
+   <script type="text/javascript">
+      function test1() {
+         //window.open(); // 주소지정 안하면 blank
+         //window.open()  새탭으로 주소이동
+//          window.open('01_JavaScript.html');
+//          window.open('http://www.naver.com');
+         window.open('http://www.naver.com', '네이버', 'width =500, height-300');
+         // window.open(주소, 만든창에 대한 이름, 크기) 
+      }
+      
+      function test2() {
+         var popup = window.open('','','width=300, height=200');
+         popup.document.write('<html><body><h2>짜잔 새로운 팝업 탄생이오!</h2></body></html>')
+      }
+      
+      
+      
+      //크기 지정하면 자동으로 팝업으로 뜨는건가요?크기 지정안했을 때는 옆에 새탭에 뜨던데 O
+
+
+   </script>
+   
+   <h3>window객체의 timer메소드</h3>
+   <h4>setTimeout()</h4>
+   <button onclick="test3();">실행확인</button>
+   <script>
+      function test3() {
+         var myWindow = window.open('','','width=500, height=300');
+         
+         myWindow.alert('3초뒤 이페이지는 종료됩니다.');
+         
+         window.setTimeout(function(){
+            myWindow.close();
+         }, 3000);         
+         
+         
+      }   
+   </script>
+   
+   <h4>setInterval()</h4>
+   <button onclick="test4();">실행확인</button>
+   <div id="area4" class="area"></div>
+   <script>
+      function test4() {
+         var area4 =document.getElementById('area4');
+         window.setInterval(function(){
+            var date = new Date();
+            area4.innerHTML = date.getHours()+ " : " + date.getMinutes() + " : " 
+                      + date.getSeconds();
+         }, 1000);
+            
+      }
+   //       setInterval가 지정한 시간마다 매개변수로 넘겨준 함수를 실행시켜주는 건가여? O
+
+   </script>
+   <h4>clearInterval()</h4>
+   <button onclick="test5();">실행확인</button>
+   <div id="area5" class='area'></div>
+   <script>
+      function test5() {
+         //3초 카운트 다운 세기 : 3 2 1 종료
+         var area5 = document.getElementById('area5');
+         
+         var count = 3;
+      
+         var interval3 =   window.setInterval(function(){
+            area5.innerHTML = 'countdown : '+(count--);
+            
+            if(count <0){
+               clearInterval(interval3);
+               area5.innerHTML +='종료!';
+            }
+         }, 1000);
+      }
+
+   </script>
+   <!--clearInterval() → Interval종료  -->
+   
+</body>
+</html>
+
+
+
+
+====================================================
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>06_Window_Object</title>
+
+<style>
+    .area{border: 1px solid black; width:300px; height: 100px; font-size: 40px; color: red;}
+</style>
+
+</head>
+<body>
+
+
+    <h1>window객체</h1>
+    <p>
+        window객체는 자바스크립트의 최상위 객체, BOM/DOM으로 나뉨                   <br>       
+        BOM(Browser Object Model) : location, navigator, history, screen객체 <!-- 브라우저에 관련된 객체 -->      <br>
+        DOM(Document Object Model) : document객체                           <!-- 문서 자체에 관계가 있는 모델들을 담아둠 -->
+        
+    </p>
+
+
+    <h2>window객체</h2>
+    <p>브라우저 창에 대한 설정을 하는 객체</p>
+    <button onclick="test1();"> window객체 : 브라우저 창에 대한 설정을 하는 객체1 </button><br>
+    <button onclick="test2();"> window객체 : 브라우저 창에 대한 설정을 하는 객체2 </button><br>
+    <script>
+        // 브라우저 새로 띄우기
+        function test1(){
+            // window.open();                            // 비어있는 새탭이 열림
+            // window.open("01_JavaScript.html");        // 01번html문서 열림
+            // window.open("http://www.naver.com");      // 네이버 열림
+            window.open('http://www.naver.com', '네이버', 'width=500, height=300');   // 네이버 열림 + 팝업 + 창크기 지정 // '네이버' : 창에 대한 이름 지정 // 크기지정하면 해당 크기의 팝업으로 뜸
+            
+        }
+
+        // 가변 
+        function test2(){        
+            // var popup = window.open('', '', 'width=300, height=200'); // 비어있는 팝업창이 뜸       
+            // popup.document.write('<html><body><h2>짜잔! 새로운 팝업 탄생이요!</h2></body></html>');         
+            popup.document.write('AA');         
+        }
+
+    </script>
+
+
+    <h3>window객체의 timer메소드</h3>
+    <h4>setTimeout()</h4>
+    <!-- setTimeout() : 몇 밀리초 후에 함수를 호출 -->
+    <button onclick="test3();"> window객체의 timer메소드 : setTimeout() </button>
+    <script>
+        function test3(){
+            var myWindow = window.open('', '', 'window=500, height=300')
+    
+            myWindow.alert('2초 후에 이 페이지는 종료됩니다.'); // myWindow 팝업창에 안내창 뜸 
+
+            window.setTimeout(function(){
+                /* close() : window를 닫음. */
+                myWindow.close();      // 닫아줌 언제? 2초 뒤에 (1초 = 1000)
+                /* 1초 = 1000밀리초. */
+            }, 2000);
+        }
+    </script>
+
+         
+
+
+    <h4>setInterval()</h4>
+    <p>지정한 시간마다 매개변수로 넘겨준 함수를 실행                    <br>
+    </p>
+    <button onclick="test4();">window객체의 timer메소드 : setInterval()</button>
+    <div id="area4" class="area"></div>
+    <script>
+        // 목적 : 버튼을 누르지 않아도 시간이 실시간으로 바껴서 화면에 보이는 것
+        function test4() {
+            var area4 = document.getElementById('area4');
+
+            // window.setInterval()
+            window.setInterval(function(){
+            var date = new Date();      // 시간을 나타낼거라고 했으니. 시간을 나타내는 객체 date
+            area4.innerHTML = date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds();                              
+            // 밸류가 아니니 innerHTML
+            }, 1000); // 시간이 바뀌는 기준 1초 // 1000 1초마다 내용 바뀌게 할 것이니 단위는 1000
+        }
+    </script><br><br><br>
+
+
+
+
+
+    <!-- 실습예제 -->
+    <button onclick="test5();">실습예제</button>
+    <div id="area5" calss="area5"></div>
+    
+<script>
+    function test5() {
+        // 3초 카운트 세기 : 3 2 1 종료!
+        var area5 = document.getElementById('area5');
+                    
+        window.setInterval(function() {
+                area5.innerHTML = 'countdowm : ' + (count--);
+                
+                if(count < 0) {
+                        area5.innerHTML += '종료!'; //  +=를 해보면 종료가 안된 걸 알수 있음
+                }
+        },1000)
+    }   
+    function test5_2() {
+        // 목적 : 3초 카운트 세기 : 3 2 1 종료!
+        var area5 = document.getElementById('area5');
+            var count = 3;        
+            var interval3 = window.setInterval(function() {
+                
+                area5.innerHTML = 'countdowm : ' + (count--);
+                    
+                if(count < 0) {
+                    clearInterval(interval3) 
+                    // 진짜 클리어하겠다는 함수
+                    // 카운트 0 이하로 떨어지지 않음
+                    area5.innerHTML += '종료!';
+                }
+            },1000)
+
+    }   
+</script>
+
+
+
+
+
+</body>
+</html>
+

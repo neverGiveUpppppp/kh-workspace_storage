@@ -1,0 +1,1003 @@
+JavaScript 
+
+
+1. 01_JavaScript
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="../js/sample.js"></script>
+            <!--
+                외부에서 가져올때 css는 link 태그로 가져오는데, script는 script태그로 가져옴
+                여기에서 외부 스크립트부분에 주석을 달면 
+                01_JavaScript.html:52 Uncaught TypeError: external is not a function
+                at HTMLButtonElement.onclick <--- 함수가 존재하지 않는다는 에러가 뜸. 
+                주석을 달아줌으로 연결된 스크립트가 존재하지 않게 되기 때문에
+                해당 js 파일에 있는 함수를 쓸 수가 없게 되는것임.
+            -->
+    <style>
+             
+    </style>
+    </head>
+    <body>
+            <h2>자바스크립트</h2>
+            <p>웹 브라우저에서 많이 사용하는 인터 프리터 방식의 객체지향 프로그래밍 언어</p>
+            <!-- 
+                    명령어를 하나씩 실행하는걸 인터프리터 방식 이라하고
+                    자바의 컴파일 방식이랑은 차이가 있음. 
+             --> 
+            <br>
+            1.태그에 직접 간단한 소스 작성해서 실행하는 방법<br>
+            2.script태그에 작성하여 실행하는 방법<br>
+            3.별도의 js파일로 작성해서 가져다 사용하는 방법
+            </p>
+            <h3>태그에 직접 간단한 소스 작성해서 실행하는 방법</h3>
+    
+            <button onclick="alert('태그에 직접 자바스크립트 코드 작성')">클릭하세요!</button>
+            <!-- 
+                    "인라인 방식"
+                    위와같은 간단한 한줄 코드면 태그안에 자바스크립트 코드를 쓸 수 있음. 
+                    "''" 싱글,더블 쿼테이션 잘 써줘야함. 
+                    밖에 "" 더블 썼으면 안에는 ''싱글로 써줘야함. 주의!!!!    
+            -->
+            
+            <h3>script태그에 작성하여 실행하는 방법</h3>
+            <button onclick="internal();">클릭하세요!</button>
+            <!--버튼을 click 했을 때 internal()이라는 함수를 실행시키라는뜻임.-->
+            <!-- 
+                    onclick이란 버튼에서 일어날 수 있는 이벤트를 설정해둔것. 
+                    click,hover 등 여러가지 이벤트가 있음 
+                    그런 이벤트(클릭,마우스hover시)가 들어갔을때 벌어질!!!! 행위를
+                    "script 태그에 작성"하는것임 = "이터널방식"
+    
+                    script의 작성 방법 3가지 
+                    인라인, 인터널(내부) , 익스터널(외부) 중 
+                    이터널 방식을 사용할 때 html 태그 밖에다 넣는건 추천하지 않는다.
+                    -> 웹에대한 접근성 표준성에대해 고려가 안되니까....
+                       고려하기 위해 html밖이 아닌 head 나 body 쪽에만 작성해라
+                    internal(); <- 자바에서는 메서드/자바스크립트에서는 함수라고 함.  
+            -->
+            <script>
+                    // 클릭하세요! 버튼을 누르면 internal() 함수의 실행구문 "알림창"이 뜸
+                    function internal() {
+                            //인터널방식(내부)
+                            //자바스크립트는 함수에 반환타입없다. 
+                            alert('script태그 안에 있는 internal()함수 실행') //알림창
+                            //() 소괄호 안에 싱글,더블 쿼테이션 둘 다 상관없음
+                    }
+            </script>
+            
+            <h3>별도의 js 파일로 작성해서 가져다 사용하는 방법</h3>
+            <button onclick="external();">클릭하세요!</button> 
+            <!-- 
+                  head 태그 사이에 스크립트 태그로 외부 js파일과 html을 연결해줬기 때문에 
+                  연결한 외부 파일에 있는 external() 함수를 html에서 바로 사용할 수 있는것임.  
+            -->
+            
+            
+            <h2>자바스크립트의 데이터 입출력</h2>
+            <h3>데이터 출력</h3>
+            <h4>document.write();</h4>
+            <script>
+                    document.write('document.write()로 출력한 결과');
+                    //그냥 document에 쓰는것. 화면에 츨력하는것. 우리가 그냥 글을 쓰는거랑같음
+            </script>
+            <h4>alert()</h4>
+            <script>
+                    alert('알림창을 통해 출력문구를 띄웁니다.');
+                    window.alert('window. 생략 가능');
+                    // 원래 window.alert()으로 window를 붙여서 써야하는데 
+                    // 생략이 가능함. 
+            </script>
+            <h4>console.log()</h4>
+            <button onclick="checkConsole();">console.log()</button>
+            <script>
+                    function checkConsole() {
+                            console.log('console.log()로 출력한 결과'); //window. 생략가능
+                            //System.out.println()이랑 똑같이 
+                            // 코드를 잘 썼는지 확인하고싶을 때 console에 띄워보는 용도
+                            // 디버깅할때 
+                    }
+            </script>
+            <h4>innerHtml</h4>
+            <div id="div1">
+                    자바스크립트에서 태그 엘리먼트의 값을 읽거나!! 값을 변경할 때 innerHtml 속성 사용
+            </div>
+            <button onclick="checkInnerHTML();">innerHTML</button>
+            <script>
+                    function checkInnerHTML() {
+                            var area = document.getElementById('div1');
+                            //console.log(area);// div1을 가져옴 - console에서 확인가능
+                            //var value = area.innerHTML; 
+                            // -> innerHTML은 값을 읽어와서 반환만 하는거. 
+                            //console.log(value); 
+                            // -> area 변수에 담긴 div태그안의 내용 데이터들이 반환됨
+                            area.innerHTML="innerHTML속성으로 div값 변경";
+                            // -> innerHTML버튼을 클릭하면 위의 값으로 변경된다. 
+                    }
+            </script>
+            <h3>데이터 입력</h3>
+            <h4>window.confirm()</h4>
+            <p>
+                    어떤 질문에 대해 예/아니오 결과를 얻을 때 사용 <br>
+                    확인 버튼과 취소 버튼이 나타나며 확인 버튼 클릭 시 true, 취소 버튼 클릭 시 false반환
+            </p>
+            <button onclick="checkConfirm();">window.confirm()</button>
+            <script>
+                    function checkConfirm() {
+                            var result = window.confirm('확인과 취소를 누를 수 있습니다.');
+                            console.log(result);
+                            if(result){
+                                    alert('확인을 누르셨군요 : ' + result);
+                            }else{
+                                    alert('취소를 누르셨군요 : ' + result);
+                            }
+                    }
+            </script>
+            <h4>window.prompt()</h4>
+            <p>
+                    텍스트 필드와 확인, 취소 버튼이 있는 대화상자<br>
+                    출력하고 입력한 메세지 내용을 리턴 값으로 돌려 받음
+            </p>
+            <button onclick="checkPrompt();">window.prompt()</button>
+            <script>
+                    function checkPrompt() {
+                            var result = prompt('당신의 이름을 입력해주세요 - 안내문구느낌', '이름 필수 입력 - value같은느낌  ');
+                            console.log(result);
+                            if(result != null && result.trim() != '') {
+                                    alert(result + '님 반갑습니다.');
+                                    // 값이 비어있거나, null이거나, 취소누르면 안내창 안뜨고 
+                                    // 글을 입력 후 확인버튼누르면 반갑습니다 문구 출력됨 
+                            }
+                    }
+            </script>
+            <hr>
+            
+            <h2>html 태그에 접근하기</h2>
+            <h3>아이디로 접근하기</h3>
+            <!-- 
+                위의 innerHTML 접근하기 하기 전에 
+                아이디로 HTML 태그에 접근하기 이거먼저 배움 
+                배우고 나서 이어서 위에 innerHTML 했음. 
+            -->
+            <div id="area1" class="area"></div><br>
+            <button onclick="accessId();">아이디로 접근</button>
+            <script>
+            // 자바와의 차이점 : 반환타입 없음, 변수 타입 var 통일됨 
+            // 지금 우리가 배우는 EC5는..... 변수를 담아주는 타입이 var(제한없음) 하나로 통일 
+            // EC6는 다른게 있는듯??? 
+            // -> 자바스크립트 진도 나가고 시간나면 알려준다함.
+    
+            // "아이디로 접근" 버튼 눌렀을때 위의 #area1에 접근해서 데이터가 나타나게 할거야.
+            // div 에 접근하는 방법은 div태그, id, class로 다양하게 접근가능한데,
+            // 여러 방법 중 일단 id 로 접근하는걸 해봄 
+            // 굉장히 직관적임.
+                    function accessId() {
+                        //console.log(document.getElementById('area1'));    
+                        // -> area1이라는 id를 가진 요소(div)를 반환받음.
+                        var area = document.getElementById('area1');
+                        area.style.backgroundColor="pink";        
+                        // 아이디로 접근 버튼클릭시 area1이름을 가진 div의 배경색이 
+                        // pink로 바뀜. 
+                        area.innerHTML += "아이디로 접근성공<br>";
+                        // 색상도 바뀌고 안에 위의 아이디로 접근성공<br> 데이터도 입력됨. 
+                        //+= 이어서쓰기!!!!
+                        //<br>넣어주면 줄바꿈 됨!!! 
+                    }
+                    
+            </script>
+            
+            <h3>태그명으로 접근하기</h3>
+            <ul>
+                    <li>목록1</li>
+                    <li>목록2</li>
+                    <li>목록3</li>
+                    <li>목록4</li>
+                    <li>목록5</li>
+            </ul>
+            <button onclick="accessTagName();"> 태그 명으로 접근 </button>
+            <script>
+                    function accessTagName() {
+                            var list = document.getElementsByTagName('li');
+                            console.log(list);
+                            var changeColor = 50;
+                            for(var i = 0; i < list.length; i++) {
+                                    list[i].style.backgroundColor = "rgb(130,220," + changeColor + ")";
+                                    changeColor +=50;
+                            }
+                            //TagName로 가져올때는 태그가 한 페이지에 딱 하나만 쓰이는게 
+                            //아니니 복수형으로 Elements로 써줘야한다. 
+                            //내 임의가 아닌 그렇게 정의가 되어있는 함수임!!!!
+                            //var타입에 대한 중간 설명 : 지금 부분까지 var타입으로
+                            // element, array, boolean, string 모든 타입 다 받아왔음.
+                            // var 타입은 자바와 다르게 모든 타입을 다 담을 수 있다는것.
+                    }
+            </script>
+            <h3>name으로 접근하기</h3>
+            <form>
+                    <fieldset>
+                            <legend>취미</legend>
+                            <table>
+                                    <tr>
+                                            <td><input type="checkbox" name="hobby" value="game" id="game"><label>게임</label></td>
+                                            <td><input type="checkbox" name="hobby" value="music" id="music"><label>음악감상</label></td>
+                                            <td><input type="checkbox" name="hobby" value="movie" id="movie"><label>영화보기</label></td>
+                                    </tr>
+                                    <tr>
+                                            <td><input type="checkbox" name="hobby" value="book" id="book"><label>독서</label></td>
+                                            <td><input type="checkbox" name="hobby" value="travel" id="travel"><label>여행</label></td>
+                                            <td><input type="checkbox" name="hobby" value="exercise" id="exercise"><label>운동</label></td>
+                                    </tr>
+                            </table>
+                    </fieldset>
+            </form>
+            <br>
+            <div id="area2" class="area"></div><br>
+            <button onclick="accessName();">name으로 접근</button>
+            <script>
+                    function accessName() {
+                            var hobby = document.getElementsByName('hobby');
+                            console.log(hobby);
+                            
+                            var checkItem = '';
+                            for(var i = 0; i < hobby.length; i++ ) {
+                                    if(hobby[i].checked){
+                                    // hobby[i].checked 속성이 true이면 체크를 했다는거니
+                                    // 조건이 true가 반환되어 해당 구문이 실행됨.
+                                    // 체크가 안된건 false를 반환하여 구문이 안돈다.
+                                            checkItem += hobby[i].value + "선택함<br>";
+                                    }
+                            }
+                            document.getElementById('area2').innerHTML = checkItem;
+                            //area2.innerHTML = checkItem; <- 이거만 쓰면 안됨...
+                            // 위 코드만 써도 실행은 되는데, 그 이유는 id 가 유일하다는 
+                            // 전제가 있어 이 코드만 써도 되기는 함. 근데 권장하지는 않음
+                            // area2가 변수인건지? id인건지? class인건지? 
+                            // area2라는 이름을 가진게 여러개 있으면 문제가 발생할 수 있음.
+                            // 어떤 area2를 가져오라는건지 알수가 없기 때문에
+                            
+                            
+                    }
+            </script>
+            <h3>class로 접근하기</h3>
+            <button onclick="accessClass();">class로 접근</button>
+            <script>
+                    function accessClass() {
+                            var area = document.getElementsByClassName('area');
+                            console.log(area);
+                            for(var i = 0; i< area.length; i++) {
+                                area[i].style.borderStyle = 'dashed';
+                                // "class로 접근" 버튼클릭하면 dashed(점선 테두리)로 바뀜 
+                            }
+                    // background-color ==>  backgroundColor, 
+                    // border-style ==> borderStyle 등
+                    // 모든 css속성값 자바스크립트로 쓸때는 이런식으로 바꿔서 쓰면 됨 
+                    }
+            </script>
+            
+            <h3>text박스의 value값 읽어오기</h3>
+            <form>
+                    <label>이름: </label><input type="text" name="userName" id="userName">
+                    <input type="button" onclick="readValue();" value="input값 확인"> 
+            </form>
+            <br>
+            <div id="area3" class="area"></div>
+            <script>
+                    
+                    function readValue() {
+                            
+                            var area3 = document.getElementById('area3');
+                            // id가 area3인 태그를 가져와서 area3변수에 담겠다.
+                            var userName = document.getElementById('userName');
+                            // id가 userName인 태그를 가져와서 userName변수에 담겠다.
+                            if(userName.value != null && userName.value.trim() != '') {
+                            // userName(input)의 value(입력값) 값이 null이 아니고, 
+                            // 비어있지 않을때가 조건 true로 구문실행하겠다. 
+     
+                                    // 문제 -> 1) textfield에 이름을 적고 
+                                    //       div에 입력된 이름 출력하기
+                                    area3.innerHTML = userName.value;
+                                    //area3(div) 내부에 userName(input)에 입력값을 출력하겠다.
+                                    // 보여지게 하겠다. 
+    
+                                    // 문제 -> 2) div에 이름 출력 후 
+                                    //       textfield에 내용 지우기 
+                                    userName.value = null;
+                                    // userName(input) 창에 적혀진 글을 null로 없애준다.  
+                            }else {
+                              // 입력값이 null이거나, 비어있을때
+                                    alert('이름을 입력하세요');
+                                    // 이름을 입력하라는 안내창이 뜸.
+                            }
+                    
+                    }
+            </script>
+    </body>
+    </html>
+
+
+
+2. 02_BasicGrammar
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    </head>
+    <body>
+            <h1>기본 문법</h1>
+            <hr><hr>
+            <h2>변수와 자료형</h2>
+            <p>
+                    함수 내부에서 'var 변수명;' 으로 선언하면 지역변수가 됨<br>
+                    함수 내부에서 '변수명;' 으로 선언하거나 함수 밖에서 '변수명;' 혹은 'var 변수명;' 으로 선언하면 전역변수가 됨<br>
+                    전역변수와 지역변수가 동일한 이름인 경우 함수 내부에서 변수 명을 호출하면 지역변수가 우선권을 가짐<br>
+                    전역 변수 사용시 'window.변수 명;' 혹은'this.변수 명;' 으로 표현하여 지역변수와 구분 <br>
+                    전역 변수는 해당 window내에서 어디든 사용할 수 있으며, 지역변수는 해당 함수 내에서만 사용 가능 
+            </p>
+            <script>
+                    str1 = "전역변수";
+                    var str2 = "전역변수";
+                    
+                    window.onload = function() {
+                            
+                            //페이지가 로드되면 자동으로 실행하는 함수
+                            // 한 페이지에서 하나의 onload함수만 기술 가능 
+                            
+                            var str1 = "지역변수1";
+                            var str3 = "지역변수2";
+                            
+                            console.log('str1 : ' +str1 );//지역변수1
+                            console.log('this.str1 : ' +this.str1 );//전역변수
+                            console.log('window.str1 : ' +window.str1 );//전역변수
+                            
+                            console.log('str2 : ' +str2 );//var전역변수
+                            console.log('this.str2 : ' +this.str2 );//var전역변수
+                            console.log('window.str2 : ' +window.str2 );//var전역변수
+                            
+                            console.log('str3 : ' +str3 );//지역변수2
+                            console.log('this.str3 : ' +this.str3 );//undefined 정의가 안되어있구나~
+                            console.log('window.str3 : ' +window.str3);//undefined 정의가 안되어있구나~
+                            
+                            what = "난 뭘까?";
+                            showWhat();
+                            
+                    }
+                    
+                    function showWhat() {
+                            
+                            console.log(what);
+                            console.log(this.what);
+                            console.log(window.what);
+                            
+                    }
+            </script>
+            
+            
+            <h3>자료형</h3>
+            <p>자바스크립트에서는 자료형 별로 변수 타입이 지정되지 않고 리터럴에 의해서 자료형 결정</p>
+            <button onclick="typeTest();">자료형테스트</button>
+            
+            <script>
+                    function typeTest() {
+                            var name = "강건강"; //문자열
+                            var age = 20; //숫자
+                            var check = true; //논리값
+                            var hobby = ['축구','야구','농구']; // 자바스크립트는 배열 대괄호씀 //배열
+                            var user = { 
+                                            name: '강건강',
+                                            age:20,
+                                            id:'user01'
+                            }; // 자바스크립트의 객체
+                            var testFunction = function(num1,num2) {
+                                    var sum = num1+num2;
+                                    alert(sum);
+                            }; // 함수
+                            
+                            console.log(name);
+                            console.log(typeof(name)); //소괄호
+                            console.log(age);
+                            console.log(typeof age); // 띄어쓰기 구분자 
+                            console.log(check);
+                            console.log(typeof(check));
+                            console.log(hobby);
+                            console.log(typeof hobby);
+                            console.log(user);
+                            console.log(typeof(user));
+                            console.log(testFunction);
+                            console.log(typeof(testFunction));
+                            
+                            //typeof연산자: 값의 자료형을 확인하는 연산자
+                            
+                    }
+            </script>
+            
+            <h2>데이터 형변환</h2>
+            <h3>문자열과 숫자의 +연산</h3>
+            <button onclick="testPlus();">문자열과 숫자의 +연산</button>
+            <script>
+                    function testPlus() {
+                            var test1 = 7+7;
+                            var test2 = 7+'7';
+                            var test3 = '7'+7;
+                            var test4 = '7'+'7';
+                            var test5 = 7+7+'7';
+                            var test6 = 7+'7'+7;
+                            var test7 = '7'+7+7;// 맨앞에있는게 문자열이기때문에 문자열로 처리 777나옴
+                            var test8 = '7'+(7+7);// 뒤에 소괄호 주면 먼저 계산되어 714나옴
+                            
+                            console.log(test1);
+                            console.log(test2);
+                            console.log(test3);
+                            console.log(test4);
+                            console.log(test5);
+                            console.log(test6);
+                            console.log(test7);
+                            console.log(test8);
+                            // 개발툴 f12에서 보면 숫자는 남색으로 문자열은 검은색으로나타남
+                            //강제형변환 : Number(), parseInt(), parseFloat()...
+                            console.log(test2+1);//771
+                            console.log(Number(test2)+1); // 78 숫자로 강제형변환해서 
+                            console.log(parseInt(test2)+2); //79
+                            console.log(parseFloat(test2)+3); //80 // Float한다고 해서 뭐 소숫점으로 나오지는 않는다. 
+                            
+                            
+                    }
+                    
+            
+            </script>
+            <h2>연산자</h2>
+            <h3>자바와는 다른 연산자</h3>
+            <h4>===와!===</h4>
+            <p>값과 자료형 둘 다 일치하는지/일치하지 않는지 확인할 때 사용</p>
+            <button onclick="opTest()">확인하기</button>
+            <script>
+                    function opTest() {
+                            var check1 = 1;
+                            var check2 = '1';
+                            
+                            console.log('check1 == 1 :' + (check1 == 1));//true
+                            console.log('check1 == "1" :' + (check1 == '1'));//true
+                            console.log('check2 == 1 :' + (check2 == 1));//true
+                            console.log('check2 == "1" :' + (check2 == '1'));//true
+                            // 이까지는 허용이 되는구나? 완전히는 아니고.... 비교하고있고 비교하는 값이 문자열이기는 하지만 숫자로 충분히 변환할 수 있을상태일때는
+                                            // 허용이 된다. 전부 숫자로 바꿔준다는건 아님 우리가 위에 777했던거 보면 알겠지만 숫자로 막 변환해주지는 않아. 
+                                            //비교연산을 하고 있는데, 내가 지금 비교연산할게 내가 가지고있늑넌 숫자지만 쟤껀 문자일때 // 충분히 parseInt로 숫자로
+                                            // 변형 가능하면 허용은 해주는데 좀 애매해 일치하지는 않는다고 생각은 해.... 
+                                            
+                            console.log('check1 === 1 :' + (check1 === 1));//true
+                            console.log('check1 === "1" :' + (check1 === '1'));//true
+                            console.log('check2 === 1 :' + (check2 === 1));//true
+                            console.log('check2 === "1" :' + (check2 === '1'));//true
+                            // 자료형까지 일치해야 true를 뱉어줌 === 3개
+                    }
+            </script>
+            
+            <h2>조건문과 반복문</h2>
+            <h3>조건문</h3>
+            <h4>if</h4>
+            <button onclick="ifTest();">if버튼</button>
+            <script>
+                    function ifTest() {
+                            //당신의 성별은 무엇입니까? 라고 묻는 알림창이 뜨고 그 알림창에는 값을 입력 할 수 있는 필드가 있음. 프롬프트
+                            // 필드에는 '남자/여자'라는 값이 자동으로 들어가 있는 상태
+                            // 남자라고 입력하면 "xy입니다", "여자라고 입력하면"xx입니다", 둘 다 아니면 "잘못 입력했습니다"
+                            // 라는 문구가 알림창으로 뜨게 하기
+                            var xy = prompt('당신의 성별은 무엇입니까?', '남자/여자');                
+                            if(xy === '남자') {
+                                    alert("xy입니다");
+                            }else if(xy === '여자') {
+                                    alert("xx입니다");
+                            }else {
+                                    alert("잘못입력하셨습니다.");
+                            }
+                    }        
+            </script>
+            <h4>switch</h4>
+            <button onclick="switchTest();">switch버튼</button>
+            <script>
+                    function switchTest() {
+                            //'현재는 몇 월입니까?'라고 묻는 알림창이 뜨고 그 알림창에는 값을 입력할 수 있는 필드가 있음
+                            // 입력을 하고 나면 'M월은 n일까지 입니다'라는 결과가 알람창에 뜨게 하기
+                            
+                            var month = Number(prompt('현재는 몇 월입니까?'));// 문자로 받으니까 switch는 형까지 확인하는모양임. 
+                            var day;
+                            switch(month) {
+                            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                                    day =31; break;
+                            case 4: case 6: case 9: case 11:
+                                    day = 30; break;
+                            case 2:
+                                    day = 28;
+                            }
+                            alert(month + "월은" + day + "일까지 입니다.");
+                    }
+                    
+                    
+            </script>
+            <h3>반복문</h3>
+            <h4>for문</h4>
+            <button onclick="forTest();">for버튼</button>
+            <script>
+                    function forTest() {
+                            var result = '';
+                            for(var i = 1; i <= 10; i++ ) {
+                                    result += i + '';
+                            }
+                            alert(result);
+                    }
+            </script>
+            <h4>while문</h4>
+            <button onclick="whileTest();">while버튼</button>
+            <script>
+                    function whileTest() {
+                            var result = '';
+                            var i = 1;
+                            while(i <= 10) {
+                                    result +=  i + ' ' ;
+                                    i ++;
+                            }
+                            alert(result);
+                    }
+            </script>
+            
+            <h4>for in문</h4>
+            <button onclick="forInTest();">for in버튼</button>
+            <script>
+                    function forInTest() {
+                            var result = '';
+                            var array = ['A','B','C','D','E'];
+                            
+                            for(var i in array) {
+                                    // for in문에서 배열을 가지고 사용할 때 앞에 있는 변수에 담기는 값은 배열의 인덱스가 담김 
+                                    console.log(i); // 0 1 2 3 4 배열의 index
+                                    result += array[i] + ' ';
+                            }// 자바 foreach랑 비슷함
+                            alert(result);
+                            /*
+                                    for(Employee e : list) {
+                                            System.out.println(e);
+                                    }// 자바에서 이런식으로 사용했었지??
+                            */
+                    }
+            </script>
+            
+    </body>
+    </html>
+
+
+
+3. 03_Array
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    </head>
+    <body>
+            <h1>배열</h1>
+            <p>자바스크립트에서는 자료형 지정이 없기 때문에 한 배열 안에 모든 자료형 보관 가능</p>
+            <button onclick="arrayTest1();">확인하기</button>
+            <script>
+                    function arrayTest1() {
+                            var arr = ['강건강',20,false,[1,2,3,4]];
+                            console.log(arr);
+                    }
+            </script>
+            
+            <h2>배열 선언 및 초기화</h2>
+            <p>배열 선언 시 크기를 지정하지 않고 선언할 수도 있고 크기를 정하고 선언할 수도 있음</p>
+            <button onclick="arrayTest2();">확인하기</button>
+            <script>
+                    function arrayTest2() {
+                            // 배열을 만드는 방법 2가지 
+                            var arr1 = new Array(); // 배열의 크기 지정 안함
+                            var arr2 = new Array(3); // 배열의 크기를 지정 3으로
+                            console.log('arr1.length : ' + arr1.length);
+                            console.log('arr2.length : ' + arr2.length);
+                            
+                            
+                            
+                            arr1[0] = '사과';
+                            arr1[1] = '귤';
+                            arr1[2] = '바나나';
+                            arr1[3] = '딸기';
+                            console.log('arr1.length : ' + arr1.length);
+                            console.log(arr1); // ['사과','귤','바나나','딸기'] 출력됨
+                             
+                            
+                            
+                            arr2[0] ='지하철';
+                            arr2[1] = '기차';
+                            arr2[2] = '비행기';
+                            arr2[3] = '배'; 
+                            // arr2 배열은 크기를 3으로 지정했는데 , '배' 값을 4번째에 추가해도 추가가 됨
+                            //자동으로 크기를 늘려주면서 '배' 값도 받아준다. 
+                            console.log('arr2.length : ' + arr2.length);
+                            console.log(arr2); 
+                            //['지하철','기차','비행기','배'] 출력됨
+                            
+                            
+                            
+                            // 배열만드는 방법 1개 더 추가 / 배열만들면서 초기화도 하는 방법임
+                            var arr3 = new Array('빨강','초록','파랑');
+                            console.log('arr3.length : ' + arr3.length);
+                            console.log(arr3); 
+                            // ['빨강','초록','파랑'] 출력됨
+                            
+                            
+                    
+                            // 배열만드는 방법 또 1개 추가 / 이것도 배열만들면서 초기화 하는 방법
+                            var arr4 = ['java','oracle','jdbc','html','css','javascript'];
+                            console.log('arr4.length : ' + arr4.length);
+                            console.log(arr4); 
+                            // ['java','oracle','jdbc','html','css','javascript'] 출력됨
+                    }
+            </script>
+            
+            <h2>배열 메소드</h2>
+            <!--자바스크립트는 배열 자체를 "객체"로 봄-->
+            <h3>indexOf</h3>
+            <button onclick="methodTest1();">확인하기</button>
+            <script>
+                    function methodTest1() {
+                            var arr = ['사과','포도','배','바나나','감','키위','복숭아'];
+                            console.log(arr.indexOf('바나나')); // indexOf = 해당 요소가 위치한 인덱스 반환
+                            console.log(arr.indexOf('토마토')); // 존재하지 않기 때문에 -1이 반환됨. 
+                    }
+            </script>
+            
+            <h3>concat</h3>
+            <button onclick="methodTest2();">확인하기</button>
+            <script>
+                    function methodTest2() {
+                            var arr1 = ['빨강','노랑','초록'];
+                            var arr2 = ['파랑','보라'];
+                            
+                            console.log(arr1.concat(arr2));
+                            console.log(arr2.concat(arr1).concat(arr2).concat(arr1)); // 메소드 체이닝
+                            // 현재 concat 반환값 배열
+                            // 메소드 체이닝으로 이어이어이어서 쓸 수 있음. 
+                            // concat의 반환값이 배열이니까 메소드 체이닝으로 연결해준 애들도 전부 배열로 반환해서 전부 적용됨.
+                            // 전부 배열로 이어붙이기가 됨. 
+                    }
+            </script>
+            <h3>join</h3>
+            <button onclick="methodTest3();">확인하기</button>
+            <script>
+                    function methodTest3() {
+                            var arr = ['강남','역삼','선릉','교대'];
+                            console.log(typeof arr.join()); 
+                            // join() = 합쳐서 문자열로 반환해줌 반환값 string임. 
+                    }
+            </script>
+            
+            <h3>reverse</h3>
+            <button onclick="methodTest4();">확인하기</button>
+            <script>
+                    function methodTest4() {
+                            var arr = [1,2,3,4,5,6,7];
+                            console.log(arr.reverse());
+                            // reverse() =  [7,6,5,4,3,2,1] 뒤집어져서 출력 
+                    }
+            </script>
+            <h3>sort</h3>
+            <button onclick="methodTest5()">확인하기</button>
+            <script>
+                    function methodTest5() {
+                            var arr = [10,543,34,450,123,885];
+                            console.log(arr.sort());
+                            // 정렬이 된듯한데 안됨... 앞자리 숫자로 오름차순으로 정렬이 됨.
+                            // 아무리 안에 숫자가 들어가있어도 sort 라는 애는 일단 전부 문자로 받아들임... 
+                            // 그래서 문자열에대해 정렬하는 것처럼 정렬이 됨. 참 제멋대로네...
+                            
+                            //숫자로 정렬하고 싶을때 방법이 있음
+                            var sortArr = arr.sort(function(left,right){ // 왼쪽, 오른쪽 
+                                            return left-right; // 뺄셈을 이용해 누가 더 큰지 비교해서 자리를 바꿀지 말지 정하는거라 위에 fuction(소괄호)에서
+                                            // 왼쪽 오른쪽에 작은  수 큰수 넣는게 아니라 left-right를 빼고 비교 후 큰 수를 rihgt로 작은 수를 left 로 보내는것임. 
+                                            // left 값에서 right를 뺐을때 양수가 나오면 left값이 크다는거니까 left 값을 rihgt로 보내고 약간 이런 식의 로직 ??
+                                    }
+                            );
+                            console.log(sortArr);
+                            // 이렇게 써주면 숫자로 정렬해줌. 
+                    }
+            </script>
+            
+            <h3>push 와 pop</h3>
+            <button onclick="methodTest6();">확인하기</button>
+            <script>
+                    function methodTest6() {
+                            var arr = ['김고은', '한예슬','신민아','전지현','손예진','김소연'];
+                            arr.push('유인나');// push => 마지막에 추가하는것
+                            console.log(arr);// ['김고은', '한예슬','신민아','전지현','손예진','김소연','유인나']; 
+                            // 유인나 추가됨. 
+                            
+                            arr.push('송혜교');
+                            console.log(arr);//['김고은', '한예슬','신민아','전지현','손예진','김소연','유인나','송혜교'];
+                            //송혜교 추가됨.
+                            
+                            arr.sort(); // 정렬
+                            
+                            console.log(arr); // 오름차순으로 정렬된 arr이 출력됨.
+                            arr.pop();// pop => 마지막 요소 삭제
+                            console.log(arr); 
+                            arr.pop();// pop => 마지막 요소 삭제
+                            console.log(arr);
+                            
+                            console.log(arr.pop()) // 제거되는 대상 마지막 요소가 반환되는걸 볼 수 있다. 
+                            
+                    }
+            </script>
+    
+            <h3>shift와 unshift</h3>
+            <button onclick="methodTest7()">확인하기</button>
+            <script>
+                    function methodTest7() {
+                            var arr=['야구','축구','농구','배구','탁구'];
+                            
+                            console.log(arr);
+                            
+                            arr.shift();// 배열의 첫번째 요소가 삭제됨. 
+                            console.log(arr);
+                            
+                            console.log(arr.shift()); // 첫번째 요소가 반환됨.
+                            
+                            console.log(arr.unshift('당구')); //맨 앞에 "당구" 요소 추가
+                            console.log(arr); // 당구가 맨앞에 추가되어 출력됨.
+                    }
+            </script>
+            <script>
+                    function methodTest8() {
+                            var arr =['자바','오라클','JDBC','HTML','CSS','JavaScript'];
+                            
+                            console.log(arr.slice(2,4)); 
+                            //start 인덱스 2부터 end 인덱스 4 미만까지 / 
+                            //마지막 4인덱스 빼고 ['JDBC','HTML'] 까지 출력됨
+                            //부분적인 배열만 추출한다는 느낌~ 배열에는 변화 없음. 
+                            //삭제하는거 아님
+    
+                            console.log(arr.slice(2,4));
+                            console.log(arr.splice(2,2,'Spring'));
+                            // 인덱스 2부터 2개 ['JDBC','HTML'] 빼내고 
+                            // 그 자리에 [Spring]을 추가하겠다. 
+                            console.log(arr);
+                    }
+            </script>
+            <h3>toString</h3>
+            <button onclick="methodTest9();">확인하기</button>
+            <script>
+                    function methodTest9() {
+                            var arr = ['잠은','보약이다','잠은','죽어서 자는게','아니다','그건','죽은거다'];
+                            console.log(arr.toString());// 문자열로 연결되어나옴 
+                            // toString()은 무조건 ','로 구분지어 연결됨
+                            // 위에서 했던 join이랑 비슷하지만 차이가 있음!!
+    
+                            console.log(arr.join('/')); //같은 결과가 나오나 
+                            // '/' 구분자를 넣어주면 해당 지정한 구분자로 구분해서 연결되어 
+                            // 출력됨. 
+                            // join()은 내가 원하는 구분자로 구분해서 연결함.
+    
+                            
+                    }
+            </script>
+      </body>
+    </html>
+
+
+
+4. 04_Function
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    </head>
+    <body>
+            <h1>함수</h1>
+            <h2>함수 선언</h2>
+            <h3>선언적 함수 </h3>
+            <button onclick="test1();">실행확인</button>
+            <script>
+                    function test1() {// 이런식으로 쓰는게 선언적 함수다. 
+                            // 함수에 이름을 집어넣는걸 선언적함수라함
+                            console.log('test1함수 실행');
+                            
+                    }
+            </script>
+            
+            
+            <h3>익명함수</h3>
+            <button onclick="test2();">실행확인</button>
+            <script>
+                    // 이름이 없는거 = 익명 
+                   var test2 = function() {// 함수에 이름이 없이 만드는걸 익명함수라 한다. 
+                            console.log('test2함수 실행');
+                    // 함수를 실행하려면 함수를 호출해야 하는데 
+                    // 호출하기 위해 얘를 부를 수 있는 이름이 필요함. 
+                    // 이름이 아예 없을 수는 없음.
+                    // 그래서 var test2 <-- 요기 변수에다가 함수를 집어넣어버림
+                    // 해당함수를 호출할때는 변수명 test2()를 호출하면 됨. 
+                    // test2가 함수의 이름이 되는것임. 
+                    }
+            </script>
+    
+            <h2>함수 전달인자와 매개변수</h2>
+            <h3>매개인자로 전달하기</h3>
+            <button id="btn1">실행확인</button>
+            <script>
+                     // onclick 해서 하는 방법 말고 다른 방법 볼것임. 
+                     document.getElementById('btn1').onclick = function() {
+                            test3('안녕','반가워'); // test3은 매개변수가 1개인데
+                            // 안녕, 반가워 2개를 보내도 에러가 안남........
+                            // 자바였으면 이미 에러 났을텐데...
+                            // 에러는 안나고 console창에 안녕만 출력됨. 
+                            // 지정된 매개변수보다 많은 개수를 호출하는 것을 허용
+                            // 근데 초과된 인자는 무시가 되어 안녕만 출력함!!!
+    
+                            test3();
+                            // 원래 자바에서 매개변수 있는 메소드에 매개변수 전달 안하면
+                            // 에러가 났는데, 얘는 undefined(정의되지않음)를 출력함.
+                            // 지정된 매개변수보다 적은 개수를 호출하는 것을 허용함. 
+                            // 근데 전달되지 않은 매개변수는 undefined 가 뜬다는것.  
+      
+                    }; // id가 btn1인 요소로 접근해서 .onclick이라는 행위?에 대해 
+                      // function() {}을 실행하겠다. 
+                      // 속성자체에 onclick이라는 속성이 있다고함. 관리자 f12에서 볼 수 있음.
+                                     
+                    function test3(value){
+                          console.log('test3호출');
+                          console.log(value); //안녕
+    
+                          console.log(arguments); //선언 안했음. 처음씀.
+                          // 콘솔에 출력해보면 전달받는거에대해 나옴 
+                          // 넘겨받은 모든 값(인자)들을 저장하고 있는 배열이 arguments다 
+                          // 넘겨받은 인자 arguments 통해서 확인!은 가능함. 
+                          // 콘솔창에 출력된 넘겨받은 모든 인자들 ===> Arguments(2) ['안녕', '반가워', callee: ƒ, Symbol(Symbol.iterator): ƒ]
+                    } 
+            </script>
+    
+            <h3>매개인자로 스스로를 전달하기</h3>
+            <button onclick="test4('JavaScript');">JavaScript</button>
+            <button onclick="test4('jQuer');">jQuery</button>
+            <script>
+                    function test4(subject) {
+                            alert('오늘 배울 내용은' + subject +  '입니다.');
+                            // 인자를 직접 설정해주는 간단한 방법 
+                            // 다른 방법을 알아볼것임. 
+                    }
+            </script>
+    
+    
+            <button onclick="test5(this);">JavaScript</button>
+            <button onclick="test5(this);">jQuery</button>
+            <script>
+                    function test5(subject) {
+                            // this라고 하는걸 subject가 담아주는것. 
+                            console.log(subject);
+                            // 해당 태그 전체 코드가 출력됨. 
+                            // this라는건 현재 내가 있는곳에 대한 코드를 이야기 하는것.
+                            // this = 나자신 / 위에 button에서 test5(this) 해서 넘기면 
+                            // 현재 내가 있는 코드 전체를 넘겨버리는것임! 
+                            // 클릭한 버튼 의 코드 전체를 넘기는것! 
+                            alert('오늘 배울 내용은' + subject.innerHTML + '입니다.');
+                            // subject가 전체 태그를 말하니까 
+                            // .innerHTML(내부의 데이터만 출력하는것 ) 안의 데이터 값인
+                            // JavaScript나 jQuery가 출력됨. 
+                            // 버튼을 눌렀을 시 해당 버튼에 맞는 데이터가 알림창에 출력됨.
+                            // -> ex) 오늘 배울 내용은 JavaScript 입니다. 
+                    }
+            </script>
+    
+            <h3>함수의 리턴처리</h3>
+            <button onclick="test6();">실행확인</button>
+            <script>
+                    function test6() {
+                            var ran = returnFunc(); // 리턴값을 받아서 진행
+                            // 반환타입이 명시 안될뿐 반환은 된다는걸 알려주기 위해
+                            // 해당 코드를 보는듯함.
+                            
+                            alert(ran);// 안내창에 랜덤한 숫자 출력됨. 
+                            // returnFunc()에서 랜덤값을 반환해준거 받아와서 출력하는거.  
+                    }
+                    
+                    function returnFunc() {
+                            return Math.random() * 100 + 1;
+                            // 랜덤값 부여하는 함수
+                            // test6()에 리턴해줬음. 
+                            // 위의 test6()함수의 ran 변수가 해당 함수의 리턴값을 받아 담음. 
+                    }
+            </script>
+    
+            <h3>매개변수로 함수 전달</h3>
+            <button onclick="test7(calledFunction);">실행확인</button>
+            <script>
+                    // 함수도 매개변수로 전달하고 리턴받을 수 있다.
+                    function test7(v) { // v가 calledFunction을 받아옴
+                            v(); //실행시키면 v가 calledFunction을 실행시키게 됨 
+                            
+                    }
+                    
+                    function calledFunction() {
+                            alert('calledFunction 실행');
+                    }
+            </script>
+    
+            <!-- 함수를 리턴받을때  -->
+            <h3>함수 리턴</h3>
+            <button onclick="test8()();">실행확인</button>
+            <!-- function 받아와서 실행시켜줘야해 test8()에다가 ()소괄호 하나 더 붙여줘야해. -->
+            <!-- 
+                test8() 호출한거에대한 반환값이 함수니까 test8()만 쓰면 함수까지만 리턴받아온거지 
+                리턴받은 함수를 실행시킨건 아니라서 ()를 한 번 더 붙여서 실행까지 시켜줌 
+                이름없는 함수라 그냥 소괄호만 () 한번 더 붙여주는 것.  
+            -->
+            <script>
+                    function test8() {
+                            return function() {
+                                    alert('함수 반환 성공');
+                            }
+                    }
+            </script>
+            
+            <h2>내장함수</h2>
+            <h4>eval()</h4>
+            계산식 : <input type="text" id="test1"><button onclick="test9()">실행확인</button>
+            <script>
+                    function test9() {
+                            var test = document.getElementById('test1').value;
+                            console.log(test); // input창에 있는 입력값이 콘솔에 잘 출력됨. 
+                            console.log(eval(test)); // 1+1을 입력하면 2를 출력함. 
+                            //문자열을 자바스크립트 코드로 변환해서 실행을 시켜주는것. 
+                            // 1+1 문자열이 아닌 자바스크립트 코드로 변환을 하니 
+                            // 계산식이 되어 2가 출력된것. 
+                            
+                            var str = '';
+                            str += 'var num1 = Number(prompt("숫자 입력"));';
+                            str += 'var num2 = Number(prompt("숫자 입력"));';
+                            str += 'var sum = num1 + num2;';
+                            str += 'alert(num1 + " + " + num2 + " = " + sum );';
+                            
+                            console.log(str); 
+                            eval(str); // 전부 문자열인데 eval로 자바스크립트 코드로
+                            // 실행하기 때문에 prompt 창이 뜸 
+                            // 문자가 아닌 그냥 자바스크립트 코드처럼 실행이 되는것. ?
+                    }
+            </script>
+    
+    
+            <h4>infinity 와 NaN</h4>
+            <button onclick="test10();">실행확인</button>
+            <script>
+                    function test10() {
+                            var num1 = 10 / 0; // 
+                            // -> 자바에서 이러면 바로  ArithmeticException예외뜸......
+                            var num2 = 10 / '강건강' ;
+                            // -> 이거도 자바에서는 말도 안되는 코드로 에러남....
+                            
+                            console.log(num1); // Infinity 출력
+                            console.log(num2); // NaN(Not a Number) 출력
+                            
+                            console.log(typeof num1); // number타입
+                            console.log(typeof num2); // number타입
+                           
+                            console.log(num1 == Infinity); // true뜸
+                            console.log(isFinite(num1)); // false뜸
+                            // isFinite는 유한한 수냐 비교하는 함수임.
+                            // 유한하냐? 정해진 수냐? 
+                            // false가맞음 num1은 Infinity니까 무한한 수임...
+                                            
+                            console.log(isNaN(num2)); // true
+                            console.log(num2 == NaN); 
+                            // true가 떠야하는데 false가 나옴 
+                            // ==으로는 NaN을 비교할 수 없음.. 맞지 않는 값을 출력하니... 
+                            // isNaN!!!으로 확인해야함!!
+                            
+                            var num3 = -10 /0 ;
+                            console.log(num3); // 음의 무한대 나옴 -Infinity
+                            console.log(num3 == -Infinity); //true
+                            // == 으로 비교 
+                    }
+            </script>
+    </body>
+    </html>

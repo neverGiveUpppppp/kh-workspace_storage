@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+= <html>
+= <head>
+<meta charset="UTF-8">
+<title>07_BOM</title>
+
+
+
+</head>
+<body>
+
+
+
+    <h1>BOM(Browser Object Model)</h1>
+    <h2>navigator객체 </h2>
+    <p>웹 페이지를 실행하고 있는 브라우저에 대한 정보를 갖고 있는 객체          <br>
+         브라우저에 대한 정보를 갖고있다는 것이 중요한 이유 :                   <br>
+         appName,appCodeName 등을 통해서 어떤 브라우저를 쓸 수 있는지 볼 수 있음
+    <!-- window.navigator : 방문자의 브라우저에 대한 정보가 포함 -->
+    <!-- navigator 속성
+        1. appName : 브라우저의 애플리케이션 이름을 반환
+        2. appCodeName : 브라우저의 애플리케이션 코드 이름을 반환
+            ("Mozilla"는 Chrome, Firefox, IE, Safari 및 Opera의 애플리케이션 코드 이름)
+        3. product : 브라우저 엔진의 제품 이름을 반환
+        4. appVersion : 브라우저에 대한 버전 정보를 반환 ... -->
+
+    <h2>navigator객체</h2>
+    </p>
+    <button onclick="test1();"> BOM - navigator객체 </button>
+    <script>
+        function test1(){
+            for (var key in navigator){
+                console.log(key + " : " + navigator[key]); // 숫자+ str = str
+                // console에서 appName,appCodeName 등 통해 어떤 브라우저를 쓸 수 있는지 확인가능
+
+          // 브라우저에 대한 정보를 갖고있다는 것이 중요한 이유 :
+          // console에서 appName,appCodeName 등 통해 어떤 브라우저를 쓸 수 있는지 확인가능
+
+ 
+// navigator 안에서 있는 키나 데이터가 뜸..
+// 현재 object 타입들이 안보이고 string으로 보이는 이유
+// 위에서 " : " string 연결해줘서 string이 되어 출력돼서 그럼
+
+// 근데 이부분이 중요한게 아니라 브라우저에 대한 정보를 가지고 있는
+// 객체라는게!!! 중요한것. 
+// appCodeName : Mozilla, appName : Netscape 등
+// 사용자의 브라우저에 대한 정보들을 알 수 있음. 
+// 사용자에 대한 정보를 바탕으로 
+// ex)  정부 24나, 다른 관공서 페이지들 들어가보면 
+// 인터넷익스플로러 브라우저는 기능을 제한한다고 크롬으로 브라우저
+// 변경하라는 경고창이 뜰 때 있는데 그런기능을 줄 때 이용하는?
+
+//platform : 어떤 운영체제 지원?
+//사용자가 어떤 브라우저 환경을 쓰고 있느냐? 에 대해 확인 가능         
+            }
+        }
+    </script>
+
+
+    <h2>screen객체</h2>
+    <p>웹 브라우저 화면이 아닌 운영체제 화면(모니터)의 정보를 가지는 객체</p>
+    <!-- window.screen : 사용자의 화면에 대한 정보를 포함 -->
+    
+    <button onclick="test2();">BOM - screen객체</button>
+    <script>
+        function test2(){
+            for (var key in screen){
+             console.log(key + " : " + screen[key]); // 현재 내 모니터에 대한 정보가 출력됨. 
+            
+            }
+
+            // 컬러뎁스 : 사용가능한 컬러수
+            // 픽셀뎁스 : 사용가능한 픽셀수
+            //
+            // 화면의 크기가 사용자마다 다르니까 모니터의 실제 길이를 알아야 
+            // 해당 모니터들의 크기에 따라 비율을 결정짓거나 동일하게 적용을 시킬 수 있으니
+            // 모니터의 크기등을 알아올때 사용하는 모니터 정보를 받아오는 객체 screen을 사용함 
+
+// 스크린 객체의 사용용도 & 필요성
+// 작은모니터로 가면 너무 커서 안보일 수도 있고 작은 모니터에서는 적당한데 큰모니터로 가면 너무 작아서 안보일 수 있다
+// 모니터 크기 상관없이 비율을 유지하고 싶다면, 유저에 대한 모니터 크기가 계산에 반드시 필요.
+// 화질 지원을 얼마나 할 수 있는지에 대해서도 알아보기위해 사용해볼 수 있음
+        }
+    </script>
+
+
+    <h2>location객체</h2>
+    <!-- 
+        window.location : 현재 페이지 주소(URL)를 가져오고 브라우저를 새 페이지로 리다이렉션 
+        
+        window.location = location = location.href
+            window. 
+            .href 
+            둘 다 생략 가능
+    
+    -->
+    <p>브라우저 주소 표시줄과 관련된 객체</p>
+    <button onclick="test3();">BOM - location객체</button>
+    <script>
+        function test3(){
+            // for (var key in location){
+            //     console.log(key + " : " + location[key]); // location의 href를 건드려서 정보를 가져옴? 강의시간2:40
+            // }
+
+            // 전부 같음
+            // window.location = "http://www.naver.com";    // GET http://127.0.0.1:5500/3_JavaSrcript/WebContent/views/www.naver.com 404 (Not Found)
+            // location = "http://www.naver.com";           // GET http://127.0.0.1:5500/3_JavaSrcript/WebContent/views/www.naver.com 404 (Not Found)
+            // location.href = "http://www.naver.com";      // GET http://127.0.0.1:5500/3_JavaSrcript/WebContent/views/www.naver.com 404 (Not Found)
+            // location.replace('http://www.naver.com');    // GET http://127.0.0.1:5500/3_JavaSrcript/WebContent/views/www.naver.com 404 (Not Found)
+            location.href.replace('http://www.naver.com');  // GET http://127.0.0.1:5500/3_JavaSrcript/WebContent/views/www.naver.com 404 (Not Found)
+
+
+        }
+    </script>
+
+
+
+    <h3>location.href</h3>
+    <p>페이지 이동      <br>
+        a태그 뿐 아니라 버튼에도 해당 링크로 갈 수 있게 만들 수 있다
+    </p>
+    <button onclick="location.href='http://www.naver.com'">location.href=주소 사용 - 네이버로 이동</button><br>
+    <button onclick="location='http://www.naver.com'">location=주소 사용 - 네이버로 이동</button><br>
+    <!-- location.href이ㅡ href 없이도 가능(생략가능) -->
+
+
+
+    <h3>reload()</h3>
+    <p>페이지를 새로고침하는 메소드             <br>
+       페이지 새로고침을 누르는 현재 위치를 유지하는게 차이점                <br>
+    </p>
+    <!-- 페이지 새로고침 3가지 방법 -->
+    <button onclick="location=location">location=location</button>  <!-- 새로고침 후 화면 상단으로 돌아감  -->
+    <button onclick="location.href=location.href">location.href=location.href</button> <!-- 새로고침 후 화면 상단으로 돌아감 -->
+    <button onclick="location.reload()">location.reload()</button> <!-- 현재 위치에서 새로고침 -->
+<!-- 
+    홈페이지 이동 경로(흔적)
+    인덱스 -> bom -> kh -> naver -> daum 
+-->
+
+
+
+
+    <h3>assign()과 replace()</h3>
+    <p> 
+        두 메소드 모두 location의 href 를 재지정하는 메소드(페이지이동)     <br>
+
+        assign() : 화면을 전환하면, 웹 브라우저 뒤로가기 버튼을 누를시 뒤로 이동하기 이전 화면으로 이동
+                   다음 페이지로 이동하면서 현재 페이지를 히스토리에 남김
+        replace() : replace의 경우는 그렇지 않다는 것 // 뒤로가기 시 전 페이지들을 대체
+                   다음 페이지로 이동하면서 현재 페이지를 히스토리에 남김x
+        차이 :  둘 다 페이지를 다른 URL로 이동시키지만 히스토리를 남기느냐 남기지 않느냐의 차이
+                replace는 대체하는거기 때문에 대체한 페이지의 기록만 남지 않음
+        <!--assign() →
+		replace() → 대체하다 : 현재페이지를 대체하여 이동  -->
+	<!-- 뒤로가기하면 assign은 바로 전 페이지 돌아가고 replace는 맨 처음페이지로 돌아갑니다 -->
+    </p>
+    
+<button onclick="location.assign('http://www.iei.or.kr')">location객체 - location.assign()</button>
+<button onclick="location.replace('http://www.iei.or.kr')">location객체 - location.replace()</button>
+<!-- 
+    홈페이지 이동 경로
+    인덱스 -> bom -> kh -> naver -> daum 
+-->
+    <!-- 뒤로가기 했을 때 assign은 BOM페이지가 나오고 replace는 index페이지가 나옴 -->
+
+   
+
+    <h3>history객체</h3>
+    <p> 브라우저 방문기록과 관련된 객체 </p>
+    <button onclick="history.back();">history객체 - history.back()</button> 뒤로가기
+    <button onclick="history.forward();">history객체 - history.forward()</button> 앞으로가기
+    <br><br>
+    
+    <input type="number" id="num"><button onlick="test4();">history객체 - go() </button>
+    <script>
+        function test4() {
+            var num = document.getElementById('num').value;
+            history.go(num);
+            // 홈페이지 이동 경로
+            // 인덱스 -> bom -> kh -> naver -> daum  
+            //   -1       0      1      2        3  
+            // 현재위치는 BOM이고 숫자로는 0이 기준점
+            // 1 입력하면 kh, 3 입력하면 daum으로 이동
+            // .go를 통해서 .back()이나 .forward() 기능구현 가능 ex) history.back() = history.go(-1)
+        }
+    </script>
+
+    <button onclick="history.go(-1);">history객체 - go back</button>
+    <!-- 이전 페이지 -->
+    <button onclick="history.go(1);">history객체 - go forward</button>
+    <!-- 이후 페이지 -->
+
+    
+
+
+
+
+</body>
+</html>
+
+
+
