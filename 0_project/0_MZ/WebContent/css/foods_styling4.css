@@ -1,0 +1,33 @@
+
+
+.img_cut{ width: 100%; height: 100%; object-fit: cover; margin: auto; }
+
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.cardContainer > div {
+    flex-basis: 49%;
+}
+
+.cardContainer .cardBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid #ccc;
+    /* flex-wrap: nowrap; */
+}
+
+.cardContainer .cardBox > div {
+    flex-basis: 50%;
+    height: 200px;
+}
+
+

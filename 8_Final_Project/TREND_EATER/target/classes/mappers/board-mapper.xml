@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+
+<mapper namespace="boardMapper">
+
+<!-- notice 읽기(조회) - 페이징처리1 :총게시물수 가져오기 -->
+	<select id="getListCount" resultType="_int"> <!-- resultType,resultMap 무조건 있어야함. 리절셋하고 나서 뭘로 받을지 정해줘야하기에 -->
+		select count(*)
+		from board
+		where board_status = 'Y'
+	</select>
+	
+	
+<!-- notice 읽기(조회) - 페이징처리2 : 원하는 게시판 번호 조회 -->
+	<select id="getBoardList" resultMap="boardResultSet">
+		select *
+		from board 
+		where board_status = 'Y'
+		order by board_no desc
+	</select>
+	<resultMap type="Board" id="boardResultSet">	<!-- type="" 속성 별칭 설정하면 Board도 가능 -->
+		<id column="BOARD_NO" property="boardId"/> 					<!-- PK(기본키) -->
+		<result column="BOARD_TITLE" property="boardTitle"/>		<!-- 일반 컬럼 -->
+		<result column="BOARD_CONTENT" property="boardContent"/>  <!-- 위의 select태그에서 join해서 가져온 멤버테이블의 컬럼 nickname  -->
+		<result column="CREATE_DATE" property="boardCreateDate"/>
+		<result column="MODIFY_DATE" property="boardModifyDate"/>
+		<result column="BOARD_COUNT" property="boardCount"/>
+		<result column="BOARD_STATUS" property="boardStatus"/>
+		<result column="ADMIN_ID" property="adminId"/>
+	</resultMap>
+
+<!-- notice 쓰기  -->
+	<insert id="insertBoard">
+		insert into board
+		values(seq_bid.nextval,#{boardTitle},#{boardContent},sysdate, default, default, 'Y', 1, default)
+	</insert>
+	
+<!-- notice 수정  -->
+	<update id="updateNotice">
+		update board
+		set board_title = #{boardTitle}, board_content = #{boardContent}
+		where admin_id = #{adminId}
+	</update>
+
+<!-- notice 삭제 -->
+	<update id="deleteNotice">
+		update board
+		set board_status = 'N'
+		where admin_id = #{adminId}
+	</update>
+ 
+ 
+ 
+<!-- notice 상세보기 -->
+	<update id="addReadCount">
+		update board
+		set board_count = board_count + 1
+		where board_no = #{bId}
+	</update>
+	
+	<select id="selectBoard" resultMap="boardResultSet">
+		select *
+		from board
+			<!-- join member on (board_writer = id) -->
+		where board_no = #{bId} and board_status = 'Y'
+<!-- 		게시물 자체가 status가 Y인 것만 불러오는데 왜 and board_status = 'Y'를 또 할까? 
+		... N인거를 같이 셀렉이 되기 때문에 볼 수 있어서 같이 해주는게 맞음 강의 11:19
+		
+		주소창에서 숫자바꺼서 이동하는 불손한사람때문 -->
+	</select> 
+ 
+ 
+<!-- QnA 읽기(조회) : 페이징처리1 - 총게시물 --> 
+	<select id="getQnaListCount" resultType="_int"> <!-- resultType,resultMap 무조건 있어야함. 리절셋하고 나서 뭘로 받을지 정해줘야하기에 -->
+		select count(*)
+		from qna
+		where qna_status = 'Y'
+	</select>
+	
+<!-- QnA 읽기(조회) : 페이징처리2 - 필요 게시물 --> 
+	<select id="getBoardQnaList" resultMap="boardQnaResultSet">
+		select *
+		from qna 
+		where qna_status = 'Y'
+		order by qna_no desc
+	</select>
+	<resultMap type="BoardQnA" id="boardQnaResultSet">	<!-- type="" 속성 별칭 설정하면 Board도 가능 -->
+		<id column="QNA_NO" property="qnaNo"/> 					<!-- PK(기본키) -->
+		<result column="QNA_TITLE" property="qnaTitle"/>		<!-- 일반 컬럼 -->
+		<result column="QNA_CONTENT" property="qnaContent"/>  <!-- 위의 select태그에서 join해서 가져온 멤버테이블의 컬럼 nickname  -->
+		<result column="QNA_CREATE_DATE" property="qnaCreateDate"/>
+		<result column="QNA_MODIFY_DATE" property="qnaModifyDate"/>
+		<result column="QNA_STATUS" property="qnaStatus"/>
+		<result column="QNA_ANS_STATUS" property="qnaAnsStatus"/>
+		<result column="EMAIL_ID" property="emailId"/>
+	</resultMap>
+
+
+<!-- QnA 쓰기 -->
+	<insert id="insertBoardQna"> 
+		insert into qna
+		values(seq_qnaid.nextval, #{qnaTitle}, #{qnaContent}, sysdate, default, default, default, default)
+	</insert>
+	
+<!-- QnA 수정 -->
+	<update id="updateBoardQna">
+		update qna
+		set qna_title = #{qnaTitle}, qna_content = #{qnaContent}
+		
+		where email_id = #{emailId}
+	</update>
+ 	
+<!-- QnA 삭제 -->
+	<update id="deleteBoardQna">
+		update qna
+		set qna_status = 'N'
+		where email_id = #{emailId}
+	</update>
+
+
+
+
+
+
+	
+	
+<!-- 
+
+ 게시판 수정 + 파일수정  
+	<update id="updateBoard">
+	update board
+	set board_title = #{boardTitle}, board_content = #{boardContent}, original_filename = #{originalFileName},
+		rename_filename = #{renameFileName}, board_modify_date = sysdate
+	where board_id = #{boardId}
+	</update>
+
+게시판 수정 + 파일수정 
+	<update id="updateBoard">
+		update board
+		set board_title = #{boardTitle}, board_content = #{boardContent}, 
+			<if test="originalFileName != null">
+				original_filename = #{originalFileName},
+			</if>
+			rename_filename = #{renameFileName}, board_modify_date = sysdate
+		where board_id = #{boardId}
+	</update>
+
+
+	<delete id="deleteBoard">
+		delete from board
+		where board_id = #{bId}
+	</delete>
+
+
+댓글 쓰기
+	<insert id="insertReply">
+		insert into reply
+		values(seq_rid.nextval, #{replyContent}, #{refBoardId}, #{replyWriter}, sysdate, sysdate, default)
+	</insert>
+
+댓글 가져오기 
+	<select id="selectReplyList" resultMap="replyResultSet"> resultType,resultMap 무조건 있어야함. 리절셋하고 나서 뭘로 받을지 정해줘야하기에
+		select *
+		from reply
+			join member on(reply_writer = id)
+		where ref_board_id = #{bId} and reply_status = 'Y'
+		order by reply_id desc
+	</select>
+	<resultMap id="replyResultSet" type="Reply" >	type="" 속성 별칭 설정하면 Board도 가능
+		<id column="REPLY_ID" property="replyId"/> 					PK(기본키)
+		<result column="REPLY_CONTENT" property="replyContent"/>  property 속성은 vo클래스 필드명 가져오는 것 
+		<result column="REF_BOARD_ID" property="refBoardId"/>
+		<result column="NICKNAME" property="nickName"/>
+		<result column="REPLY_WRITER" property="replyWriter"/>
+		<result column="REPLY_CREATE_DATE" property="replyCreateDate"/>
+		<result column="REPLY_MODIFY_DATE" property="replyModifyDate"/>
+		<result column="REPLY_STATUS" property="replyStatus"/>
+	</resultMap>
+
+
+Top-N 분석 : select
+	<select id="topList"  resultMap="boardResultSet"> resultType,resultMap 무조건 있어야함. 리절셋하고 나서 뭘로 받을지 정해줘야하기에
+		<![CDATA[
+		select * 
+		from (  select *
+				from board 
+				    join member on(board_writer = id)
+				order by board_count desc)
+		where board_status = 'Y' and rownum <= 5
+		]]>
+		<=의 <이거가 태그로 인식해서 에러 밑줄이 뜨는 상태 
+			 이 부등호를 부등호로 인식시킬려면 	 <![CDATA[]]> 사용하면 됨
+		
+	</select>
+
+ -->
+
+
+</mapper>

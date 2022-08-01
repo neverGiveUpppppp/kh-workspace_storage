@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/4_Front_workspace/1_HTML" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/4_Front_workspace/2_CSS" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/4_Front_workspace/3_JavaSrcript" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/4_Front_workspace/4_JQuery" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/7_FrameWork_Spring_workspace/0_practice" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/7_FrameWork_Spring_workspace/1_spring" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/7_FrameWork_Spring_workspace/2_SpringAjax" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/9_Final_Project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/9_Final_Project/TREND_EATER" vcs="Git" />
+  </component>
+</project>

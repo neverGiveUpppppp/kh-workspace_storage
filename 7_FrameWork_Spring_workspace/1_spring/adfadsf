@@ -1,0 +1,72 @@
+[33mcommit 191a5cea51ad8c940f871dfbea25748e839efc97[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: neverGiveUpppppp <csy6219@naver.com>
+Date:   Sun Jun 26 15:01:21 2022 +0900
+
+    1
+
+[1mdiff --git a/f b/f[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ed617e9[m
+[1m--- /dev/null[m
+[1m+++ b/f[m
+[36m@@ -0,0 +1,44 @@[m
+[32m+[m[32m[33mcommit 1b518c52a625a6f5464ce6c098136dace220f69c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m[m
+[32m+[m[32mAuthor: neverGiveUpppppp <csy6219@naver.com>[m
+[32m+[m[32mDate:   Sun Jun 26 14:40:34 2022 +0900[m
+[32m+[m
+[32m+[m[32m    test[m
+[32m+[m
+[32m+[m[32m[1mdiff --git a/src/main/java/com/kh/Spring/board/controller/BoardController.java b/src/main/java/com/kh/Spring/board/controller/BoardController.java[m[m
+[32m+[m[32m[1mindex b1c9731..233a6c5 100644[m[m
+[32m+[m[32m[1m--- a/src/main/java/com/kh/Spring/board/controller/BoardController.java[m[m
+[32m+[m[32m[1m+++ b/src/main/java/com/kh/Spring/board/controller/BoardController.java[m[m
+[32m+[m[32m[36m@@ -466,6 +466,8 @@[m [mpublic class BoardController {[m[m
+[32m+[m[41m [m	[32mpublic void topList(HttpServletResponse response) {[m[m
+[32m+[m[41m [m		[32mArrayList<Board> list =	bService.topList();	[m[m
+[32m+[m[41m [m		[32m[m[m
+[32m+[m[32m[32m+[m		[32mSystem.out.println(list);[m[m
+[32m+[m[32m[32m+[m[41m		[m[m
+[32m+[m[41m [m		[32mresponse.setContentType("application/json; charset=UTF-8");[m[m
+[32m+[m[41m [m		[32mtry {[m[m
+[32m+[m[41m [m			[32mnew GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(list, response.getWriter());[m[m
+[32m+[m[32m[36m@@ -482,7 +484,7 @@[m [mpublic class BoardController {[m[m
+[32m+[m[41m [m	[32m[m[m
+[32m+[m[41m [m	[32m[m[m
+[32m+[m[41m [m	[32m[m[m
+[32m+[m[32m[31m-	[m[m
+[32m+[m[32m[32m+[m[32m///////////////[m[41m	[m[m
+[32m+[m[41m [m	[32m[m[m
+[32m+[m[41m [m	[32m[m[m
+[32m+[m[41m [m	[32m[m[m
+[32m+[m[32m[1mdiff --git a/src/main/java/com/kh/Spring/board/model/Pagination.java b/src/main/java/com/kh/Spring/board/model/Pagination.java[m[m
+[32m+[m[32m[1mindex cbb454b..d23e5c2 100644[m[m
+[32m+[m[32m[1m--- a/src/main/java/com/kh/Spring/board/model/Pagination.java[m[m
+[32m+[m[32m[1m+++ b/src/main/java/com/kh/Spring/board/model/Pagination.java[m[m
+[32m+[m[32m[36m@@ -13,7 +13,7 @@[m[m
+[32m+[m[32m //		int endPage;[m[m
+[32m+[m[32m //		int boardLimit = 5;[m[m
+[32m+[m[32m //		[m[m
+[32m+[m[32m[31m-//		[m[m
+[32m+[m[32m[32m+[m[32m//		//[m[41m [m[m
+[32m+[m[32m //		maxPage = (int)Math.ceil((double)listCount/boardLimit);[m[m
+[32m+[m[32m //				// 여분 게시물의 페이지수(maxPage) 처리 방법 3가지[m[m
+[32m+[m[32m //				// 방법1 : 마지막페이지 = 총 게시물 수 / 한 페이지 보일 최대 게시글 수 +1 + if문(나머지 없이 몫만 떨어질 경우)[m[m
+[32m+[m[32m[1mdiff --git a/target/classes/com/kh/Spring/board/controller/BoardController.class b/target/classes/com/kh/Spring/board/controller/BoardController.class[m[m
+[32m+[m[32m[1mindex 43adc57..ee00a60 100644[m[m
+[32m+[m[32mBinary files a/target/classes/com/kh/Spring/board/controller/BoardController.class and b/target/classes/com/kh/Spring/board/controller/BoardController.class differ[m
+[1mdiff --git a/src/main/java/com/kh/Spring/board/controller/BoardController.java b/src/main/java/com/kh/Spring/board/controller/BoardController.java[m
+[1mindex 233a6c5..f5298b2 100644[m
+[1m--- a/src/main/java/com/kh/Spring/board/controller/BoardController.java[m
+[1m+++ b/src/main/java/com/kh/Spring/board/controller/BoardController.java[m
+[36m@@ -481,10 +481,7 @@[m [mpublic class BoardController {[m
+ 	[m
+ 	[m
+ 	[m
+[31m-	[m
+[31m-	[m
+[31m-	[m
+[31m-///////////////	[m
+[32m+[m
+ 	[m
+ 	[m
+ 	[m

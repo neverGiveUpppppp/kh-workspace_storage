@@ -1,0 +1,51 @@
+
+
+.img_cut{ position: relative; top: 0; left: 0; transform: translate(50, 50); 
+            width: 100%; height: 100%; object-fit: contain; margin: auto; }
+
+
+
+
+
+            
+
+
+.nav_css{
+    color:#6c757d; font-weight: bold;
+}
+.nav_cssSelect{
+    color:rgb(240, 128, 0); font-weight: bold;
+}
+
+.signIn{
+    background-color: rgb(240, 128, 0);color: white; border-color: rgb(229, 206, 162);
+}
+.signUp{
+    color: rgb(240, 128, 0); border-color: rgb(240, 128, 0); 
+}
+
+
+.cardInline{
+    display: inline-block;
+}
+.cardTitle{
+    font-size: 14px; font-weight: bold;
+}
+.reviewCategory{
+    font-size: 11px; color: rgb(240, 128, 0);
+}
+.reviewDate{
+    font-size: 11px; font-weight:500; color: #6c757d; 
+}
+.reviewNormal{
+    font-size: 11px; 
+}
+.reviewFeatureTitle{
+    font-size:12px; font-weight: bold;
+}
+
+
+
+.Writing{
+    background-color: rgb(240, 128, 0); color:#fff; border-color: rgb(240, 128, 0);
+}

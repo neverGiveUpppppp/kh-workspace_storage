@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>0_Practice_Servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 위의 welcom-file태그는 시작 시 실행시키는 파일들을 명명하는 곳임 -->
+  
+ 
+ <servlet>
+ 	<servlet-name>pracServlet1_get</servlet-name>
+ 	<servlet-class>tryto.pracServlet1_get</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ 	<servlet-name>pracServlet1_get</servlet-name>
+ 	<url-pattern>/pracServlet1_get.do</url-pattern>
+ </servlet-mapping>
+  
+  
+  
+</web-app>
+
+
+
+
+
+
