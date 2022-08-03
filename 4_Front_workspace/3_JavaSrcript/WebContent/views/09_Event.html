@@ -21,7 +21,7 @@
 <button id="test2"> 고전 이벤트 모델 : onclick 실행2 </button>
 <button id="test2_1"> function 만들어두고 호출해서 사용하는 방법</button>
 <script>
-     // 고전 이벤트 모델 : 요소에 접근해서 속성 집어넣어서 이벤트 추가하는 것
+     // 고전 이벤트 모델 : 요소에 접근해서 거기서 속성 집어넣어서 이벤트 추가하는 것
     var test1 = document.getElementById('test1');
     var test2 = document.getElementById('test2');   // 요소 접근해서 var test2에 속성을 집어 넣고, 아래가서 이벤트 추가하는게 고전 이벤트 모델
     
@@ -110,11 +110,18 @@
     
     </script>
     
-    
-    ///////// 모범 답안/////////
+
+
     <h4>이벤트 발생 객체</h4>
     <button id="test3">test3() 실행확인</button>
     <script>
+            
+    ///////// 모범 답안/////////
+    // 숙제	
+	// 1) 버튼을 눌렀을 때 버튼의 배경과 글자색이 각각 검은색과 하얀색으로 변경되게 하기
+	// 2) 누를때마다 버튼의 배경과 글자색이 바뀌게 (기본색에서 검정생/하얀색 -> 기본 ->검정/하양 누를때마다 변하게)	하기
+
+
         var test3 = document.getElementById("test3");
         
         var count = 0;
@@ -130,19 +137,22 @@
             }
 
 
-            // boolean 버전
+            // // boolean 버전
             // var check = true;
             // test3.onclick=function(){
-            // if(check){
-            // this.style.backgroundColor = "black";
-            // this.style.color = "white";
-            // check = false;
-            // } else{
-            // this.style.backgroundColor = null;
-            // this.style.color = null;
-            // check = true;
-            // }
+            //     if(check){
+            //         this.style.backgroundColor = "black";
+            //         this.style.color = "white";
+            //         check = false;
+            //     } else{
+            //         this.style.backgroundColor = null;
+            //         this.style.color = null;
+            //         check = true;
+            //     }
             // }   
+
+
+
         }
     </script>
     
@@ -177,15 +187,16 @@
             console.log('test5에 들어왔습니다.');
         }
 
-        /* 이벤트 추가 */
+        // 이벤트 추가 : addEventListener
         test5.addEventListener('click', fn_test5_1);     // click하면 fn_test5_1 함수 실행하라는 코드
         test5.addEventListener('mouseover', fn_test5_2); // 마우스포인터가 올라가면 fn_test5_2 함수를 실행하라는 코드
-        // 어떤 이벤트와 연결할건지 앞에 써줌 : 'click' 
-        // 어떤게 실행될건지 뒤에써줌 : fn_test5_1
+        // addEventListener(연결이벤트, 실행할 함수)
+        //      어떤 이벤트와 연결할건지 앞에 써줌 : 'click' 
+        //      어떤게 실행될건지 뒤에써줌 : fn_test5_1
         
-       
+            
 
-        /* 이벤트 삭제  */
+        // 이벤트 삭제 : removeEventListener
         test6.addEventListener('click', function() {     // 클릭하면 function() 함수를 실행하라는 코드
             console.log('test6에 들어오면서 test5의 클릭이벤트를 제거 했습니다.');
             test5.removeEventListener('click',fn_test5_1);
@@ -253,7 +264,8 @@
         <label>비밀번호확인 : </label><input type="password" name="passwordConfirm" id="passwordConfirm2"><br>
         <br>
         <input type="submit" value="제출" > 
-
+                <!-- action속성이 없어서 이동할게 없어서 onsubmit이 true가 되도 더 하게 없음-->
+        
     </form>
     <script>
         function test8() {

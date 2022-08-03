@@ -83,6 +83,7 @@
 			</c:url> --%>
 			
 			
+			<!-- url변수선언 -->
 			<c:url var="bdelete" value="bdelete.bo">	<!-- c:url 변수선언함. 그리고 아래 button태그에서 끌어다 씀 -->
 				 <c:param name="bId" value="${ board.boardId }"/>	<!-- 삭제버튼에 필요한 게시판번호 데이터보내기 -->
 				 <c:param name="renameFileName" value="${ board.renameFileName }"/>

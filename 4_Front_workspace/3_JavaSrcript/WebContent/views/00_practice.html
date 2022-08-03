@@ -16,6 +16,40 @@
         document.write("혼자출력");
     </script>
 
+
+    <h3>addEventListener</h3>
+    <div id="first" class="div0"></div>
+    <button id="do1">do1 확인</button>
+    <button id="do2">do2 확인</button>
+    <script>
+        var do1 = document.getElementById('do1');
+        var do2 = document.getElementById('do2');
+        // var div0 = document.getElementByClass('div0');
+
+        function dodo1_1(){
+            console.log("click");
+        }
+        function dodo1_2(){
+            console.log("in");
+        }   
+        function div0_1(){
+            console.log("dvi0");
+            div0.innerText = "hi";
+
+        }
+
+        do1.addEventListener('click',dodo1_1);
+        do1.addEventListener('mouseover',dodo1_2);
+
+        do2.addEventListener('click',function(){
+            console.log('do2 실행. 제거하기');
+            do1.removeEventListener('click',dodo1_1);
+
+        // div0.addEventListener('click',div0_1);
+
+        })
+
+    </script>
     
 
 </body>

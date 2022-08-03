@@ -11,12 +11,15 @@
     <>정규표현식</h1>
      <p>내가 사용하고자하는 원하는 패턴에 맞는 값을 확인하는 것이 정규표현식        <br>
         유효한 식인지 적당한 값인지 확인하는 패턴
+
+        특정 패턴의 문자열을 찾기위한 표현방식
+
      </p>   
     <h2>정규표현식의 객체 생성</h2>
     <button onclick="test1();">정규표현식의 객체 생성</button>
     <script>
         function test1() {
-            // 방법1 : new
+            // 방법1 : new 연산자 사용
             // var regExp = new RegExp('script');  // 정규식 객체 생성 : ' '
             // var regExp = new RegExp(/script/);  // 정규식 객체 생성 : / /   
 
@@ -76,7 +79,7 @@
     <script>
         function test2(){
             var regExp = /as/;      // 정규식 객체 생성  // 비교 기준점
-            var str = 'javascript jquery ajax sass';    // 정규식 적용 자원
+            var str = 'javascript jquery ajax sass';    // 정규식 적용 자원(검사할 원본 문자열)
 
             // regExp에서 지정한 as문자열을 str에서 정규식을 사용해
 
@@ -134,7 +137,7 @@
         g: 전역 비교 수행(해당 되는 모든 문자 축출)         <br>
         i: 대소문자를 가리지 않고 비교 수행                 <br>   
         m : 여러줄을 전체를 검사하는 플래그 문자            <br>
-    
+             (줄바꿈된 데이터들도 검사한다는 의미)
     </p>
     <button onclick="test4();">  정규표현식 - 플래그 문자 - g  i  m </button>
     <script>
@@ -176,6 +179,9 @@
 
     <h2>앵커문자</h2>               <!-- 꽤 많이 사용 -->
     <p>문자열의 앞과 뒤를 구분해주는 정규표현식 기호
+
+        아래 둘은 위치 고정 앵커문자로 정규표현식 패턴을 특정 위치에 고정시킨다
+
         ^ : 앞
         $ : 뒤
 
@@ -245,13 +251,13 @@
 
                 var src = "aabc abc bc";
                             
-                var regExp1 = /a*b/g;
+                var regExp1 = /a*b/g; // 문자열의 모든 영역에서 a는 0개 이상이고 그 뒤에는 b가 들어가 있는 문자열 의미
                 console.log(regExp1 + " : " + src.replace(regExp1, '($&)'));    // (aab) , (ab), (b) <- a가 0개 이상
                     
-                var regExp2 = /a+b/g;
+                var regExp2 = /a+b/g; // 문자열의 모든 영역에서 a는 1개 이상이고, 그 뒤에는 b가 들어가 있는 문자열을 의미
                 console.log(regExp2 + " : " + src.replace(regExp2, '($&)'));    // (aab), (ab) <- a가 1개 이상
                 
-                var regExp3 = /a?b/g;
+                var regExp3 = /a?b/g; // 문자열의 모든 영역에서 a는 0개이거나 1개이고 그 뒤에는 b가 들어가 있는 문자열을 의미
                 console.log(regExp3 + " : " + src.replace(regExp3, '($&)'));    //(ab)c (ab)c (b)
 
             }
@@ -489,7 +495,7 @@
         // xy다음 무조건 한글자가 나와야함
         var regExp2 = /xy./;
         console.log(regExp2 + " : " + regExp2.test('xyz'));     // true
-        console.log(regExp2 + " : " + regExp2.test('wxy '));    // true
+        console.log(regExp2 + " : " + regExp2.test('wxy '));    // true // 공백도 한글지 취급되서 true
         console.log(regExp2 + " : " + regExp2.test('xy와xx'));  // true // 내 뒤에 알빠없고 '와'때문에 트루
         console.log(regExp2 + " : " + regExp2.test('xy'));      // false   
         // 걍 바로 뒤에 아무 글자나 오면 true 
