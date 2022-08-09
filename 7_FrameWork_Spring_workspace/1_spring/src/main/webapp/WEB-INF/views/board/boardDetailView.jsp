@@ -45,9 +45,9 @@
 			</tr>
 			<tr>
 				<th>작성날짜</th>
-					<td>
-						${ board.boardCreateDate }
-					</td>
+				<td>
+					${ board.boardCreateDate }
+				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -57,7 +57,7 @@
 					DB에는 엔터가 \r\n으로 들어가서 이를 치환해주는 작업 필요
 				-->
 				
-				<% pageContext.setAttribute("newLineChar", "\r\n"); %> <!-- \r\n 말고 그냥 \n도, \r도 가능하다 -->
+				<% pageContext.setAttribute("newLineChar", "\r\n"); %> <!-- \r\n 말고 그냥 \n도, \r도 가능하다 -->	
 				<td>
 					${ fn:replace(board.boardContent, newLineChar, "<br>") }
 					<input type="hidden" value="${ board.boardContent }" name="boardContent">
@@ -86,7 +86,7 @@
 			<!-- url변수선언 -->
 			<c:url var="bdelete" value="bdelete.bo">	<!-- c:url 변수선언함. 그리고 아래 button태그에서 끌어다 씀 -->
 				 <c:param name="bId" value="${ board.boardId }"/>	<!-- 삭제버튼에 필요한 게시판번호 데이터보내기 -->
-				 <c:param name="renameFileName" value="${ board.renameFileName }"/>
+				 <c:param name="renameFileName" value="${ board.renameFileName }"/> <!-- 게시판이 삭제되면 안에 있는 파일도 같이 삭제되어야하니 같이 데이터전송  -->
 			</c:url>
 			<c:url var="blist" value="blist.bo">  <!-- 게시판목록으로 가는 url설정 -->
 				<c:param name="page" value="${ page }"/> <!-- 보던 게시판으로 돌아가기 위해 page번호 필요 for pagination -->
@@ -106,6 +106,7 @@
 	</form>
 	
 	
+	<!-- 시작페이지,목록보기 이동버튼 -->
 	<p align="center">
 		<button onclick="location.href='home.do'">시작 페이지로 이동</button>
 		<button onclick="location.href='${ blist }'">목록 보기로 이동</button>
@@ -117,26 +118,28 @@
 	
 	<br><br>
 	
+	
+	<!-- 댓글창 -->
 	<table class="replyTable">
 		<tr>
 			<td><textarea cols="55" rows="3" id="replyContent"></textarea></td>
 			<td><button id="rSubmit">등록하기</button></td>
 		</tr>
-	</table>
+	</table>	
 	<table class="replyTable" id="rtb">
 		<thead>
-			<tr>
-				<td colspan="2"><b id="rCount"></b></td>
+			<tr>		
+				<td colspan="2"><b id="rCount"></b></td> <!-- b태그 사이에 댓글(댓글수) 찍혀나옴 -->
 			</tr>
 		</thead>
 		<tbody>
-		
+			<!-- 쓴 댓글 보이는 부분 -->
 		
 		</tbody>
 	</table>
 	
 	<script>
-		/* 댓글 등록 먼저 해 볼 예정 */
+		// 댓글 등록 : jQuery ajax
 		$('#rSubmit').click(function(){
 			var rContent = $('#replyContent').val();
 			var refBId = ${board.boardId};
@@ -156,7 +159,7 @@
 			});
 		});
 		
-		
+		// 등록한 댓글 읽어오기
 		function getReplyList() {
 			$.ajax({
 				url: 'rList.bo',
@@ -164,15 +167,17 @@
 				success: function(data) {
 					console.log(data);
 					
-					// 계속 이어붙기 때문에 공백 넣어주기. 댓글이 이어서 나오면 뷰가..
-					$tableBody = $('#rtb tbody');
+					// 계속 이어붙기 때문에 공백 넣어줘야함
+					$tableBody = $('#rtb tbody'); // 쓴 댓글 보이는 부분 136라인 table태그 안 tbody태그
 					$tableBody.html('');
 					
-					var $tr;
-					var $writer;
+					// 변수선언
+					// var a; 자바스크립트 변수. 흔히 아는 방식으로 스크립트만 사용 가능
+					var $tr;	// var $a; jQuery 변수. jQuery에서 사용하는 내장 함수들을 모두 사용가능
+					var $writer;	
 					var $content;
 					var $date;
-					$('#rCount').text('댓글(' + data.length + ')');
+					$('#rCount').text('댓글(' + data.length + ')'); // 댓글(5) <-댓글5개 달렸다고 알려주는 메세지
 					
 					if(data.length > 0) {
 						for (var i in data) {
