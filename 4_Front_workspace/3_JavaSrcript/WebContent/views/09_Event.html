@@ -38,7 +38,7 @@
         console.log('test2가 실행되면서 test1이벤트를 삭제하였습니다.');
         test1.onclick = null;    // null 집어넣어서 삭제
     }
-    // 버튼 2번을 하고나서 1번을 할려고하면 삭제됬기에 더이상 실행 안됨
+    // 버튼 2번을 하고나서 1번을 할려고하면 삭제되었기에 더이상 실행 안됨
 
     
     // 다른 이벤트 실행방법
@@ -55,6 +55,7 @@
         // onmouseover : 마우스가 올라간것에 대한 이벤트 
     }
     </script>
+
 
 
     <h4>이벤트 발생 객체</h4>
@@ -207,8 +208,99 @@
     </script>
 
 
+<!-- 
 
-    
+# 이벤트 기본 동작이란?
+
+웹브라우저의 구성요소들은 각각 기본적인 동작 방법을 가지고 있다.
+
+- 텍스트 필드에 포커스를 준 상태에서 키보드를 입력하면 텍스트가 입력된다.
+- 폼에서 submit 버튼을 누르면 데이터가 전송된다.
+- a 태그를 클릭하면 href 속성의 URL로 이동한다.
+
+이러한 기본적인 동작들을 기본 이벤트라고 하는데 사용자가 만든 이벤트를 이용해서 이러한 기본 동작을 취소할 수 있다.
+
+## 이벤트 기본동작 취소하는 방법 3가지
+
+
+1)inline
+
+이벤트의 리턴값이 false이면 기본 동작이 취소된다.
+
+<p>
+    <a href="http://opentutorials.org" 
+			onclick="if(document.getElementById('prevent').checked) **return false**;">opentutorials</a>
+</p>
+<p>
+    <form action="http://opentutorials.org" 
+					onsubmit="if(document.getElementById('prevent').checked) **return false**;">
+            <input type="submit" />
+    </form>
+</p>
+
+
+
+2)property 방식
+
+리턴 값이 false이면 기본동작이 취소된다.
+
+<p>
+    <a href="http://opentutorials.org">opentutorials</a>
+</p>
+<p>
+    <form action="http://opentutorials.org">
+            <input type="submit" />
+    </form>
+</p>
+<script>
+    document.querySelector('a').onclick = function(event){
+        if(document.getElementById('prevent').checked)
+            return false;
+    };
+     
+    document.querySelector('form').onclick = function(event){
+        if(document.getElementById('prevent').checked)
+            **return false**;
+    };
+ 
+</script>
+
+
+3)addEventListener 방식
+
+이 방식에서는 이벤트 객체의 preventDefault 메소드를 실행하면 기본 동작이 취소된다
+
+
+<label>prevent event on</label>
+<input id="prevent" type="checkbox" name="eventprevent" value="on" />
+<p>
+    <a href="http://opentutorials.org">opentutorials</a>
+</p>
+<p>
+    <form action="http://opentutorials.org">
+            <input type="submit" />
+    </form>
+</p>
+<script>
+    document.querySelector('a').addEventListener('click', function(event){
+        if(document.getElementById('prevent').checked)
+            **event.preventDefault();**
+    });
+     
+    document.querySelector('form').addEventListener('submit', function(event){
+        if(document.getElementById('prevent').checked)
+            **event.preventDefault();**
+    });
+
+</script>
+
+
+ -->
+
+
+
+
+<!-- 수업에서는 이벤트 기본동작=기본이벤트 의미로 사용한 듯함  -->
 <h2>기본 이벤트를 제거1</h2>
 <form>
     <label>이름 : </label><input type="text" name="name" id="name"><br>
@@ -256,7 +348,7 @@
 
     <h2>기본 이벤트를 제거2</h2>        <!-- 제일 중요 -->    
     <form onsubmit="return test8();"> <!-- onsubmit="" -->
-        <!-- if문의 일치여부 true/false를 type="submit"에서 받는 방법 외에도
+        <!-- if문의 일치여부 true/false를 input type="submit"에서 받는 방법 외에도
              <form>태그의 onsubmit=""에서 리턴받아 처리가능          -->
         <label>이름 : </label><input type="text" name="name" id="name2"><br>
         <label>아이디 : </label><input type="text" name="userId" id="userId2"><br>
@@ -264,7 +356,7 @@
         <label>비밀번호확인 : </label><input type="password" name="passwordConfirm" id="passwordConfirm2"><br>
         <br>
         <input type="submit" value="제출" > 
-                <!-- action속성이 없어서 이동할게 없어서 onsubmit이 true가 되도 더 하게 없음-->
+                <!--  ※당장은 action속성이 없어서 이동할게 없어서 onsubmit이 true가 되도 더 할게 없음-->
         
     </form>
     <script>

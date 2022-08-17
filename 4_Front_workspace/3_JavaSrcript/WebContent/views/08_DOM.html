@@ -25,6 +25,11 @@
         노드 : 태그를 객체와 시켜서 보는 것               <br>
         글자가 안에 들어갈 수 있으면 다 텍스트 노드       <br>
         
+        createElement()
+        createTextNode()
+
+        appendChild()
+
     </P>
     <h3>텍스트노드가 있는 노드 생성</h3>
     <button onclick="test1();"> DOM - Node객체 - 텍스트가 있는 노드 생성 </button>
@@ -57,7 +62,7 @@
     <h3>텍스트노드가 없는 노드 생성</h3>
     <P>
         이미지 태그 만들기
-
+        document.createElement()
     </P>
     <button onclick="test2();"> DOM - Node객체 - 텍스트노드가 없는 노드 생성 </button>
     <div id="area2" class="area"></div>
@@ -85,7 +90,7 @@
     <h2>innerHTML</h2>
     <p> 
         innerHTML : 엘리먼트 전체 반환
-        innerText: 요소 또는 노드의 텍스트 내용을 반환 
+        innerText : 요소 또는 노드의 텍스트 내용을 반환 
     </p>
     <button onclick="test3();">실행확인</button>
     <table id="board">

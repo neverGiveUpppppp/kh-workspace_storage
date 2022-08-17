@@ -136,7 +136,7 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-		<!-- MyBatis Spirng : 스프링이 마바 연결하기 위한 것 -->
+		<!-- MyBatis Spring : 스프링이 마바 연결하기 위한 것 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis-spring</artifactId>
