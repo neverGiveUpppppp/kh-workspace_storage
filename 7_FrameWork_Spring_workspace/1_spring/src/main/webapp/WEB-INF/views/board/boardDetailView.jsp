@@ -181,14 +181,16 @@
 					
 					if(data.length > 0) {
 						for (var i in data) {
-							$tr = $('<tr>');
+							$tr = $('<tr>');	// 위에서 선언한 변수 var $tr;에서 다시 가져다 쓰므로 var 빠지고 $tr만
 							$writer = $('<td>').css('width', '100px').text(data[i].nickName);
 							$content = $('<td>').text(data[i].replyContent);
 							$date = $('<td width="100px">').text(data[i].replyCreateDate);
-						
+							// 읽어올 보드id 보내서 댓글 받아오면, 받아온 댓글내용과 함께 창을 생성까지 해줘야한다. 
+							// 왜냐하면 없는 댓글의 창을 미리 만들어두는 것도 모양이 이상하고, 몇개가 달릴지도 모르기 때문
+							
 							$tr.append($writer);
 							$tr.append($content);
-							$tr.append($date);
+							$tr.append($date);	
 							$tableBody.append($tr);
 						}
 					}else{
