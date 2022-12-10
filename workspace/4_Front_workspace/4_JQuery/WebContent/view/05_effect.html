@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>05_effect</title>
+
+<script src="../js/jquery-3.6.0.min.js"></script>
+
+<style>
+.menu{
+    width: 300px; height: 30px; background: yellowgreen;
+    border-radius: 10px; text-align: center;
+    border-bottom: 1px solid green;     /* 테두리 아랫줄만 만들기. 아랫줄만 없애고 싶으면 none 설정 */
+    cursor: pointer;
+    }
+.contents{
+    border: 1px solid lightgray;
+    width: 300px; height: 200px;
+    display: none;
+}
+
+</style>    
+
+</head>
+<body>
+    <h1>효과</h1>
+    <hr><hr>
+    <h2>show()와 hide()</h2>
+    <p>문서 객체를 크게 하며 보여주거나 작게하며 사라지게 함</p>
+    <button id="show"> 효과 - 보이기(show) </button>
+    <button id="hide"> 효과 -  숨기기(hide) </button><br>
+    <button id="toggle"> 효과 - 토글(toggle) </button><br>
+    <img id="river" src="../images/river1.png"> 
+    <script>
+        $(function() {
+            $('#show').click(function() {
+                // $('#river').show();
+                $('#river').show(300);  // 보이기 속도 조절 가능
+            });
+            $('#hide').click(function() {
+                // $('#river').hide();
+                $('#river').hide(500);  // 숨기기 속도 조절 가능
+            });
+
+
+
+            // 토글 : 집 형광등 불 킬 때 어떤거 누르면 불켜지고 어떤거 누르면 불 꺼지는데
+            // 토글 : 왔다갔다하는 것
+            // 카운트 이용해서 보이게/안보이게 할 수 있음
+            // 토글 버튼
+            // 불린 사용도 괜찮
+            // toggle()은 선택한요소가 보이면 보이지 않게, 보이지 않으면 보이게 한다. 
+            // 매개변수로 완전히 나타날 때까지의 시간을 넘겨줄 수 있다.
+        
+
+            // toggle
+            // 방법1 : boolean
+            // var check = true;
+            // $('#toggle').click(function(){
+            //     if(check){
+            //         $('#river').hide();
+            //     check = false;
+            //     } else{
+            //         $('#river').show();
+            //     check = true;
+            //     }
+            // });
+
+            // 방법2
+            var check = true;
+            $('#toggle').click(function(){
+
+                console.log($('#river').css('display')); // 토글 버튼을 누르면 사진이 있을 때는 display속성이 콘솔에 inline찍힘
+
+                if($('#river').css('display') != 'none'){
+                    $('#river').hide();
+                } else{
+                    $('#river').show();
+                }
+            });
+
+            // 방법3
+            // $('#toggle').click(function(){
+            //     $('#river').toggle();
+            // });
+
+    })
+    </script>
+
+
+    <h2> slideDown()과 slideUp()</h2>
+    <div class="menu"> 첫번째 메뉴</div>
+    <p class="contents"> 내용1 </p>
+    <div class="menu"> 두번째 메뉴 </div>
+    <p class="contents"> 내용2 </p>
+    <div class="menu"> 세번째 메뉴 </div>
+    <p class="contents"> 내용3 </p>
+    <div class="menu"> 네번째 메뉴 </div>
+    <p class="contents"> 내용4 </p>
+    <div class="menu">다번째 메뉴 </div>
+    <p class="contents"> 내용5 </p>
+    <script>
+        $(function(){       
+            // 목표 : 1번 메뉴 누르면 1번 내용이 나오고 다시 버튼 누르면 닫히고, 2-4번까지 반복
+            // 이때 this는 누구의 것일까?
+
+            // 5개의 메뉴 중 클릭한 객체가 콘솔 출력되도록 하는 코드
+            $('.menu').click(function(){    
+            console.log($(this));   // S.fn.init [div.menu] 클릭한 요소의 객체
+
+            // 네꺼에서 다음에 있는 것(p태그)이 디스플레이 none이(?)면
+            // 이프문 생성
+  
+            if($(this).next().css('display') == 'none'){
+                    // $(this).next().slideDown(); // 누르면 열림
+                    $(this).next().slideDown(100); // 열리는 속도 조절 가능
+            }else {
+                // $(this).next().slideUp();   // 누르면 다시 닫힘
+                $(this).next().slideUp(100);   // 닫히는 속도 조절 가능
+            }    
+
+            // slideToggle() : 눌르면 열렸다 바로 닫힘
+            $(this).next().slideToggle(); 
+            // $(this).next().slideToggle(100); 
+
+            });
+        });
+    </script>
+    
+
+
+
+
+    <h2>fadeIn()와 fadeOut()</h2>
+    <button id="fadeIn">fadeIn</button>
+    <button id="fadeOut">fadeOut</button><br>
+    <img id="flower" src="../images/flower1.png"/>
+    <script>
+        $(function(){
+
+            // fadeIn()
+            $('#fadeIn').click(function(){
+                $('#flower').fadeIn();
+                $('#flower').fadeIn(500);   // 수치조절 가능
+            });
+            $('#fadeOut').click(function(){
+                $('#flower').fadeOut();
+                $('#flower').fadeOut(1000); // 수치조절 가능
+            });
+
+            // fadeTo()
+            $('#flower').hover(function() {
+                $(this).fadeTo(700,0);    // 투명도 0이면 화면이 없는 상태임 // 투명도 범위 0~1
+                $(this).fadeTo(700,0.1);  // 투명도 0.1 : // 투명도 얼마나 옇어질 것인가.  
+            },function(){
+                $(this).fadeTo(700,1);
+            });
+
+            // fadeToggle()
+            $('#fadeToggle').click(function(){
+                // $('#flower').fadeToggle();  // 속도 조절 가능
+            })
+
+        })
+    </script>
+
+
+
+
+<br><br><br>
+
+</body>
+</html>

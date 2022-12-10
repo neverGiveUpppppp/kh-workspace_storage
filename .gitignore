@@ -19,6 +19,7 @@
 .git/
 .vscode
 .metadata/
+.idea
 /.metadata/
 */.metadata/
 ##/.metadata/

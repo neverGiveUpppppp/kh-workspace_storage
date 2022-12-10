@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title> 04_event </title>
+
+<script src="../js/jquery-3.6.0.min.js"></script>
+
+<style>
+    .test{
+        width: 150px; height: 50px; border: 1px solid black;
+        text-align: center; display: table-cell; vertical-align: middle;
+    }
+    .outer{width: 100px; height: 50px; background: powderblue; padding: 30px;}
+    .inner{width: 100%; height: 100%; background: white;}
+    .reverse{background: black; color: white;}   
+
+
+</style>
+
+</head>
+
+<body>
+
+    <h1>이벤트</h1>
+    <hr><hr>
+    <h2>이벤트 관련 속성</h2>
+    <p>
+        이벤트 핸들러의 매개인자로 event객체 전달<br>
+        인라인에서 다른 키워드 불가
+
+        event : 현재 발생한 이벤트를 넘겨주는 것
+
+    </p>
+        
+    <!-- <button onclick="test1(e)">실행확인</button> -->
+    <button onclick="test1(event)"> 이벤트 핸들러의 매개인자로 event객체 전달 - 실행확인</button>    <!-- test1 매개변수를 e가 아닌 event로 -->
+                            <!-- 인라인에서는 event라고 명시해야 이벤트를 넘겨줌. 약속어 -->
+    <script>
+        function test1(e){
+            console.log(e); // PointerEvent {isTrusted: true, pointerId: 1, width: 1, height: 1, pressure: 0, …}
+            console.log(e.target); // .target() : 어디에서 이벤트가 발생했는지 확인
+        }
+    </script>    
+
+
+
+<h2>이벤트 연결 종류</h2>
+    <h3>on()와 off()</h3>
+    <p>
+        on() : 현재 존재하는 문서 객체에 이벤트 연결<br>
+        off() : on()으로 연결된 이벤트 제거
+
+        <!-- on() : 선택한 요소와 자식 요소에 대한 하나 이상의 이벤트 핸들러를 연결 -->
+    </p>
+    <div id = "onOff" class="test"> 이벤트 연결 종류 : on()와 off() - 기본 상태로 back</div>
+    <script>
+        $(function() {
+            // $('#onoff').click(){} // 기존방식
+            $('#onOff').on('click', function(){ // 클릭 이벤트를 연결해라. 그리고 클릭하면 해당 함수를 실행해라
+                console.log(event.target);
+            });
+             
+
+            $('#onOff').on({'mouseenter':function(){    // on() 안에 mouseenter, mouseleave, click 3개의 커맨드로 묶임. 
+                $(this).css('background', 'beige').text('마우스 올라감'); // this는 onOff를 의미 -> 선택자로 지정한 값을 의미한다
+            },'mouseleave':function(){                 // mouseleave : 마우스 떠난다
+                $(this).css('background', 'powderblue').text('마우스 내려감');
+            }, 'click':function(){
+            $(this).off('mouseenter').off('mouseleave').css('background', 'white').text('기본 상태'); // .off() : on()의 반대. on()으로 만든 이벤트를 제거
+            // $(this).off('mouseenter','mouseleave').css('background', 'white').text('기본 상태'); // off를 같이 묶으면 기본상태를 눌러도 이벤트가 계속 발동되는 상태
+            }});
+
+        });
+    </script>
+
+
+
+
+    <h3>one()</h3>
+    <p>이벤트를 한 번만 연결할 때 사용</p>
+    <!-- one() : 선택한 요소에 대해 하나 이상의 이벤트 핸들러를 연결하고 이벤트가 발생할 때 실행할 함수를 지정 -->
+    <div id="eventOne" class="test"> 이벤트를 한 번만 연결할 때 사용 - 기본 상태로 back</div>
+    <script>
+        $(function(){
+            // one() : 이벤트를 한 번만 연결할 때 사용
+            $('#eventOne').one('click', function(){
+                alert('처음이자 마지막 이벤트 실행');
+            });
+        });
+    </script>
+
+
+
+
+    <h2>이벤트 종류</h2>
+    <h3>마우스 이벤트</h3>
+
+    <h4>
+
+        mouseover/mouseout(), mouseenter/mouseleave()              <br>
+
+        over/out은 div영역은 개별로 인식하여 in out 표시,           <br>
+        enter/leave는 부모자식 영역을 한개의 영역으로 인식           <br>
+
+        차이 : 자식 요소한테도 이벤트 발생시킬 것이냐 아니냐         <br>
+            over/out : 자식 요소한테 이벤트 발생 o                  <br>
+            enter/leave : 자식 요소한테 이벤트 발생 x               <br>
+        <!-- 
+            over/out는 내부 태그로 이동 할때도 벗어난 걸로 취급되고 enter/leave는 내부 태그까지 영역으로 취급
+            over/out은 내부영역은 개별로 인식, enter/leave는 한개의 영역으로 인식
+        -->
+    </h4>
+    <div class="outer" id="mouseEvent1">
+        <div class="inner"></div>
+    </div><br>
+    <div class="outer" id="mouseEvent2">
+        <div class="inner"></div>
+    </div>
+    <script>
+        $(function(){
+            $(' #mouseEvent1').mouseover(function(){
+            console.log($(this).attr('id') + ' over!');
+            });
+            $(' #mouseEvent1').mouseout(function(){
+            console.log($(this).attr('id') +' out!');
+            });
+            $(' #mouseEvent2').mouseenter(function(){
+            console.log($(this).attr('id') +' enter!');
+            });
+            $(' #mouseEvent2').mouseleave(function(){
+            console.log($(this).attr('id') + ' leave!');
+            });
+        });
+    </script>
+
+
+
+
+    <h4>hover()</h4>
+    <p>mouseenter()와 mouseleave()를 동시에 사용하는 효과</p>
+    <div id="hoverEvent" class='test'> mousehover() </div>
+    <script>
+        $(function(){
+            // 실습예제
+            // hoverEvent라는 div에 마우스가 올라가면 배경 검은색/글자색 하얀색으로 바뀌고
+            // 마우스가 내려가면 배경 하얀색/글자 검은색으로 바뀌게 하기
+
+            // on() 적용시도
+            // $('#hoverEvent').on('mousehover',function(){
+            //     $(this).css({'background':'black','color':'white'});
+            // }),'mouseleave', function(){
+            //     $(this).css({'background':'white','color':'black'})
+            // }
+
+
+            // 모범답안(enter/leave)
+            // 기존 : 따로따로 만들거나 메소드체이닝으로 마우스엔터/리브를 구현했었음
+            $('#hoverEvent').mouseenter(function(){
+                $(this).css({'background' : 'black', 'color' : 'white'});
+            }). mouseleave (function(){
+                $(this).css({'background' : 'white', 'color' : 'black'});
+            });
+
+            // 모범답안(hover)
+            $('#hoverEvent').hover(function(){
+                console.log('mouse-in');    // 마우스 들어갈 때(enter)
+                $(this).css({'background' : 'black', 'color' : 'white'});
+            }, function(){
+                console.log("mouse-out");   // 마우스 나갈 때(leave)
+                $(this).css({'background' : 'white', 'color' : 'black'});
+            });
+
+            // .reverse  : addClass() + removeClass ()  
+            $('#hoverEvent').hover(function(){
+                console.log('mouse-in');    // 마우스 들어갈 때(enter)
+                $(this).addClass('reverse');    // reverse클래스를 추가해서 css스타일 적용            
+            }, function(){
+                console.log("mouse-out");   // 마우스 나갈 때(leave)
+                $(this).removeClass('reverse'); // reverse클래스를 삭제해서 적용했던 css가 삭제되며 원상태로 돌아오는 것
+            });
+
+            // toggleClass() : 선택된 요소에 class가 있으면 삭제하고 없으면 추가한다
+            // toggle()은 선택한요소가 보이면 보이지 않게, 보이지 않으면 보이게 한다. 매개변수로 완전히 나타날 때까지의 시간을 넘겨줄 수 있다.
+            $('#hoverEvent').hover(function(){
+                console.log('mouse-in');
+                $(this).toggleClass('reverse'); // 원래있던 class='test'에서 class='reverse'로 바꿈
+            }, function(){
+                console.log("mouse-out"); 
+                $(this).toggleClass('reverse');
+            });
+
+        });
+    </script>
+
+
+    <h3>키보드 이벤트</h3>
+    <h4>1) keydown (), keypress (), keyup()</h4>
+    <textarea cols="40" rows="5" id="keyEvent"></textarea>
+    <script>
+        $(function() {
+            $('#keyEvent').keydown(function(e){         // 키를 누르고 있을 때
+                console.log('keydown : ' + e.key);
+            });
+            $('#keyEvent').keypress(function(e){        // 키가 입력이 되고 있을 때
+                console.log('keypress : ' + e.key);     // 한글은 콘솔에 결과안뜸. 영문,특문기호 같은 것만 인지
+            });
+            $('#keyEvent').keyup(function(e){           // 키가 올라왔을 때
+                console.log('keyup : ' + e.key);
+            });
+            // 키보드 마다 달라서 하나하나 확인해봐야한다
+            // function(e)에서 함수에 매개변수 e(event)가 필요한 이유
+            // e.key(매개변수명.key)가 필요한건 어떤 키가 눌려야하는지 알아야하기 때문
+            // .click(function(){ 같은 경우 매개변수가 없어도 되므로 안쓰는 것
+            //      인라인 코드에서는 event 예약어 쓰는게 필수
+        })
+    </script>
+
+
+    <h4>동적으로 글자수 세기</h4>
+    <span id="counter">0</span>/150<br>
+    <textarea cols="70" rows="5" id="textTest"></textarea>
+    <script>
+        $(function(){
+        //     var count = 0;
+		// 	$('#textTest').keydown(function(e){
+		// 		count += 1;
+        //         console.log(count);
+        //         $('#counter').text(count);
+        //         // $('#counter').html(count); // .html()로도 가능
+		// 	})
+		// console.log(count);
+
+            // 버젼1
+            // 150자 넘어서면 빨간 글씨로 알림. 넘어서도 계속 쓸 수는 있음
+            var count = 0;
+            $('#textTest').keydown(function(e){
+				count += 1;
+                console.log(count);
+                $('#counter').text(count);
+                // $('#counter').html(count); // .html()로도 가능
+
+                if(count >= 150){
+                    $('#counter').css({'color':'red'});
+                }
+			})
+
+            
+            // 버젼2
+            // 150자 넘어가면 쓸 수 없게 하는 것
+            
+            // 방법1 : readonly
+            // var count = 0;
+            // $('#textTest').keydown(function(e){
+            //     if(count < 150){
+            //         count += 1;
+            //         // $('#counter').attr('readonly',true);
+            //     }
+			// 	// count += 1;
+            //     console.log(count);
+            //     $('#counter').text(count);
+            //     // $('#counter').html(count); // .html()로도 가능
+
+            //     if(count >= 150){
+            //         $('#textTest').attr('readonly',true);
+            //     }
+			// })
+
+            // 방법2 : disabled
+            var count = 0;
+            $('#textTest').keydown(function(e){
+				count += 1;
+                console.log(count);
+                $('#counter').text(count);
+                // $('#counter').html(count); // .html()로도 가능
+
+                if(count >= 150){
+                    $('#textTest').attr('disabled',true);
+                }
+			})
+
+
+        });
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

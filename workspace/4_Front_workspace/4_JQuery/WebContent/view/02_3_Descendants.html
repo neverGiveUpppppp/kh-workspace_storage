@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>02_3_Descendants</title>
+
+
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+
+<style>
+    .wrap *{
+        border: 1px solid lightgray;
+        display:block; padding:5px; margin:15px;
+    }
+    .type {width: 500px;}
+</style>
+
+
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <hr><hr>
+    <h2>탐색 메소드</h2>
+    <h3>Descendants 메소드</h3>
+    <p>선택한 요소의 하위 요소들을 선택할 수 있는 메소드</p>
+    <div class="wrap">
+        <div class="type">div (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li(direct parent)
+                    <span>span1</span>
+                </li>
+                <li>li(direct parent)
+                    <span>span2</span>
+                </li>
+            </ul>
+        </div>
+        <div class="type">div (grandparent)
+            <p> p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            // 하위 메소드 둘러보자
+
+            var style1 = {'color':'red','border':'2px solid red'};
+            var style2 = {'color':'blue','border':'2px solid blue'};
+            var style3 = {'color':'green','border':'2px solid green'};
+            var style4 = {'color':'pink','border':'2px solid pink'};
+            var style5 = {'color':'orange','border':'2px solid orange'};
+            
+            // children() : 선택한 요소의 모든 직계 자식을 반환
+            // $('.wrap').children().css(style1);       // <div class="wrap">의 하위요소들 적용
+            // $('.wrap').children().children().css(style2);  // 자손의 자손에 적용 : ul,p // <div class="wrap"> 아래 <div class="type">div (great-grandparent) 아래  <ul>ul (grandparent)부터 하위요소들 적용
+            // $('.wrap').children().children('ul').css(style3); //  자손의 자손 ul에만 적용 : ul //
+            
+
+
+            // find() : 마지막 하위 항목까지 선택한 요소의 하위 요소 반환
+
+            // $('.wrap').find('span').css(style4);// find()  // 클래스명 wrap 중 후손 중 span태그에 전부 적용    
+            // $('.wrap').find('li').css(style4);// find()  // 클래스명 wrap 중 후손 중 li 및 하위태그에 전부 적용    
+            // border는 상속x  color는 상속o
+            // w3school에서 검색에서 css color property에 보면 상속,애니메이션 여부 등 다 나옴
+            // // 모든 후손 중에 원하는 부분만 찾을 수 있음. children()보다 후손후손후손 이런 절차를 줄일 수 있다
+
+            
+
+
+            // // span 1,2만 주황색으로 바꾸기
+            // // (div가 다른 span이 3개 존재)
+
+            // // 방법1
+            // $('.wrap').children().children().children().children().css(style5);  
+
+            // // 방법2  
+            // $('.type').children().children().children('span').css(style5);    
+            // $('.wrap').children().children('ul').find('span').css(style5); // .children().children()까지만 다른 div의 p태그 포함이지만 'ul'명시 하므로 아래꺼가 포함 안되게 명시해줌
+            // // $('.type').children().children('span').css(style5);    
+
+            // // 방법3 : find 사용
+            // $('.wrap').find('ul').find('span').css(style5); // 클래스wrap 중에 ul태그를 찾고 ul아래 중에 span태그를 찾아서 적용
+            // $('.wrap').find('li').find('span').css(style5); // ul과 마찬가지지만 li 아래서 span찾음
+            // $('.wrap').find('ul span').css(style5);
+
+            // // 방법4
+            // $('li').children().css(style5);
+
+
+        }) ;
+    </script>
+        
+
+
+</body>
+</html>

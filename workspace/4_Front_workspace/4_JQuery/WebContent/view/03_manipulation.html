@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>03_manipulation</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<style>
+    .highlight_0{background:red;}
+    .highlight_1{background:orange;}
+    .highlight_2{background:yellow;}
+    .highlight_3{background:green;}
+    .highlight_4{background:blue;}
+
+    .nemo{width: 100px; height: 100px; background: orange;}
+
+</style>
+</head>
+<body>
+    <h1>객체 조작</h1>
+    <hr><hr>
+    
+    <h2>기본 설정</h2>
+    <h3>each()</h3>
+    <p>
+        일치하는 각 요소에 대해 실행할 함수를 지정,                 <br>
+        return false를 사용하여 루프를 조기에 중지할 수 있음        <br><br>
+
+        for in문과 비슷한 메소드로 객체나 배열의 요소 검사      <br>
+        <!-- 안에있는 요소 반복하겠다는 의미 -->
+        <b>1) $.each(object, function(index,item){})</b><br> <!-- object : 어떤 객체를 돌릴지 function : 대상 메소드 // 포인문 자체가 안에 돌릴 값이 지정되어 작동하기 때문에 each도 비슷돌린다 -->
+        <b>2) $(선택자).each()</b><br><!-- 어떤 객체를 돌릴지 선택자로 선택되어있기 때문에 그러고나서 돌리는거니 매개변수에 오트젝트 필요없고 바로 펑션만 필요한 것 -->
+
+                - index : 배열의 인덱스 또는 객체의 키                  <br> 
+                - item : 해당 객체에서 인덱스 또는 키가 가진 값          <br>
+   
+    </p>
+
+    <div id="urlDiv"></div>
+    <script>
+        var arr = [
+            {name: '네이버', link : 'https://www.naver.com'},
+            {name: '구글', link : 'http://www.google.com'},
+            {name: 'w3c', link : 'http://www.w3c.com'},
+            {name: 'w3cschool', link: 'http://www.w3schools.com'}
+        ];
+// 비어있는 변수
+// 4개 중에 객체를 선택해야하니, 방법1 사용 : $.each(object, function(index,item){})
+    $(function() {
+        // 1) $.each(object, function(index,item){})
+        var output = '';
+        $.each(arr, function(index, item){  // index, item 안에 매개변수는 고정값
+        // console.log(index); // 0123
+        // console.log(item);  // {name: '네이버', link: 'https://www.naver.com'} {name: '구글', link: 'http://www.google.com'} ... {name: 'w3cschool', link: 'http://www.w3schools.com'}
+        // 제이쿼리 반복문은 따로 있고 반복시키는 메소드라고 생각하자
+        
+        // 속성에 접근하는 방법 2가지 
+        // 1) 객체명['속성명']
+        // 2) 객체명.속성명
+            // item 객체의 속성에 접근하기위해 item.link로 접근
+            output += "<h4><a href='" + item.link + "'>"  + item.name + "</a></h4>"; // 속성접근 방법2 사용. 객체.속성명
+            console.log(output);         
+            
+        });
+        
+        // innerHTML은 js꺼라 없는 함수라고 뜸 + 적용방식 틀림 -> js랑 jquery랑 헷갈린 케이스
+        // 적용방식(코드)을 제이쿼리식으로 바꾸면 에러는 안뜨나  적용은 안됨
+        // $('#ur1Div').innerHTML = output; // 틀린 대답
+        
+        // innerHTML을 쓸려면 $를 안붙이고 
+        //document.getElementById('urlDiv').innerHTML = output;
+
+        $('#urlDiv').html(output);  // JS의 innerText와 같은 역할이 제이쿼리에서는 text()였다 마찬가지로 html도 html()
+
+    });
+    </script>
+
+
+    <div id="itemDiv">
+        <h4>item-0</h4>
+        <h4>item-1</h4>
+        <h4>item-2</h4>
+        <h4>item-3</h4>
+        <h4>item-4</h4>
+    </div>
+    <script>
+        $(function(){
+            // 2) $(선택자).each() 사용
+            $('#itemDiv>h4').each(function(index, item){
+                console.log(index);
+                console.log(item);
+                
+                // addClass() : 선택된 요소에 클래스 추가
+                // 해당 요소에 class속성을 추가하고 값 넣는 메소드
+                $(this).addClass("highlight_" + index);  // this내가지금돌리고있는 대상에다가 -> addClass():선택된 요소에 클래스 추가
+                
+            });
+        });
+    </script>
+        
+    <br><hr><br>
+
+    <h2>객체 생성 및 제거</h2>
+    <h3>요소 추가</h3>
+    <ul id="names">
+        <li id="nam">남나눔</li>
+        <li id="ryu">류라라</li>
+        <li id="mun">문미미</li>
+        <li id="song">송성실</li>
+    </ul>
+        
+    <button onclick="addElement();">요소 추가</button>
+    <script>
+        function addElement() {
+          
+            // 첫번째 패턴 : 호출하는 요소가 먼저 뒤에 추가 혹은 수정할 내용값이 뒤에온다
+            // 두번째 패턴 : 추가할 내용이 먼저오고 호출할 요소가 뒤에 나옴
+            
+            
+            // append() : 맨 뒤에 이어붙이기 // 선택한 요소의 끝에 지정된 내용을 삽입
+            // 추가해. 어디에 추가해. 추가되는 자체
+            $('#names').append('<li id="yoon">윤예의</il>'); 
+            
+            // appendTo() : 선택한 요소의 끝에 HTML 요소를 삽입
+            // 추가되. 어디에 추가되? 어디를 지정해줘야하니 appendTo
+            $('<li id="yoon">윤예의</li>').appendTo('#names')
+
+            // prepend() : 문장 맨 앞에 추가 // 선택한 요소의 시작 부분에 지정된 내용을 삽입
+            $('#names').prepend('<li id="kang">강건강</li>');
+
+            // prependTo() : // 선택한 요소의 시작 부분에 HTML 요소를 삽입
+            $('<li id="kang">강건강</li>').prependTo('#names');
+
+            // before() : 선택한 요소의 앞에 지정된 내용을 삽입
+            $('#song').before('<li id="park">박보배</li>'); // 송성실 앞에 박보배가 들어감.
+
+            // insertBefore() : 선택한 요소 앞에 HTML 요소를 삽입
+            $('<li id="park">박보배</li>').insertBefore('#song');
+            
+            // after() : 선택한 요소의 바로 뒤에 지정된 내용을 삽입     // append가 맨뒤 추가 after가 기준점 뒤에 추가
+            $('#nam').after('<li id="do">도대담</li>');
+            
+            // insertAfter() : 선택한 요소 뒤에 HTML 요소를 삽입
+            $('<li id="do">도대담</li>').insertAfter('#nam');  // 남나눔 뒤에 도대담이 들어감.
+            
+            // A .after(B) : A 뒤에 B를 추가
+            // A .insertAfter(B) : B 뒤에 A를 추가
+        }
+    </script>
+        
+
+
+
+    <br><hr><br>
+
+<!-- 
+    <h2>객체 복제</h2>
+    <p>
+        .clone() : 자식 노드, 텍스트 및 속성을 포함하여 선택한 요소의 복사본을 만듦
+    </p>
+    <div id="cloneDiv"></div>
+    <script>
+        $(function() {
+            console.log($('#urlDiv').clone());  // S.fn.init [div#urlDiv, prevObject: S.fn.init(1)]
+            $('#cloneDiv').html($('#urlDiv').clone()); // #cloneDiv 에 #urlDiv 의 내부에 있는 값데이터 .clone() 전부복제
+        });
+    </script>
+
+
+    <br><hr><br>
+
+
+    <h3>요소 삭제</h3>
+    <div id="colorDiv" class='colorDiv'>
+        <ul id="colorUl">
+            <li>pink</li>
+            <li>skyblue</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return1();"> 되돌리기 </button>
+
+    <div id="colorDiv2" class='colorDiv'>
+        <ul id="colorUl2">
+            <li>pink</li>
+            <li>skyblue</1li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return2();"> 되돌리기 </button>
+
+    <div id="colorDiv3" class='colorDiv'>
+        <ul id="colorUl3">
+            <li>pink</li>
+            <li>skyblue</1li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return3();"> 되돌리기 </button>
+    <script>
+        var removeVal;
+        var detachVal;
+        var emptyVal;
+        
+        $(function() {
+            // 각 li에 마우스를 올리면 글자는 하얗게, 배경색은 내용대로
+            // 마우스가 1i를 벗어나면 배경은 하얗게, 글자는 까맣게
+            //     ex. pink에 마우스를 올리면 배경은 pink, 글자는 하얗게
+
+            // $('.colorDiv li').mouseenter(function(){ 
+            //      $(this).css({'background': $(this).text(),'color':'white'});
+            //  }).mouseout(function(){
+            //      $(this).css({'background':"white",'color':'black'});
+            //  });
+            
+
+            // 모범 답안
+            $('.colorDiv').find('li').mouseenter(function(){
+                var backgroundColor = $(this).text();
+            $(this).css({'background': backgroundColor, 'color':'white'});
+            }).mouseout(function(){
+                $(this).css({'background': 'white', 'color':'black'});
+            });    
+            // 색 변하면서 앞에 li 불릿기호가 사라지는 것처럼 보이나 사라진게 아닌, 글씨색과 같이 흰색이여서 안보이는 것 뿐
+
+
+            // 각 li에 마우스를 올리면 글자는 하얗게, 배경색은 내용대로 : 1.li 접근 : li가 여러개라 클래스 colorDiv에 접근할 것임
+            //                                                      //  2.mouseover : 마우스올리면                  
+            // 마우스가 1i를 벗어나면 배경은 하얗게, 글자는 까맣게    //  3.li에 대한 접근값을 가지고 있기에 this 사용하고 ... this를 
+            //     ex. pink에 마우스를 올리면 배경은 pink, 글자는 하얗게
+
+        
+            // 삭제 방법 3가지
+            // 1) remove()
+            // 2) detach()
+            // 3) empty()
+
+            // 1) remove() :  데이터 형태는 유지 이벤트는 삭제
+            // 2) detach() : 데이터 형태, 이벤트 둘 다 유지
+            // 3) empty() : 데이터 유지x  반환값x   삭제하고 끝
+            // removeVal = $('#colorUl').remove();
+            detachval = $('#colorUl2').detach();
+            emptyVal = $('#colorUl3').empty();
+
+            console.log(removeVal);
+            console.log(detachVal);
+            console.log(emptyVal);
+
+            function return1() {
+                 $('#colorDiv').append(removeVal); // 데이터 형태는 유지 이벤트는 삭제
+             }
+             function return2() {
+                 $('#colorDiv2').append(detachVal);// 데이터 형태, 이벤트 둘 다 유지
+             }
+             function return3() {
+                 $('#colorDiv3').append(emptyVal); // 데이터 유지x  반환값x   삭제하고 끝
+             }
+    });   
+    </script>
+         -->
+===============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>객체 복제</h2>
+   <div id="cloneDiv"></div>
+   <script>
+      $(function() {
+         console.log($('#urlDiv').clone());
+         $('#cloneDiv').html($('#urlDiv').clone());
+      });
+      //.clone()은 선택한 요소를 복제합니다.
+      
+   </script>
+   
+   <h3>요소삭제</h3>
+   <div id="colorDiv" class='colorDiv'>
+      <ul id="colorUl">
+         <li>pink</li>
+         <li>skyblue</li>
+         <li>yellow</li>
+         <li>yellowgreen</li>
+      </ul>
+   </div>
+   <button onclick="return1()">되돌리기</button>
+   
+   <div id="colorDiv2" class='colorDiv'>
+      <ul id="colorUl2">
+         <li>pink</li>
+         <li>skyblue</li>
+         <li>yellow</li>
+         <li>yellowgreen</li>
+      </ul>
+   </div>
+   <button onclick="return2()">되돌리기</button>
+   
+   <div id="colorDiv3" class='colorDiv'>
+      <ul id="colorUl3">
+         <li>pink</li>
+         <li>skyblue</li>
+         <li>yellow</li>
+         <li>yellowgreen</li>
+      </ul>
+   </div>
+   <button onclick="return3()">되돌리기</button>
+   
+   <script>
+    var removeVal;
+    var detachVal;
+    var emptyVal;
+    
+    $(function() {
+      // 각 li에 마우스를 올리면 글자는 하얗게, 배경색은 내용대로
+      //       ex. pink에 마우스를 올리면 배경은 pink, 글자는 하얗게
+      // 마우스가 li를 벗어나면 배경은 하얗게 글자는 까맣게 
+      
+      
+      //변수생성 x version
+//       $('.colorDiv').find('li').mouseenter(function() {
+//          $(this).css({'background': $(this).text(),'color':'white'});
+//       });
+//       $('.colorDiv').find('li').mouseout(function() {
+//          $(this).css({'background':'white','color':'black'});
+//       });
+
+      
+      //변수 생성 version
+      $('.colorDiv').find('li').mouseenter(function() {
+         var backgroundColor = $(this).text();
+         $(this).css({'background': backgroundColor,'color':'white'});
+      }).mouseout(function() {
+         $(this).css({'background':'white','color':'black'});
+      });
+      
+      //find안쓰고 $('.colorDiv>ul>li') 이렇게 해도 되나용? O
+
+      
+      removeVal = $('#colorUl').remove();      
+      detachVal = $('#colorUl2').detach();      
+      emptyVal = $('#colorUl3').empty();      
+      
+      console.log(removeVal);
+      console.log(detachVal);
+      console.log(emptyVal);
+      
+      //remove() detach() empty()  → 요소삭제 후 삭제한 요소 반환
+   })
+   function return1() {
+      $('#colorDiv').append(removeVal);
+   }
+   function return2() {
+      $('#colorDiv2').append(detachVal);
+   }
+   function return3() {
+      $('#colorDiv3').append(emptyVal);
+   }
+   
+//    remove는 이벤트가 적용이안되고 (데이터 형태는 유지, 이벤트는 삭제)
+//    detach는 모든게 다 되돌려지고 (데이터 형태 ,이벤트 둘다 유지 )
+//   empty (데이터형태, 이벤트 둘다 삭제) →삭제하고 리턴만하고 끝 (유지하는것 無)
+   
+
+   </script>
+
+
+
+
+=========================================================================
+
+
+    <h3>객체조작 테스트</h3>
+    <div class="nemo">
+        <button class="boksa">복사</button>
+        <button class="sakje">삭제</button>
+    </div>
+    <div id="content"></div>
+    <script>
+    $(function(){ 
+        // 복사를 누르면 div에 똑같이 복사되서 들어가고     // 누르면 onclick() 복사 clone()
+        // 삭제를 누르면 오렌지색 들어간게 삭제되게 만들 것 //  삭제 remove()
+
+        // 모범답안
+        // 방법1
+        // $('.boksa').click(function(){
+        //     $(this).parent().clone().appendTo("#content");   // 패런트 복제한걸  #content에 붙임
+        // }); // 복사한 다른 칸은 복사를 못하며, id까지 복사되니 문제
+        //     // 이럴 때는 id가 아닌 클래스로 호출. id는 유일해야하는 pk역할 하기 때문
+        // $('.sakje').click(function(){
+        //     $(this).parent().remove();  // 자기 자신만 삭제라 복제된 다른 데이터는 삭제가 안됨
+        // });
+        // 문제점 : 1) 내 요소자체만 삭제
+        //          2) 이벤트 복사가 안됨
+
+        // 해결방안 적용 코드 : clone() 매개변수에 true추가
+        $('.boksa').click(function(){
+            $(this).parent().clone(true).appendTo("#content");   // 패런트 복제한걸  #content에 붙임
+        }); // 복사한 다른 칸은 복사를 못하며, id까지 복사되니 문제
+        $('.sakje').click(function(){
+            $(this).parent().remove();  
+        });
+
+        // 첫 박스만 복사삭제가 되고 나머지는 안되는 이유
+        // 이 펑션은 처음에 페이지 로드 될 때 상태 페이지 로드된 것이기에 적용되나, 
+        // 추가 메소드들로 만들어진 데이터들(복사클릭으로 만들어진 박스들)은이 적용이 불가능한 것
+        // 즉, 첫 박스는 처음 페이지 로드 시 만들어진거라 기능 적용되나, 추가 메소들도 만들어진 박스들은 기능 적용안됨
+        // 해결 : clone() 안에 true 추가
+        // true 의미 : clone은 요소만 복사하지만 true를 붙이면 이벤트까지 같이 복사
+        // 방법1
+        // 이 함수는 처음 페이지 로딩될 때 기준 그때 상태페이지를 읽는 것이므로 버튼을 눌렀을 때 새로 동적으로 생성(추가)된
+        // 요소들은 인지할 수 없는 요소임. 고로 적용안된다
+
+        // 방법2
+        // 문서 자체에 document를 넣어 계속 읽어들이는 방법
+        // $(document).on('click', '.boksa', function(){      // on : 이벤트를 계속 걸어두는 의미
+        //     $(this).parent().clone().appendTo('#content');
+        // }).on('click', '.sakje', function(){
+        //     $(this).parent().remove();
+        // });
+        // 이벤트 핸들러 : 이벤트를 발생 시키는 모든 것
+
+    // 방법1     
+    // on()로 이벤트를 document 전체에 걸어두어 이벤트 조건이 만족됐을 때 항시 발동할 수 있게 하는 로직        
+
+
+    });
+    </script>
+
+
+
+
+
+
+</body>
+</html>
+
+

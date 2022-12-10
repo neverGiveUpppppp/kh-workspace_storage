@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>02_2_Ancestors</title>
+
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+
+<style>
+        .wrap *{
+                border: 1px solid ligthgray;
+                display:block; padding:5px; margin:15px;
+        }
+        .type {width: 500px;}
+</style>
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <hr><hr>
+    <h2>탐색 메소드</h2>
+    <h3>Ancestors메소드</h3>
+    <p>선택한 요소의 상위 요소들을 선택할 수 있는 메소드</p>
+    <div class="wrap">
+        <div class="type">div (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li(direct parent)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+        <div class="type">div (grandparent)
+            <p> p (direct parent)
+                <span></span>
+            </p>
+        </div>
+    </div>
+    
+
+<!-- 
+
+    부모,조상에 css 적용시, 자식에도 적용됨
+
+ -->
+
+    <script>
+        $(function(){
+        console.log($('span').parent()); // S.fn.init(2) === s의미
+
+        $('span').parent().css({'color':'red','border':'2px solid red'});   // span은 바로 상위 부모
+        // $('span').parents().css({'color':'blue','border':'2px solid blue'});        // 모든 상위 태그 전체 적용  // body태그까지 나옴
+        // $('span').parents('ul').css({'color':'blue','border':'2px solid blue'});    // ul과 일치하는 상위요소만 적용
+                
+        // parentsUntil() : 매개변수로 넘겨준 조상태그 전까지 반환
+        $('span').parentsUntil('div').css('background','beige');    
+          // div까지해서 가져올건데 div는 빼고 가져옴 = div 전까지
+
+
+        });
+    </script>
+        
+
+
+
+    
+</body>
+</html>
+
+
+

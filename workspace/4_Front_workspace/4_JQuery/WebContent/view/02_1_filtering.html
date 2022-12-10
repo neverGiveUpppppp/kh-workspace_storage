@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>02_1_filtering</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <hr><hr>
+    <h2>필터링 메소드</h2>
+    <p>필터 메소드를 통해 문서 객체 선택</p>
+    <h4 class="test">test-a</h4>
+    <h4 class="test">test-b</h4>
+    <h4 class="test">test-c</h4>
+    <h4 class="test">test-d</h4>
+    <h4>test-e</h4>
+    <h4 class="test">test-f</h4>
+
+    <script>
+        // 선택자말고 필터링메소드로 접근해볼것
+        $(function(){
+            // 선택자 연결
+            //$('h4:even').css('background','black');   // (제로베이스) 짝수번째면 연결하겠다
+
+            // filter()
+            // 필터메소드 사용(위와 같은 효과)
+            $('h4').filter(':even').css({'background':'tomato','color':'white'});       // even
+            $('h4').filter(':odd').css({'background':'yellowgreen','color':'white'});   // odd
+
+            // first()
+            $('h4').first().css('font-size','25px');
+            
+            // last()   
+            // text()
+            $('h4').last().text(); // // text() : () 안 텍스트 내용 추출    // val() value 기능이지만 input태그가 아니라 사용x. js로 치자면 innerText
+            // text('이안에 텍스트를 집어넣으면') 값도 수정이 가능함
+            console.log($('h4').last().text()); // test-f : 모를 때는 console.log 찍어보자
+
+            // eq() : 선택한 요소의 인덱스 번호에 해당하는 요소를 찾음
+            $('h4').last().text($('h4').last().text() + " : 마지막 요소");  // innerText
+            $('h4').eq().text($('h4').eq(3).text() + " : eq()메소드로 필터링"); //인덱스3번째 eq~ 텍스트 넣어짐
+            
+            // not()
+            $('h4').not('.test').css({'background':'yellow','color':'black'});  //test라는 클래스 존재하지 않는애만
+           
+        })
+    </script>
+</body>
+</html>

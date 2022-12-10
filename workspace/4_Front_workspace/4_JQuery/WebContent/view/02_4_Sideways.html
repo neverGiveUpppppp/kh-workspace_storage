@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>02_4_Sideways</title>
+
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+
+<style>
+    .wrap *{
+        border: 1px solid lightgray;
+        display:block; padding:5px; margin:15px;
+    }
+</style>
+
+</head>
+<body>
+    <h1>객체 탐색</h1>
+    <hr><hr>
+    
+    <h2>탐색 메소드</h2>
+    <div class="wrap">div (parent)
+        <p>p</p>
+        <span>span</span>
+        <h4>h4</h4>
+        <h5>h5</h5>
+        <p>p</p>
+    </div>
+
+    <script>
+        $(function(){
+            // 규칙 : 기준점, 끝 기준점은 범위 적용에서 제외
+
+            // siblings() : 동레벨(동위선택자) 요소들을 리턴 // 선택한 요소의 모든 형제 요소를 반환
+            // $('h4').siblings().css({'border':'2px solid red', 'color':'red'});
+            // $('h4').siblings('p').css({'border':'2px solid red', 'color':'orange'}); // p태그만 따로 적용
+            
+            // // // next() : 다음     // 선택한 요소의 다음 형제 요소를 반환
+            // $('h4').next().css({'border':'2px solisd blue', 'color':'blue'});
+            // // nextAll() : 기준점 뒤에 있는 모든 애들 적용  // 선택한 요소의 다음 형제 요소를 모두 반환
+            // $('h4').nextAll().css('font-size', '50px');
+            // // // nextUtil() : ~까지 (기준점,끝기준점 제외하고 사이 범위) // 주어진 두 인수 사이의 모든 다음 형제 요소를 반환
+            // $('h4').nextUntil('p').css('border', 'dashed'); // h5적용(p는 포함x)
+
+            // // // prev() : 내 이전  // 선택한 요소의 이전 형제 요소를 반환
+            // $('h4').prev().css({'background':'red', 'color': 'white'});
+            // // // prevAll() : 내 이전 모든 것들에 적용 (전제조건은 동위레벨들만)  // 선택한 요소의 이전 형제 요소를 모두 반환
+            // $('h4').prevAll().css({'background': 'beige', 'color':'red'}); // 기준점 h4 적용x
+            // // // prevUntil() : 주어진 두 인수 사이의 모든 이전 형제 요소를 반환
+            // $('h4').prevUntil('p').css('border', 'double'); // 기준점(h4), 끝 기준점(p)은 범위 적용에서 제외
+
+        });
+        </script>
+        
+        <h2>객체 탐색 테스트</h2>
+        <table border="1">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>취미</th>
+            </tr>
+            <tr>
+                <td>강건강</td>
+                <td>25</td>
+                <td>운동</td>
+            </tr>
+            <tr>
+                <td>남나눔</td>
+                <td>17</td>
+                <td>요리</td>
+            </tr>
+            <tr>
+                <td>도대담</td>
+                <td>30</td>
+                <td>등산</td>
+            </tr>
+        </table>
+        
+
+    <label>선택한 게시물 : </label>
+    <label id="selectName"></label> /
+    <label id="selectAge"></label> /
+    <label id="selectHobby"></label>
+
+    <script>
+        $(function(){
+                // $('tr').click
+                // 강건강 눌렀을 때, td들이 나오게됨
+                // 이름 나이 취미 눌렀을 때 나오는건 아님. td를 누르면 발동하는게 조건
+                // 콘솔 출력창보고 배열인 것을 캐치. 배열을 받는 코드 작성
+
+                $('tr').click(function(){
+                var tdNodes = $(this).children('td');   // var 자체가 배열로 저장시킴
+                console.log(tdNodes);       //  S.fn.init(3) [td, td, td, prevObject: S.fn.init(1)] // S. = str?
+                console.log(tdNodes[0]);    // <td>강건강<td>
+                console.log(tdNodes[0].innerText); // 강건강
+
+                $('#selectName').text(tdNodes[0].innerText);  // 강건강
+                $('#selectAge').text(tdNodes[1].innerText);   // 25
+                $('#selectHobby').text(tdNodes[2].innerText); // 운동
+
+                console.log(tdNodes.eq(0).text());
+                $('#selectName').text(tdNodes.eq(0).text());
+                $('#selectAge').text(tdNodes.eq(1).text());
+                $('#selectHobby').text(tdNodes.eq(2).text());
+                
+                // });
+
+
+            });
+        });
+        
+    </script>
+        
+
+
+
+</body>
+</html>
+
+
