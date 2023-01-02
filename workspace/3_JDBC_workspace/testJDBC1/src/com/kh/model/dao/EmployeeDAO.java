@@ -161,6 +161,8 @@ public class EmployeeDAO {
 		
 	}
 	
+	
+	// 메뉴2.사번으로 사원 정보 조회
 	public Employee selectEmployee(int empNo) {
 		Employee emp = null;
 		Connection conn = null;
@@ -263,7 +265,7 @@ public class EmployeeDAO {
 	}
 	
 	
-	// 메뉴2.사번으로 사원 정보 조회
+	// 메뉴3.사원 추가
 	public int insertEmployee(Employee e) {		// return타입 변경 : void to int
 		Connection conn = null;
 		PreparedStatement pstmt = null;
