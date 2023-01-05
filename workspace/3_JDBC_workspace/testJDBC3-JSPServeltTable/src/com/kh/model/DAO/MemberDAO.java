@@ -1,6 +1,7 @@
 package com.kh.model.DAO;
 import static com.kh.common.JDBCTemplate.close; // JDBCTemplate.close 불러오는 줄임용 임포트
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,7 +45,12 @@ public class MemberDAO {
 		// 프로티즈안에 생성? 담겨있어야하니 .. 그 메소드를 호출해야한다는건데 굳이 그래야하나? 서비스에서 dao 넘어갈 때 기본 생성자 생성하는데 ...
 		prop = new Properties();
 		try {
-			prop.load(new FileReader("query.properties")); // prop변수에 쿼리문 넣어진 상태
+			System.out.println(new File("").getCanonicalPath()); // getCanonicalPath() :상대 Path를 절대 Path로 리턴
+			System.out.println(new File("").getAbsolutePath()); // 파일경로 반환
+//			String filePath = new File("query.properties").getCanonicalPath();
+			String filePath = "D:\\development\\practice\\kh_workspace\\workspace\\3_JDBC_workspace\\testJDBC3-JSPServeltTable\\query.properties";
+			prop.load(new FileReader(filePath)); // prop변수에 쿼리문 넣어진 상태
+			// 파일 못읽을 때, 절대경로(풀경로)랑 상대경로 하나씩 해볼 것!
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {

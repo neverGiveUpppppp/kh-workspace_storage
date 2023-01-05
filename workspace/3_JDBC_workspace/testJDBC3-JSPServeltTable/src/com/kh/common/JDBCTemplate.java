@@ -28,7 +28,7 @@ public class JDBCTemplate {
 	private JDBCTemplate(){} 
 	
 	// 내부 지정 방식
-	public static Connection getConnection2() { // Connection을 얻기 위한 메소드
+	public static Connection getConnection() { // Connection을 얻기 위한 메소드
 
 		if(conn == null) { // 접속안될 때만 작동하는 이프문
 			try {
@@ -46,7 +46,7 @@ public class JDBCTemplate {
 	}
 	
 	// 외부파일 방식
-	public static Connection getConnection() { // Connection을 얻기 위한 메소드
+	public static Connection getConnection2() { // Connection을 얻기 위한 메소드
 
 		if(conn == null) { // 접속안될 때만 작동하는 이프문
 			try {
