@@ -24,7 +24,7 @@
 /.metadata/
 */.metadata/
 ##/.metadata/
-.bin/
+bin/
 
 # *.iml
  
