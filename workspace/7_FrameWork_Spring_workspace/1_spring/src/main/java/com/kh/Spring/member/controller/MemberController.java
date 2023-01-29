@@ -42,10 +42,10 @@ public class MemberController {
 	
 	/*****************************파라미터 전송 받기 *****************************/
 	// 1. HttpServletRequest 방식 : JSP/Servlet 방식
-	// 2. @RequestParam방식
+	// 2. @RequestParam방식 : 파라미터 1:1 매핑
 	// 3. @RequestParam 생략방식
-	// 4. @ModelAttribute 방식
-	// 5. @ModelAttribute 생략방식
+	// 4. @ModelAttribute 방식 : 객체매핑(ex:class vo)
+	// 5. @ModelAttribute 생략방식 
 	
 	
 	
