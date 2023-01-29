@@ -25,6 +25,7 @@
 */.metadata/
 ##/.metadata/
 bin/
+./target/
 
 # *.iml
  
