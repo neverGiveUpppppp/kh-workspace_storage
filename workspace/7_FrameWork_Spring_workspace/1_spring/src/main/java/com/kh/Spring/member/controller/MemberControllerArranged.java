@@ -24,21 +24,16 @@ import com.kh.Spring.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
 @Controller // 컨트롤러의 역할을 갖는 객체를 생성 = 빈bean(객체) 등록
-public class MemberController {
+public class MemberControllerArranged {
 	
 	// 강의 2:32
 	@Autowired 
-//	private MemberService mService = new MemberServiceImpl(); // 삭제 :  = new MemberServiceImpl()
 	private MemberService mService; 
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public void login() {
-//		System.out.println("로그인 처리");
-//	}
 	
-	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private Logger logger = LoggerFactory.getLogger(MemberControllerArranged.class);
 	
 	/*****************************파라미터 전송 받기 *****************************/
 	// 1. HttpServletRequest 방식 : JSP/Servlet 방식
@@ -245,10 +240,9 @@ public class MemberController {
 		
 		// HttpSession 대신 셋어트리뷰트 사용할거라 HttpSession 삭제 
 		
-		// DB로부터 유저 정보 가져오기
 		Member loginMember = mService.login(m);
 		
-		// 유저가 입력한 비번과 DB에서의 유저 비번이 같은 지 검증
+		
 		boolean match = bcrypt.matches(m.getPwd(), loginMember.getPwd()); // 원본코드와 db의 비번컬럼값 넣기
 		// 어떻게 비교하는지는 보안상 비밀. matches가 내부 로직으로 비교해줌
 
@@ -270,8 +264,7 @@ public class MemberController {
 		// 비밀번호 로그인 받아온 걸 콘솔찍는데 암호화한걸
 		// db의 암호를 암호화된 암호로 바꿀 것
 	}
-	
-	
+
 	
 	// @SessionAttributes 사용과 함께 제대로 된 로그아웃
 	@RequestMapping("logout.me")
@@ -279,6 +272,9 @@ public class MemberController {
 		status.setComplete();
 		return "redirect:home.do";
 	}
+	
+	
+	/** 연습 텍스트**/
 	
 	
 	
@@ -364,15 +360,19 @@ public class MemberController {
 	
 	// 회원가입 (알맹이버젼) - 자세한건 위에 주석참조
 	@RequestMapping(value = "minsert.me", method=RequestMethod.POST)
-	public String insertMember(@ModelAttribute Member m, 
+	public String insertMember(@ModelAttribute Member m, 		// 회원가입하는 유저에 대한 객체 정보 받기
 							   @RequestParam("post") String post,
 							   @RequestParam("address1") String address1,
 							   @RequestParam("address2") String address2) {
 		
+		// 상세주소 포함해서 주소 다시 저장
 		m.setAddress(post +"/" + address1 + "/" + address2);
+		
+		// 유저 정보 중 비번을 암호화하는 작업
 		String encPwd = bcrypt.encode(m.getPwd());
 		m.setPwd(encPwd);
 	
+		// DB처리
 		int result = mService.insertMember(m);
 		if(result > 0) {
 			return "redirect:home.do";
@@ -381,9 +381,14 @@ public class MemberController {
 		}
 		
 	}	
+	/** 연습 텍스트**/
+	// 회원가입하는 유저에 대한 객체 정보 받기
+	// 상세주소 포함해서 주소 다시 저장
+	// 유저 정보 중 비번을 암호화하는 작업
+	// DB처리
 	
 	
-	/************************************** 내정보보기 ***************************************************/
+	/********************************* 내정보보기 & 회원정보 변경 ***************************************************/
 	
 	
 	@RequestMapping("myinfo.me") // menubar.jsp
@@ -403,20 +408,30 @@ public class MemberController {
 							   @RequestParam("address1") String address1,
 							   @RequestParam("address2") String address2,
 							   Model model) {
-				
+		
+		// 상세주소들(adres1,2) 포함해서 주소정보 다시 유저정보(MemberVO)에 넣기
 		m.setAddress(post +"/" + address1 + "/" + address2);
 		
+		// 유저정보 업데이트 실행 : vo값 -> DB로 저장
 		int result = mService.updateMember(m);
+		
+		// 업뎃한 정보를 클라이언트한테 보여주기 위해 최신정보를 select 해오기 위한 select문
 		Member loginUser = mService.login(m); // Member m을 그대로 그냥가져오면 비번이 비어서 가기에 문제 발생 방지차 다시 넣어줌
 											  // 여기 m은 null 뜨고 loginUser에 비번이 들어가있음
 		if(result > 0) {
-			model.addAttribute("loginUser",loginUser);
+			model.addAttribute("loginUser",loginUser); // 최신정보인 select문을 뷰로 보내주기
 			return "redirect:myinfo.me";
 		}else {
 			throw new MemberException("회원정보 수정에 실패했습니다");
 		}
 	}
 
+	/** 연습 텍스트**/
+	// 회원정보 수정
+	// 상세주소들(adres1,2) 포함해서 주소정보 다시 유저정보(MemberVO)에 넣기
+	// 유저정보 업데이트 실행 : vo값 -> DB로 저장
+	// 업뎃한 정보를 클라이언트한테 보여주기 위해 최신정보를 select 해오기 위한 select문
+	// 최신정보인 select문을 뷰로 보내주기
 	
 	
 /****************************** 회원 비번변경 ******************************/	
@@ -460,7 +475,7 @@ public class MemberController {
 			map.put("id", m.getId()); // 어떤 id의 pw를 바꾸는지 알아야하기에 id도 저장
 			encode = bcrypt.encode(newPwd);
 			map.put("newPwd", encode);
-		// 바뀐 비번, DB로 저장
+		// 바뀐 비번, DB에 업데이트 저장
 			result = mService.updatePwd(map);
 		}
 		
@@ -474,6 +489,14 @@ public class MemberController {
 			throw new MemberException("비밀번호 변경에 실패했습니다");
 		}
 	}
+	
+	
+	/** 연습 텍스트**/
+	// 로그인 정보 가져오기
+	// 전 비번과 새 비번 일치하는 지 비교
+	// 바뀐 비번 저장하기
+	// 바뀐 비번, DB에 업데이트 저장
+	// 새 비번 정보를 뷰에 보내기
 	
 	
 	/****************************** 회원 탈퇴 ******************************/	
@@ -496,8 +519,10 @@ public class MemberController {
 	
 	
 	
-	
-	
+	/** 연습 텍스트**/
+	// 세션에서 id값 가져와서 저장 : 어느 id를 삭제할 지 알아야하니 id 필요
+	// DB 처리
+	// 리턴
 
 	
 /************************************** ajax ***************************************************/
@@ -521,6 +546,9 @@ public class MemberController {
 	}
 		
 	
+	/** 연습 텍스트**/
+	// id 중복체크
+	// 뷰에 중복확인결과 전송 
 	
 }
 
