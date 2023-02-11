@@ -48,6 +48,7 @@ public class MemberDAO {
 			System.out.println(new File("").getCanonicalPath()); // getCanonicalPath() :상대 Path를 절대 Path로 리턴
 			System.out.println(new File("").getAbsolutePath()); // 파일경로 반환
 //			String filePath = new File("query.properties").getCanonicalPath();
+			// 상대 경로 적용해볼려면 class path 공부해볼 것!
 			String filePath = "D:\\development\\practice\\kh_workspace\\workspace\\3_JDBC_workspace\\testJDBC3-JSPServeltTable\\query.properties";
 			prop.load(new FileReader(filePath)); // prop변수에 쿼리문 넣어진 상태
 			// 파일 못읽을 때, 절대경로(풀경로)랑 상대경로 하나씩 해볼 것!
@@ -147,7 +148,13 @@ public class MemberDAO {
 		// 2가지 유형의 쿼리가 나올 수 있음
 		// 유형1 : SELECT * FROM MEMBER WHERE MEMBER_ID LIKE '%?%'		 -> 미완성형 쿼리
 		// 유형2 : SELECT * FROM  MEMBER WHERE MEMBER_ID LIKE '%" + id + "%'" -> 완성형 쿼리
-		
+
+
+		// WHERE USER_ID LIKE %?%
+		// %%나 ''를 properties나 jdbc나 어디서 ''을 자동으로 넣어주는지 LIKE문법에서 넣어줘야하는 ''을 쿼리에 넣으면 에러발생
+
+
+
 		// 완성형 쿼리
 		Statement stmt = null;	
 		PreparedStatement pstmt = null;
