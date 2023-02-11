@@ -35,203 +35,29 @@ public class MemberControllerArranged {
 	
 	private Logger logger = LoggerFactory.getLogger(MemberControllerArranged.class);
 	
-	/*****************************파라미터 전송 받기 *****************************/
-	// 1. HttpServletRequest 방식 : JSP/Servlet 방식
-	// 2. @RequestParam방식 : 파라미터 1:1 매핑
-	// 3. @RequestParam 생략방식
-	// 4. @ModelAttribute 방식 : 객체매핑(ex:class vo)
-	// 5. @ModelAttribute 생략방식 
-	
-	
-	
-	// 1. HttpServletRequest 방식 : JSP/Servlet 방식
-	
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public void login(HttpServletRequest request) {
-//		
-//		String id = request.getParameter("id");
-//		String pwd = request.getParameter("pwd");
-//		
-//		System.out.println("id1 :" + id);
-//		System.out.println("pwd1 : " + pwd);
-//	}
+/*****************************파라미터 전송 받기 *****************************/
+// 1. HttpServletRequest 방식 : JSP/Servlet 방식
+// 2. @RequestParam방식 : 파라미터 1:1 매핑
+// 3. @RequestParam 생략방식
+// 4. @ModelAttribute 방식 : 객체매핑(ex:class vo)
+// 5. @ModelAttribute 생략방식 
 
+// 세부코드 및 부연설명은 MemberController 참조
+
+
+/******************************** 데이터 전달하기 ********************************/
+// 1. Model객체 사용
+// 2.ModelAndView 객체 사용
+// 		Model + View --> 데이터와 뷰를 한 번에 담는 객체
+
+/***************************************************************************/
 	
 	
-	// 2.@RequestParam방식
-	//  	스프링에서 좀 더 간단하게 파라미터를 받아올 수 있는 방법
-	//		HttpServletRequest와 비슷하게 request객체를 이용하여 데이터를 전송받으나 원하는 데이터타입으로 자동형변환 가능
-	//		
-	//	@RequestParam의 사용가능한 속성들
-	//		value : view에서 받아올 파라미터 이름, 어노테이션에 들어가는 속성이 하나 뿐이라면 자동으로 value로 인지하여 생략가능
-	//		defaultValue : 값이 null이거나 들어오지 않았을 때, 기본적으로 들어갈 데이터 지정
-	//		required : 해당 파라미터가 필수적인지 설정하는 속성. 기본값은 true
-	
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	value 생략 방식 : public void login(@RequestParam("id") String id, @RequestParam("Pwd") String pwd) {
-//	value 추가 방식 : public void login(@RequestParam(value="id") String id, @RequestParam(value="Pwd") String pwd) {
-//	defaultValue 사용 : public void login(@RequestParam(value="id", defaultValue="hello") String id, @RequestParam(value="Pwd", defaultValue="world") String pwd) {	
-//  required 사용 : public void login(@RequestParam(value="id", defaultValue="hello") String id, 
-//									@RequestParam(value="Pwd", defaultValue="world") String pwd,
-//									@RequestParam(value="test", required=false, defaultValue="spring") String test) {	
-//		System.out.println("id2 :" + id);
-//		System.out.println("pwd2 : " + pwd);
-//		System.out.println("test : " + test);
-//	}
-	
-	
-	
-	
-	// 3.@RequestParam 생략방식
-	// 생략 할려면 전제조건 
-	// 		1) 매개변수명이 파라미터명과 동일해야함. 그래야 mapping 가능
-	// 		2) @RequestParam에서 사용할 수 있는 속성 사용 불가
-	// 지금 쓰는 매개변수가 뷰에서 받아온 매개변수인지 아니면  그냥 집어 넣은 매개변수를 구분하기 위해서라도 쓰는 생략방식 사용을 연습하는 걸 추천
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public void login(String id, String pwd) {
-//		
-//		// 안써도 받아옴
-//		System.out.println("id3 :" + id);
-//		System.out.println("pwd3 : " + pwd);
-//	}
-	
-	
-	// 4. @ModelAttribute 방식
-	//		요청 파라미터가 많은 경우 객체타입으로 넘겨 받음
-	// 받아올 때마다 매개변수 추가해야되면 복잡하고 불편 ->
-	// 엄청 많은 파라미터를 다뤄야한다면 이 어노테이션 사용 추천
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public void login(@ModelAttribute Member m) { // ... 다르면 매핑이 안됨
-//		System.out.println("m :" + m);
-//	}
-	
-	
-	// 5. @ModelAttribute 생략 방식
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public void login(Member m) { // ... 다르면 매핑이 안됨
-//		System.out.println("m :" + m);
-		
-//		MemberService mService = new MemberService(); // 서비스 객체를 개발자가 만들고 있음. 객체를 프레임워크가 만들어줘야하는데...
-		// 개발자가 주도권을 가지고 객체생성하는게 왜 안되는가? 
-		// 문제1: 내가 객체 주도권을 가지고 있으면 생명주기까지 관리해야되는데 프레임워크 쓰는 이유는 생명주기(Life Cycle)까지 관리안할려고 쓰는거라 프레임워크한테 넘기는게 맞음
-		// 문제2: 요청할 떄마다 주소값이 다르게나옴. 계속 new MemberService로 new하기 대문에 새로운 주소값이 발생된 것.
-		// 문제3: 서비스.java 파일명을 변경하면 생성한 클래스명까지도 변경되서 분리가 안됨 -> 이런거를 높은 결합도가 보인다라고 함.
-		// 결합도가 높다는 의미: 이름 변경에 대해서 직접적인 영향을 받는 것. 요청할 때마다 계속 새로운 주소값을 반환해내는 것을 결합도가 높다고 얘기함
-		// 		결합도가 높은 프로그램은 하나가 에러나거나 없으면 다 멈추기에 좋은 프로그램이라고 볼 수는 없음
-		// 		결합도를 낮은 프로그래밍을 스프링 수업 시간에 해볼 것임
-		
-		// 해결 
-		// 해결 1 : 클래스와 인터페이스 강의 ...
-		// 			인터페이스 하나 생성. 멤버서비스 하나만 집어 넣음. 멤버서비스와 멤버서비스임플 간에 관계설정(implements)해주면 됨
-		// 해결 2 : 주소값 하나만 나오는 방법 : 필드에다 옮기는 방법
-//		System.out.println(mService);
-//		Member loginMember = mService.login(m);
-//
-//		
-//		
-//		
-//		
-//	}
-	
-	
-	/******************************** 데이터 전달하기 ********************************/
-//	// 1. Model객체 사용
-//	// 		Servlet에서 사용하던 requestScope와 비슷 = scope는 request
-//	// 		뷰에 전달하고자 하는 데이터를 맵형식(key,value)으로 담을 때 사용
-//	
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public String login(Member m, Model model, HttpSession session) {
-//		// 강의 9:22 서블릿 때처럼 getsession할 필요 없는 이유
-//		
-//		Member loginMember = mService.login(m);
-//
-//		// 뷰에 보낼려고 담음
-//		
-//		// 현재 prefix : /WEB-INF/views/member/
-//		if(loginMember != null) {
-//			session.setAttribute("loginUser", loginMember);	
-////			return "../home"; // /WEB-INF/views/member/../home.jsp //// ..은 이전폴더(상위폴더)를 의미함
-//							  // /WEB-INF/views/home.jsp
-//			return "redirect:home.do"; // sendRedirect와 같은 효과 // 로그인 후 login.me의 url이었던게 home.do로 그대로 유지됨
-//		}else{
-//			model.addAttribute("msg","로그인 실패하였습니다");
-//			return "../common/errorPage";
-//		}
-//	}
-	
-	
-	
-	
-	
-//	// 2.ModelAndView 객체 사용
-//	// 		Model + View --> 데이터와 뷰를 한 번에 담는 객체
-//	
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public ModelAndView login(Member m, ModelAndView mv, HttpSession session) {
-//		// 강의 9:22 서블릿 때처럼 getsession할 필요 없는 이유
-//		
-//		Member loginMember = mService.login(m);
-//
-//		// 뷰에 보낼려고 담음
-//		
-//		// 현재 prefix : /WEB-INF/views/member/
-//		if(loginMember != null) {
-//			session.setAttribute("loginUser", loginMember);	
-////			mv.setViewName("../home"); // url이 드러나니 아래처럼 redirect 넣어주기
-//			mv.setViewName("redirect:home.do"); // url 감추기
-//		}else{
-//			mv.addObject("msg","로그인 실패하였습니다");
-//			mv.setViewName("../common/errorPage"); 
-//		}
-//		return mv;
-//	}
-	// mv를 쓰면 더이상 str으로 안씀. 뷰에대한 내용 누가 가지고 있음? 모델앤뷰가 가짐   강의 10:42
-	// 그렇기에 반환값을 모델앤뷰로 바꿔줘야함.
-	// 로그인 멤버가 .. 0608 10:43 강의
-	// mv에는 뷰만 담으면 됨. setViewName으로 어디로 간다구요? 이렇게하면 로그인.미가 남게 되니까 리다이렉트:홈.두하면됨
-	
-	
-	
-//	// 로그아웃 (logout.me)
-//	// ... 강의10:48  일단 기본적인 구조는 str으로 가져가라
-//	@RequestMapping("logout.me")
-//	public String logout(HttpSession session) {
-//		session.invalidate();
-//		return "redirect:home.do";
-//	}
-	
-	
-	// + session에 저장할 때 @SessionAttributes사용
-	// 사용 조건이 있음. 자동으로 키값을 찾아서 세션에 등록하는 기능
-	// 어떤 키를 찾느냐? Model의 어트리뷰트가 추가가 될 때, 그떄 자동으로 키값을 찾아서 세션에 등록하는 기능
-	// 모델에 “msg”라고 하는 값이 있기에 세션 영역에 올린다..? 강의 11:25
-	// 		세션 어트리뷰트를 사용할려면 필수적으로 Model객체가 필ㅇ
-	
-//	
-//	@RequestMapping(value="login.me", method=RequestMethod.POST)
-//	public String login(Member m, Model model) {
-//		
-//		// HttpSession 대신 셋어트리뷰트 사용할거라 HttpSession 삭제 
-//		
-//		Member loginMember = mService.login(m);
-//
-//		if(loginMember != null) {
-//			model.addAttribute("loginUser", loginMember);
-//			return "redirect:home.do";
-//		}else{
-//			model.addAttribute("msg","로그인 실패하였습니다");
-//			return "../common/errorPage"; 
-//		}
-//		// 이렇게만 쓰면 로그인 유지 안됨.
-//		// 세션에 올라가있는게 아니라 한번 넣고 끝나서 로그인 유지 x
-//		// @SessionAttributes 사용하면 해결됨
-//		// 파일 최상단으로 가서 @Controller 위에 @SessionAttributes 적어줌
-//		
-//	}
-	
-	
-	
-	// 로그인 (최종버젼)
+	/** 로그인
+	 * @param m
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="login.me", method=RequestMethod.POST)
 	public String login(Member m, Model model) {
 		
@@ -265,17 +91,31 @@ public class MemberControllerArranged {
 		// db의 암호를 암호화된 암호로 바꿀 것
 	}
 
+	/** 연습 텍스트**/
+	// 로그인 할려는 유저 정보 받아오기
+	// 로그인할려는 유저와 db에 해당 유저와의 정보 비교
+	// 맞다면, 데이터를 뷰로 보내기
+	// 해당 유저id정보 로그 남기기
+	// 어떤 뷰로 갈지 지정
 	
-	// @SessionAttributes 사용과 함께 제대로 된 로그아웃
+	
+	
+	
+	/** 로그아웃
+	 * @param status
+	 * @return
+	 * 
+	 * @SessionAttributes 사용과 함께 제대로 된 로그아웃
+	 */
 	@RequestMapping("logout.me")
 	public String logout(SessionStatus status) {
 		status.setComplete();
 		return "redirect:home.do";
 	}
 	
-	
 	/** 연습 텍스트**/
-	
+	// 세션 종료 선언
+	// 어떤 뷰로 갈지 지정
 	
 	
 /************************************** 회원가입 ***************************************************/
@@ -283,6 +123,9 @@ public class MemberControllerArranged {
 	
 	
 	
+	/** 회원등록 페이지 전환
+	 * @return
+	 */
 	@RequestMapping("enrollView.me")
 	public String enrollView() {
 		if(logger.isDebugEnabled()) { 	// 로그에서 해당 패키지,클래스에있는 로그들을 뽑아내고 진행하는데 레벨을 debug, info 지정해두었는데, 
@@ -291,7 +134,9 @@ public class MemberControllerArranged {
 		return "memberJoin";
 	}
 	
-	
+	/** 연습 텍스트**/
+	// 로그 남기기
+	// 회원등록 버튼 눌렀을 때 해당 페이지로 이동하도록
 	
 
 	
@@ -358,7 +203,13 @@ public class MemberControllerArranged {
 	
 	
 	
-	// 회원가입 (알맹이버젼) - 자세한건 위에 주석참조
+	/** 회원 등록
+	 * @param m
+	 * @param post
+	 * @param address1
+	 * @param address2
+	 * @return
+	 */
 	@RequestMapping(value = "minsert.me", method=RequestMethod.POST)
 	public String insertMember(@ModelAttribute Member m, 		// 회원가입하는 유저에 대한 객체 정보 받기
 							   @RequestParam("post") String post,
@@ -391,17 +242,39 @@ public class MemberControllerArranged {
 	/********************************* 내정보보기 & 회원정보 변경 ***************************************************/
 	
 	
+	/** 내정보보기
+	 * @return
+	 */
 	@RequestMapping("myinfo.me") // menubar.jsp
 	public String myInfo() {
 		return "mypage";
 	}
+	/** 연습 텍스트**/
+	// 내정보보기 눌렀을 때 해당 페이지로 넘겨주기
 	
 	
+	
+	
+	/**회원 수정폼
+	 * @return
+	 */
 	@RequestMapping("mupdateView.me")
 	public String updateView() {
 		return "memberUpdateForm";
 	}
+	/** 연습 텍스트**/
+	// 회원정보 수정 눌렀을 때 해당 페이지로 넘겨주기
 	
+	
+	
+	/** 회원정보 수정
+	 * @param member
+	 * @param post
+	 * @param address1
+	 * @param address2
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("mupdate.me")
 	public String updateMember(@ModelAttribute Member m,
 							   @RequestParam("post") String post,
@@ -436,12 +309,29 @@ public class MemberControllerArranged {
 	
 /****************************** 회원 비번변경 ******************************/	
 	
+	
+	
+	
+	
+	/** 비번 수정폼
+	 * @return
+	 */
 	@RequestMapping("mpwdUpdateView.me") // mypage.jsp 비밀번호 수정하기 버튼 url
 	public String pwdUpdateView() {
 		return "memberPwdUpdateForm";
 	}
+	/** 연습 텍스트**/
+	// 비번수정 요청이 왔을 때 해당 페이지로 넘겨주기
 	
 	
+	
+	
+	/** 비번 수정
+	 * @param oldPwd
+	 * @param newPwd
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("mPwdUpdate.me") // memberPwdUpdateForm.jsp의 폼태그 submit url
 	public String updatePwd(@RequestParam("pwd") String oldPwd, 
 						 	@RequestParam("newPwd1") String newPwd, Model model) {
@@ -501,6 +391,13 @@ public class MemberControllerArranged {
 	
 	/****************************** 회원 탈퇴 ******************************/	
 	
+	
+	
+	
+	/** 회원 탈퇴
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("mdelete.me") // member - mypage.jsp에서 79번째라인 mdelete.me
 	public String deleteMember(Model model){
 
@@ -516,8 +413,6 @@ public class MemberControllerArranged {
 			throw new MemberException("회원 탈퇴에 실패했습니다");
 		}
 	}
-	
-	
 	
 	/** 연습 텍스트**/
 	// 세션에서 id값 가져와서 저장 : 어느 id를 삭제할 지 알아야하니 id 필요
