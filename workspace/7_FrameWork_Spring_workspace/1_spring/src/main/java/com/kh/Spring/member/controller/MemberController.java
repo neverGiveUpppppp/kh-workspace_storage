@@ -431,6 +431,7 @@ public class MemberController {
 	public String updatePwd(@RequestParam("pwd") String oldPwd, 
 						 	@RequestParam("newPwd1") String newPwd, Model model) {
 		// 로그인 정보 가져오기
+		// 비번을 바꿀려는 건 이미 로그인해야 가능한 상태이기 때문에 세션에서 로그인 정보를 가져오는 것
 		Member m = (Member)model.getAttribute("loginUser"); // Member m에는 로그인한 사람의 정보가 들어있음
 	
 	// 받아와야할 데이터 : 현재비번, 새비번, 누구의 비번을 바꿀지에 대한 id
