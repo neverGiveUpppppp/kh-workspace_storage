@@ -442,7 +442,7 @@ public class MemberController {
 	// 비밀번호 확인 시, 맞는 비번인지 비교하는게 암호화 때문에 불가능해짐
 	// jsp때는, 쿼리문이 db에 가서 update member set pwd = newpwd where id = ? and pw = ?  
 	// where문에서 id랑 구비번이 이런 사람을 찾아서 비번변경해라가 쿼리문 내용이었으나, 비번을 BCrypt로 암호화했기 때문에 이 방식은 이제 불가능
-
+	
 	// 해결책 
 	// bcrypt.matches()
 	// 컨트롤러에서 먼저 비교해줘야함. 암호화 된 비번과 되지않은 비번 둘을 matches()를 사용하여 비교하는거 배웠었음

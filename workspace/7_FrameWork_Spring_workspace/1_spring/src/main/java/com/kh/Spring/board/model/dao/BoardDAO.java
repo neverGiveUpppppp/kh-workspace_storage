@@ -25,10 +25,9 @@ public class BoardDAO {
 	// 페이징처리2 : 원하는 게시판 번호 조회
 	public ArrayList<Board> getBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		
-		// RowBounds관련 설명은 아래에
-		// 게시판 몇개를 건너 뛸지 계산하는게 핵심
+		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());  // 임포트 RowBounds 
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 //		ArrayList<Board> list = (ArrayList)session.selectList("boardMapper.selectBoardList", null, rowBounds); // 쿼리문에 데이터 넣을만한 위치홀더가 없어서 null
 		// 전달할게 없는데 로우바운즈는 필요하니까 인자3개짜리 쓴 것
@@ -36,6 +35,8 @@ public class BoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.getBoardList", null, rowBounds);
 	}
+	// [ RowBounds 설명 ]
+	// 게시판 몇개를 건너 뛸지 계산하는게 핵심
 	// 시작행(startRow) 끝행(endRow) 만든이유
 			// 몇번째부터 몇번째행까지 가져올지 정하기 위해서 startRow, endRow 만듬
 			// ex) 2페이지 11-20 가져오기
