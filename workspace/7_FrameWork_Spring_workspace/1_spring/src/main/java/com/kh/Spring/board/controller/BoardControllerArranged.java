@@ -41,7 +41,11 @@ public class BoardControllerArranged {
 	private BoardService bService;
 	
 	
-	// 게시물 조회 + 페이지네이션
+	/** 게시판 목록 조회 + 페이지네이션
+	 * @param page
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("blist.bo") // menubar.jsp의 게시판 버튼의 url주소
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
 		
@@ -58,8 +62,8 @@ public class BoardControllerArranged {
 		
 		// 페이징처리2 : 필요한 게시판 가져오기
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
 		ArrayList<Board> list = bService.getBoardList(pi);
+			
 		
 		if(list != null) {
 			mv.addObject("list",list);	// model과 ModelAndView 둘 중 하나 선택가능
@@ -70,18 +74,34 @@ public class BoardControllerArranged {
 		}
 		return mv;
 	}
+	/** 연습 텍스트 : 게시판 목록 조회 + 페이지네이션 **/
+	// 받아올 파라미터 & 사용할 객체 체크 : 뷰에서 받아오는 name속성값 체크 
+	// 현재 페이지 선언할당
+	// 페이지가 널or0이 아닐 경우 현재페이지와 페이지 바인딩
+	// 전체페이지수 db처리
+	// 페이징vo에 필드값 넣기
+	// 게시판 목록 불러오기
+	// 뷰에 데이터 넣어주고 뷰 지정 & 리턴 boardListView
 	
 	
 /*********************************** 게시판 : 글쓰기 ***********************************/	
 	
-	// 게시판 글쓰기 뷰 불러오기
+	
+	/** 글쓰기 폼 이동
+	 * @return
+	 */
 	@RequestMapping("binsertView.bo")
 	public String boardInsertForm() {
 		return "boardInsertForm";
 	}
 	
 	
-	// 게시판 글쓰기
+	/** 게시판 등록
+	 * @param boardVo
+	 * @param uploadFile
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("binsert.bo")
 	public String insertBoard(@ModelAttribute Board b, @RequestParam("uploadFile") MultipartFile uploadFile, HttpServletRequest request) {
 		// 리퀘스트파램에 받아오는 uploadFile속성은 첨부파일 name속성의 이름
@@ -90,7 +110,6 @@ public class BoardControllerArranged {
 		// 필드에 들어간다는건 객체가 들어간 상태...
 //		System.out.println(b);
 //		System.out.println(uploadFile);
-		
 		
 		if(uploadFile != null && !uploadFile.isEmpty()) { // 미연의 사고방지를 위한 if조건문
 			// jar파일 자체에 잘못이나 인터넷이 안좋다거나 하면 분명 null뜨는 경우가 생김. 만약의 상황의 대비한 if+null조건문 강의 3:31
@@ -109,6 +128,14 @@ public class BoardControllerArranged {
 			throw new BoardException("게시글 등록에 실패하였습니다.");
 		}
 	}
+	/** 연습 텍스트 : 게시판 등록 **/
+	// 받아올 파라미터 & 사용할 객체 체크 : 뷰에서 받아오는 name속성값 체크 
+	// 유저가 업로드한 파일이 없는 경우 대비
+	// 유저가 업로드한 파일, vo에 저장하기
+	// 		리네임파일 가져오기
+	// 		오리지널파일 저장
+	// 		리네임파일 저장
+	// db 처리 및 리턴 blist.bo
 	
 	// 사용자 정의 메소드
 	public String saveFile(MultipartFile file, HttpServletRequest request) { // HttpServletRequest으로 Request영역 호출
@@ -140,6 +167,8 @@ public class BoardControllerArranged {
 		String renamePath = folder + "\\" + renameFileName;
 		
 		try {
+			// https://dev-gorany.tistory.com/123 : 멀티파일 관련 참조자료
+			// 단일파일이 아닌 복수파일 업로드 내용포함
 			file.transferTo(new File(renamePath)); // 새로만든 파일을 저정소에 저장 : .transferTo()
 			// 겟오리지널파일네임을 사용하면 원래 가지고 있던 파일에 대한 본파일명을 가지고 있으나
 			// 리네임된 것 만으로는 업로파일만으로는 못찾음. 세이브파일도 관여하기 때문에 
@@ -155,8 +184,19 @@ public class BoardControllerArranged {
 		}
 		return renameFileName;
 	}
-	
-	
+	/** 연습 텍스트 : saveFile **/
+	// 받아올 파라미터 & 사용할 객체 체크
+	// root경로 세팅
+	// 파일 지정경로 세팅 = root + 파일저장소 위치
+	// 파일 객체 생성 및 경로 지정 for renameFile 저장
+	// 파일이 없을 경우 대비
+	//		디렉토리 생성
+	// 날짜데이터포맷 객체선언 및 형식지정
+	// 오리지널 파일명 겟
+	// 리네임 파일명 겟 : 파일명 규칙, 현재시간+오리지널파일명
+	// 리네임파일 파일명 및 경로 지정 : 파일경로 + 리네임파일명
+	// 받은 파일을 지정 저장경로에 전송 & 저장
+	// return renamefile
 	
 /************************************ 뷰 데이터  ************************************/	
 	

@@ -145,6 +145,8 @@ public class BoardController {
 		String renamePath = folder + "\\" + renameFileName;
 		
 		try {
+			// https://dev-gorany.tistory.com/123 : 멀티파일 관련 참조자료
+			// 단일파일이 아닌 복수파일 업로드 내용포함
 			file.transferTo(new File(renamePath)); // 새로만든 파일을 저정소에 저장 : .transferTo()
 			// 겟오리지널파일네임을 사용하면 원래 가지고 있던 파일에 대한 본파일명을 가지고 있으나
 			// 리네임된 것 만으로는 업로파일만으로는 못찾음. 세이브파일도 관여하기 때문에 
