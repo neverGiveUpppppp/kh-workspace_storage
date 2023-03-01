@@ -291,7 +291,7 @@ public class BoardControllerArranged {
 		model.addAttribute("board", b).addAttribute("page", page);
 		return "boardUpdateForm";
 	}
-	
+		
 	@RequestMapping("bupdate.bo") // boardUpdateForm.jsp에서 수정하기버튼의 url blist.bo
 	public String updateBoard(@ModelAttribute Board b, @RequestParam("page") int page, // 페이지 보드아이디, 변경이름이니까 페이지, 보드
 							  @RequestParam("reloadFile") MultipartFile reloadFile, 
@@ -307,6 +307,7 @@ public class BoardControllerArranged {
 			
 			if(b.getRenameFileName() != null) {
 				deleteFile(b.getRenameFileName(),request); // 새롭게 파일을 집어넣을거면이라 기존파일 기존파일이 없는데 지울 필요가 없는 경우를 고려
+														   // 파일 추가하는 거라면?
 			}
 			// 강의 3:35 6.10
 			String renameFileName = saveFile(reloadFile, request); 
