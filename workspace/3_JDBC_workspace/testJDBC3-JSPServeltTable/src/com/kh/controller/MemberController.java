@@ -139,7 +139,7 @@ public class MemberController {
 		// 모범 답안
 		if(check == 1) {
 			char yn = menu.checkDelete();
-			if (yn == 'N') {
+			if (yn == 'N') { // N일 경우 다시 메뉴로 돌려보내줌. 그러나 아무 키나 둘러도 삭제되기 때문에 코드 수정요망
 				return;
 			}
 			int result = mService.deleteMember(id);
