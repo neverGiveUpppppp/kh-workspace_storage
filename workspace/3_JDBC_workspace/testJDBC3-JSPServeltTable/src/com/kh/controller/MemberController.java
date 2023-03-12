@@ -152,7 +152,26 @@ public class MemberController {
 		}else {
 			menu.displayError("입력한 아이디가 존재하지 않습니다");
 		}
-		
+
+		/* if (yn == 'N')의 개선 코드 */
+		/*
+			if(YN == 'N') {
+                mView.message("메뉴로 돌아갑니다.");
+                return ;
+            }else if(YN == 'Y'){
+                int result = mService.deleteMember(checkId);
+                if(result > 0){
+                    mView.message("해당 회원 탈퇴 완료");
+                }else{
+                    mView.message("회원 탈퇴 실패");
+                }
+            }else {
+                mView.message("키를 잘못 누르셨습니다.");
+            }
+
+
+		* */
+
 		
 	}
 
