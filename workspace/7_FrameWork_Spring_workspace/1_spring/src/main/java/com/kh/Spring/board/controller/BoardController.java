@@ -471,7 +471,7 @@ public class BoardController {
 			jArr.put(job);
 		}
 		return jArr.toString(); // 이렇게 리턴하면 뷰이름으로 인식하니 메소드 서두에 @ResponseBody 어노테이션을 넣어줘야함
-		
+	}
 		
 ////////////////////방법2 : GSON ////////////////////////////////////////////////////
 		
