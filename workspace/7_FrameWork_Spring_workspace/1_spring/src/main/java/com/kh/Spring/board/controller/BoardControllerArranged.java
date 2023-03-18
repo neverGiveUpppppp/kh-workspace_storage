@@ -371,7 +371,11 @@ public class BoardControllerArranged {
 			throw new BoardException("회원 삭제에 실패하였습니다.");
 		}
 	}
-	
+	/** 연습 텍스트 : 게시판 삭제 + 파일   **/
+	// 받아올 파라미터 & 사용할 객체 체크
+	// 삭제할 게시판에 파일이 있는지 체크 : 게시판만 삭제하고 파일을 남길 수는 없으니
+	// 남아 있다면 파일삭제
+	// 삭제 실행
 
 
 	
@@ -416,104 +420,101 @@ public class BoardControllerArranged {
 	}
 	
 	// 댓글 가져오기 : 방법1 JSON 사용 
-//	@RequestMapping(value="rList.bo", produces="application/json; charset=UTF-8")
-//	@ResponseBody
-//	public String getReplyList(@RequestParam("bId")int bId){
-//		ArrayList<Reply> list = bService.selectReplyList (bId);
-//		System.out.println("댓글가져오기 list : "+ list);
-//		
-//		
-//		// 
-//		JSONArray jArr = new JSONArray();
-//		// 제이슨 어레이에 제이슨오브젝트가 담길 것임
-//		for(Reply r : list) {
-//			JSONObject job = new JSONObject();
-//			job.put("replyId", r.getReplyId());
-//			job.put("replyContent", r.getReplyContent());
-//			job.put("replyWriter", r.getReplyWriter());
-//			job.put("nickName", r.getNickName());
-//			job.put("replyCreateDate", r.getReplyCreateDate());
-//			job.put("replyModifyDate", r.getReplyModifyDate());
-//			job.put("replyStatus", r.getReplyStatus());
-//			
-//			jArr.put(job);
-//			
-//		}
-//		
-//		// @ResponseBody 필요
-//		// 이유 : 리턴이 스트링인데 뷰리졸버가 뷰파일로 바꺼요
-//		// 뷰리졸버에게 뷰에대한 경로를 넘기지 않고 데이터로 담아서 보낼 수 있게 인지시켜야함
-//
-//		return jArr.toString();
-//	}
-	
-	// 댓글 가져오기 : 방법2 GSON 사용 
-	@RequestMapping("rList.bo")
-	public void getReplyList(@RequestParam("bId")int bId, HttpServletResponse response){
+	@RequestMapping(value="rList.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String getReplyList(@RequestParam("bId")int bId){
 		ArrayList<Reply> list = bService.selectReplyList (bId);
 		System.out.println("댓글가져오기 list : "+ list);
 		
-		response.setContentType("application/json; charset=UTF-8");
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		try {
-			gson.toJson (list, response.getWriter());
-		} catch (JsonIOException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		// 
+		JSONArray jArr = new JSONArray();
+		// 제이슨 어레이에 제이슨오브젝트가 담길 것임
+		for(Reply r : list) {
+			JSONObject job = new JSONObject();
+			job.put("replyId", r.getReplyId());
+			job.put("replyContent", r.getReplyContent());
+			job.put("replyWriter", r.getReplyWriter());
+			job.put("nickName", r.getNickName());
+			job.put("replyCreateDate", r.getReplyCreateDate());
+			job.put("replyModifyDate", r.getReplyModifyDate());
+			job.put("replyStatus", r.getReplyStatus());
+			
+			jArr.put(job);
 		}
+		// @ResponseBody 필요
+		// 이유 : 리턴이 스트링인데 뷰리졸버가 뷰파일로 바꺼요
+		// 뷰리졸버에게 뷰에대한 경로를 넘기지 않고 데이터로 담아서 보낼 수 있게 인지시켜야함
+		return jArr.toString();
 	}
 	
+//	// 댓글 가져오기 : 방법2 GSON 사용 
+//	@RequestMapping("rList.bo")
+//	public void getReplyList(@RequestParam("bId")int bId, HttpServletResponse response){
+//		ArrayList<Reply> list = bService.selectReplyList (bId);
+//		System.out.println("댓글가져오기 list : "+ list);
+//		
+//		response.setContentType("application/json; charset=UTF-8");
+//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//		try {
+//			gson.toJson (list, response.getWriter());
+//		} catch (JsonIOException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 	
 
 	
 
-/*********************************************** Top-N 분석  * @return ***********************************************/			
+/*********************************************** Top-N 분석  ************************************************/			
 	
 	
 	// Top-N 분석 : select
 //////////////////// 방법1 : JSON ////////////////////////////////////////////////////
-//	@RequestMapping(value="topList.bo", produces="application/json; charset=UTF-8")
-//	@ResponseBody
-//	public String topList() {
-//		ArrayList<Board> list =	bService.topList();
-//		
-//		// 웹페이지첨부파일 부분을 뷰에 보낼 것
-//		JSONArray jArr = new JSONArray();
-//		// 제이슨 어레이에 제이슨오브젝트가 담길 것임
-//		for(Board b : list) {
-//			JSONObject job = new JSONObject();
-//			job.put("boardId",b.getBoardId());
-//			job.put("boardTitle", b.getBoardTitle());
-//			job.put("boardContent", b.getBoardContent());
-//			job.put("nickName", b.getNickName());
-//			job.put("boardModifyDate", b.getBoardModifyDate());
-//			job.put("boardCount", b.getBoardCount());
-//			job.put("originalFileName", b.getOriginalFileName());
-//			
-//			jArr.put(job);
-//		}
-//		return jArr.toString(); // 이렇게 리턴하면 뷰이름으로 인식하니 메소드 서두에 @ResponseBody 어노테이션을 넣어줘야함
-//		
-//		
+	@RequestMapping(value="topList.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String topList() {
+		ArrayList<Board> list =	bService.topList();
+		
+		// 웹페이지첨부파일 부분을 뷰에 보낼 것
+		JSONArray jArr = new JSONArray();
+		// 제이슨 어레이에 제이슨오브젝트가 담길 것임
+		for(Board b : list) {
+			JSONObject job = new JSONObject();
+			job.put("boardId",b.getBoardId());
+			job.put("boardTitle", b.getBoardTitle());
+			job.put("boardContent", b.getBoardContent());
+			job.put("nickName", b.getNickName());
+			job.put("boardModifyDate", b.getBoardModifyDate());
+			job.put("boardCount", b.getBoardCount());
+			job.put("originalFileName", b.getOriginalFileName());
+			
+			jArr.put(job);
+		}
+		return jArr.toString(); // 이렇게 리턴하면 뷰이름으로 인식하니 메소드 서두에 @ResponseBody 어노테이션을 넣어줘야함
+		
+		
 ////////////////////방법2 : GSON ////////////////////////////////////////////////////
 		
-	@RequestMapping("topList.bo")
-	public void topList(HttpServletResponse response) {
-		ArrayList<Board> list =	bService.topList();	
-		
-		System.out.println(list);
-		
-		response.setContentType("application/json; charset=UTF-8");
-		try {
-			new GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(list, response.getWriter());
-			
-		} catch (JsonIOException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	@RequestMapping("topList.bo")
+//	public void topList(HttpServletResponse response) {
+//		ArrayList<Board> list =	bService.topList();	
+//		
+//		System.out.println(list);
+//		
+//		response.setContentType("application/json; charset=UTF-8");
+//		try {
+//			new GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(list, response.getWriter());
+//			
+//		} catch (JsonIOException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	
 	
