@@ -40,6 +40,25 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
+	/**  
+	 * 게시판 목록 조회 + 페이지네이션
+	 * 
+	 * 글쓰기 폼 이동
+	 * 게시판 등록
+	 * 게시판 등록 & saveFile
+	 * 
+	 * 게시판 상세
+	 * 
+	 * 게시판 수정폼 이동
+	 * 게시판 수정 + 파일 & deleteFile
+	 * 
+	 * 게시판 삭제  + 파일
+	 *
+	 * 댓글 쓰기
+	 * 댓글 목록읽기
+	 * Top-N 분석
+	 * 
+	 * **/
 	
 	// 게시물 조회 + 페이지네이션
 	@RequestMapping("blist.bo") // menubar.jsp의 게시판 버튼의 url주소
@@ -380,6 +399,8 @@ public class BoardController {
 //			throw new BoardException("회원 삭제에 실패하였습니다.");
 //		}
 //	}
+	
+	// 댓글 쓰기
 	@RequestMapping("addReply.bo")
 	@ResponseBody
 	public String addReply(@ModelAttribute Reply r, HttpSession session) {
@@ -395,6 +416,13 @@ public class BoardController {
 			throw new BoardException("댓글 등록에 실패하였습니다.");
 		}
 	}
+	/** 연습 텍스트 : 댓글 쓰기 **/
+	// 받아올 파라미터 & 사용할 객체 체크
+	// 댓글쓴이 변수설정 및 로그인정보 가져오기 : 누가 썼는지 알아야하기 때문에 모델어트리뷰트나 HttpSession을 통해서 가져올 수 있음
+	// 댓글쓴이 정보를 vo에 저장
+	// 댓글 정보 DB 저장
+	
+	
 	
 	// 댓글 가져오기 : 방법1 JSON 사용 
 	@RequestMapping(value="rList.bo", produces="application/json; charset=UTF-8")
