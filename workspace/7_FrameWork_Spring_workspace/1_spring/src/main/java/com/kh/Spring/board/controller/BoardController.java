@@ -143,30 +143,32 @@ public class BoardController {
 		String root = request.getSession().getServletContext().getRealPath("resources"); // application영역으로 가는 코드. 어플영역은 웹앱(웹컨텐트) 아래를 말함
 		// request.getSession().getServletContext().getRealPath("resources") -> webapp폴더 아래 resources폴더를 의미함
 		// 서블릿컨텍스트까지가 webapp이고 겟리얼패스가 리소스까지 경로를 받아오는 것
+		// String root 값 : D:\development\practice\kh_workspace\workspace\7_FrameWork_Spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\1_spring\resources
 		System.out.println("업로드파일 root:"+root);
-		String savePath = root + "\\buploadFiles";
+		String savePath = root + "\\buploadFiles"; // D:\development\practice\kh_workspace\workspace\7_FrameWork_Spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\1_spring\resources\buploadFiles
 
 		// 업로드된 파일, 파일저장소에 저장
-		File folder = new File(savePath);
+		File folder = new File(savePath); // 디버깅 filePath값은 null이고 path값은 D:\development\practice\kh_workspace\workspace\7_FrameWork_Spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\1_spring\resources\buploadFiles
 		if(!folder.exists()) {
 			folder.mkdirs(); // 저장할 폴더 생성
 		}
 		// 저장할 파일명을 변경해야함. 원래는 리네임 규약만들었으나 지금은 그렇게까지는 하지 않겠음. 수업에서
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // 디버깅 pattern값에 yyyyMMddHHmmssSSS
 		// 파일명 랜덤값 만들어서 겹치지 않게 해야하나 이번 수업 때는 생략. 필요하면 jspServlet쪽에 찾아보기를 
 		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + originFileName.substring(originFileName.lastIndexOf("."));
 		
-		System.out.println("originFileName = "+originFileName);
-		System.out.println("renameFileName = "+renameFileName);
+		System.out.println("originFileName = "+originFileName); // UntitledD.png
+		System.out.println("renameFileName = "+renameFileName); // 20230221203556066.png
 		
-		String renamePath = folder + "\\" + renameFileName;
+		String renamePath = folder + "\\" + renameFileName; // folder의 savePath에 들어간 경로에 이어"\\"로 파일명까지 붙을 수 있게 경로표시 붙이고 renameFileName으로 파일명 나타냄. url이나 path에 /로 끝나면 디렉토리 /로 안끝나면 파일명인 것 기억하면 됨
+		// String renamePath 값 : D:\development\practice\kh_workspace\workspace\7_FrameWork_Spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\1_spring\resources\buploadFiles\20230221203556066.png
 		
 		try {
 			// https://dev-gorany.tistory.com/123 : 멀티파일 관련 참조자료
 			// 단일파일이 아닌 복수파일 업로드 내용포함
-			file.transferTo(new File(renamePath)); // 새로만든 파일을 저정소에 저장 : .transferTo()
+			file.transferTo(new File(renamePath)); // 톰캣 서버에 파일 생성 // 새로만든 파일을 저정소에 저장 : .transferTo()
 			// 겟오리지널파일네임을 사용하면 원래 가지고 있던 파일에 대한 본파일명을 가지고 있으나
 			// 리네임된 것 만으로는 업로파일만으로는 못찾음. 세이브파일도 관여하기 때문에 
 			// 리네임 파일 네임 컬럼에 넣어야하기 때문에 리네임파일네임을 반환시켜야함. 그래서 리턴타입을 str로 변경 강의 4:42 6.9

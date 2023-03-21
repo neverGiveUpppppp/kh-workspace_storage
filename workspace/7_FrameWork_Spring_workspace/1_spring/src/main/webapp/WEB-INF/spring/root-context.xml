@@ -19,9 +19,9 @@
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="realDataSource" destroy-method="close"> 
 	<!-- destroy-method : 닫아주는 메소드로 close를 사용하겠다  -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
 		<property name="username" value="Spring"/>
-		<property name="password" value="Spring"/>
+		<property name="password" value="qrwe"/>
 	</bean>
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="realDataSource"/>
