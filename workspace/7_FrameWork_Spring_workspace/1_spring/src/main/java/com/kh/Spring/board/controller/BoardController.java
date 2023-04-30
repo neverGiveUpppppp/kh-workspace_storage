@@ -426,6 +426,9 @@ public class BoardController {
 	
 	
 	
+//	 - ajax에서 뷰에 뭔가 보내고 싶을 때 사용하는 것 : PrintWriter class
+//   - json, gson은 객체로 보낼 때 유리한 것
+	
 	// 댓글 가져오기 : 방법1 JSON 사용 
 	@RequestMapping(value="rList.bo", produces="application/json; charset=UTF-8")
 	@ResponseBody
@@ -433,25 +436,25 @@ public class BoardController {
 		ArrayList<Reply> list = bService.selectReplyList (bId);
 		System.out.println("댓글가져오기 list : "+ list);
 		
-		JSONArray jArr = new JSONArray();
+		JSONArray jsonArr = new JSONArray();
 		// 제이슨 어레이에 제이슨오브젝트가 담길 것임
 		for(Reply r : list) {
-			JSONObject job = new JSONObject();
-			job.put("replyId", r.getReplyId());
-			job.put("replyContent", r.getReplyContent());
-			job.put("replyWriter", r.getReplyWriter());
-			job.put("nickName", r.getNickName());
-			job.put("replyCreateDate", r.getReplyCreateDate());
-			job.put("replyModifyDate", r.getReplyModifyDate());
-			job.put("replyStatus", r.getReplyStatus());
+			JSONObject jsonObj = new JSONObject(); // jsonObj에 put으로 저장된 게 하나의 댓글 정보가 담긴 객체 하나
+			jsonObj.put("replyId", r.getReplyId());
+			jsonObj.put("replyContent", r.getReplyContent());
+			jsonObj.put("replyWriter", r.getReplyWriter());
+			jsonObj.put("nickName", r.getNickName());
+			jsonObj.put("replyCreateDate", r.getReplyCreateDate());
+			jsonObj.put("replyModifyDate", r.getReplyModifyDate());
+			jsonObj.put("replyStatus", r.getReplyStatus());
 			
-			jArr.put(job);
+			jsonArr.put(jsonObj); // 배열 한칸마다 댓글 하나의 정보가 담긴 json Object 객체가 들어가게되는 구조
 		}
 		
 		// @ResponseBody 필요
 		// 이유 : 리턴이 스트링인데 뷰리졸버가 뷰파일로 바꺼요
 		// 뷰리졸버에게 뷰에대한 경로를 넘기지 않고 데이터로 담아서 보낼 수 있게 인지시켜야함
-		return jArr.toString();
+		return jsonArr.toString();
 	}
 	
 //	// 댓글 가져오기 : 방법2 GSON 사용 
