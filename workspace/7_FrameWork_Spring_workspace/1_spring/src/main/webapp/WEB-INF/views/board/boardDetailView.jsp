@@ -180,7 +180,7 @@
 					$('#rCount').text('댓글(' + data.length + ')'); // 댓글(5) <-댓글5개 달렸다고 알려주는 메세지
 					
 					if(data.length > 0) {
-						for (var i in data) {
+						for (var i in data) {	
 							$tr = $('<tr>');	// 위에서 선언한 변수 var $tr;에서 다시 가져다 쓰므로 var 빠지고 $tr만
 							$writer = $('<td>').css('width', '100px').text(data[i].nickName);
 							$content = $('<td>').text(data[i].replyContent);
@@ -204,6 +204,19 @@
 				error: function(data) {
 					console.log(data);
 				}
+				/* 연습 텍스트 : 등록한 댓글 읽어오기 */
+				// 함수 및 함수명 선언
+				// ajax선언
+				// url 설정
+				// 컨트롤러로 전송할 데이터 설정
+				// 성공 시, 받아올 데이터와 함께 처리할 로직 설정
+				//		변수선언
+				//		제어문, data가 있을경우와 없을 경우 
+				//		loop, (선언한 변수에) 댓글 공간 새로생성 및 내용 넣기 & 각 변수를 tr에 넣고 tr을 다시 tableBody에 넣기
+				// 실패 시, 받아올 데이터와 함께 처리할 로직 설정
+				//		가져올 내용이 없으므로, (선언한 변수에)등록할 댓글이 없다는 내용 넣어주기
+				//		변수에 넣은 내용을 tr에 넣고 tr은 다시 tableBody로 넣기
+				
 			});
 		}
 		

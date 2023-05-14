@@ -456,7 +456,11 @@ public class BoardController {
 		// 뷰리졸버에게 뷰에대한 경로를 넘기지 않고 데이터로 담아서 보낼 수 있게 인지시켜야함
 		return jsonArr.toString();
 	}
-	
+//	@RequestMapping(value="rList2.bo", produces="application/json; charset=UTF-8")
+//	@ResponseBody
+//	public ArrayList<Reply> getReplyList2(@RequestParam("bId")int bId){
+//		return bService.selectReplyList (bId);
+//	}
 //	// 댓글 가져오기 : 방법2 GSON 사용 
 //	@RequestMapping("rList.bo")
 //	public void getReplyList(@RequestParam("bId")int bId, HttpServletResponse response){
